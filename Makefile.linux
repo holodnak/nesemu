@@ -1,0 +1,27 @@
+#can be one of these: ps2 win32 linux osx
+BUILDTARGET = linux
+
+#set this to 1 for debugging enabled
+DEBUG = 0
+
+include nesemu.defs
+
+CC = gcc
+CXX = g++
+LD = gcc
+AS = as
+
+CFLAGS = -DLINUX -DSDL -I.
+LDFLAGS = -lz -lm -lpng -lSDL -lSDLmain
+
+TARGET = nesemu.linux.elf
+TARGETP = nesemu-packed.linux.elf
+
+# include screenshot code, this target supports them
+CFLAGS += -DSCREENSHOTS
+OBJS += screenshot.o
+
+# include the sdl and win32 code
+OBJS += $(SDL_OBJ) system/linux/filesystem.o system/linux/stricmp.o
+
+include nesemu.make
