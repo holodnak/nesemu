@@ -30,13 +30,14 @@ void init_system()
 {
 	int i;
 
-	printf("%i joysticks were found.\n\n",SDL_NumJoysticks());
-	printf("The names of the joysticks are:\n");
-	for(i=0;i < SDL_NumJoysticks();i++) 
-		printf("    %s\n",SDL_JoystickName(i));
-	SDL_JoystickEventState(SDL_ENABLE);
-	joystick = SDL_JoystickOpen(0);
-	SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO);
+	if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK)) {
+		printf("error at sdl init!\n");
+		exit(0);
+	}
+	if(SDL_NumJoysticks() > 0) {
+		SDL_JoystickEventState(SDL_ENABLE);
+		joystick = SDL_JoystickOpen(0);
+	}
 }
 
 void kill_system()
@@ -103,28 +104,30 @@ void check_events()
 				gui2_event(E_MOUSEMOVE,mm.data);
 				break;
 			case SDL_JOYAXISMOTION:  /* Handle Joystick Motion */
-				if(event.jaxis.value < -3200) {
-					if(event.jaxis.axis == 0) 
-						joykeys[config.joy_keys[0][6]] = 1;
-					if(event.jaxis.axis == 1) 
-						joykeys[config.joy_keys[0][4]] = 1;
+				if (event.jaxis.axis == 0)
+				{
+					joystate[0] = 0;
+					joystate[1] = 0;
+					if (event.jaxis.value < -3200)
+						joystate[0] = 1;
+					else if (event.jaxis.value > 3200)
+						joystate[1] = 1;
 				}
-				if(event.jaxis.value > 3200) {
-					if(event.jaxis.axis == 0) 
-						joykeys[config.joy_keys[0][7]] = 1;
-					if(event.jaxis.axis == 1) 
-						joykeys[config.joy_keys[0][5]] = 1;
+				else if (event.jaxis.axis == 1)
+				{
+					joystate[2] = 0;
+					joystate[3] = 0;
+					if (event.jaxis.value < -3200)
+						joystate[2] = 1;
+					else if (event.jaxis.value > 3200)
+						joystate[3] = 1;
 				}
 				break;
 			case SDL_JOYBUTTONDOWN:  /* Handle Joystick Button Presses */
-				if(event.jbutton.button == 0)
-					joykeys[config.joy_keys[0][0]] = 1;
-				if(event.jbutton.button == 1)
-					joykeys[config.joy_keys[0][1]] = 1;
-				if(event.jbutton.button == 2)
-					joykeys[config.joy_keys[0][2]] = 1;
-				if(event.jbutton.button == 3)
-					joykeys[config.joy_keys[0][3]] = 1;
+				joystate[event.jbutton.button + 4] = 1;
+				break;
+			case SDL_JOYBUTTONUP:  /* Handle Joystick Button Releases */
+				joystate[event.jbutton.button + 4] = 0;
 				break;
 			case SDL_MOUSEBUTTONDOWN:
 				downtime = SDL_GetTicks();

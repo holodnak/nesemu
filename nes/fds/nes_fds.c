@@ -29,53 +29,62 @@ static u8 hle_readwrite = 1;		//default to read mode
 
 u8 fds_read(u32 addr)
 {
-	static u8 ret;
+	u8 ret;
 
 	if(addr < 0x4020)
 		return(read4(addr));
-//	log_message("fds read: $%04X\n",addr);
 	switch(addr) {
 
 		//status register
 		case 0x4030:
 			ret = status;
-			status &= ~0xFF;
+			status &= ~3;
 			return(ret);
 
 		//read disk data register
 		case 0x4031:
+			//if there is no disk inserted, return zero
 			if(disknum == 0xFF)
-				return(ret);
+				return(0);
+
+			//retreive byte to read
 			ret = nes->rom->diskdata[(disknum * 65500) + diskaddr];
+
+			//fds disk icon indicator
 			fdsdrive |= 1;
-//			log_message("reading disk data: diskaddr = $%X (%d), disknum = %d: $%02X (%c) (%d)\n",diskaddr,pos,disknum,ret,(ret == 0x07) ? ' ' : ret,ret);
+
+			//if disk is in a valid range, increment data pointer
 			if(diskaddr < 64999)
 				diskaddr++;
+
+			//setup disk irq
 			diskirq = 100;
+
+			//clear irq status bit
 			status &= ~2;
+
+			//return byte read
 			return(ret);
+
 		case 0x4032:
 			ret = 0x40;
+
+			//disk ejected bit
 			if(disknum == 0xFF)
 				ret |= 5;
+
+			//disk not inserted
 			if((disknum == 0xFF) || ((control & 1) == 0) || (control & 2))
 				ret |= 2;
+
 			return(ret);
 
+		//battery status
 		case 0x4033:
 			return(0x80);
-
-		//fds add-on registers (for hle bios)
-
-		//xferbyte read
-		case 0x4039:
-			log_message("hle xferbyte read\n");
-			return(0);
-
-		//disk mode (read=1, write=0)
-		case 0x403F:
-			return(hle_readwrite);
 	}
+
+	//else return fds sound register read
 	return(FDSsound_Read(addr));
 }
 
@@ -85,7 +94,6 @@ void fds_write(u32 addr,u8 data)
 		write4(addr,data);
 		return;
 	}
-//	log_message("fds write: $%04X = $%02X\n",addr,data);
 	switch(addr) {
 		default:
 			FDSsound_Write(addr,data);
@@ -122,7 +130,8 @@ void fds_write(u32 addr,u8 data)
 			break;
 		case 0x4025:
 			status &= ~2;
-			if((mirror = data & 8))
+			mirror = data & 8;
+			if(mirror)
 				ppu_setmirroring(MIRROR_H);
 			else
 				ppu_setmirroring(MIRROR_V);
@@ -188,7 +197,7 @@ void fds_line(int line,int pcycles)
 		dead6502_irq();
 //		log_message("irq triggered, line = %d\n",line);
 	}
-	if((diskirq) && ((diskirq -= 113) <= 0) && (control & 0x80)) {
+	if((diskirq) && ((diskirq -= 114) <= 0) && (control & 0x80)) {
 //		log_message("disk irq triggered, line = %d\n",line);
 		status |= 2;
 		dead6502_irq();

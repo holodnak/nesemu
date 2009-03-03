@@ -38,6 +38,8 @@ extern int joyx,joyy;	//zapper position
 extern u8 joyzap;		//zapper trigger
 extern u8 joykeys[];	//keyboard input
 
+extern u8 joystate[];
+
 void input_init();
 void input_kill();
 void input_poll();

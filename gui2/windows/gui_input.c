@@ -38,7 +38,7 @@ void gui_input_draw(gui_input_t *m)
 		gui_draw_border(GUI_COLOR_DARKBLUE,x,y,90,40);
 		gui_draw_border(GUI_COLOR_GREY,x,y,90,9);
 		gui_draw_text(GUI_TEXT,x+2,y+2,"Press New Key");
-		for(i=0;i<320;i++) {
+		for(i=0;i<370;i++) {
 			if(joykeys[i]) {
 				config.gui_keys[m->needinput - 1] = i;
 				sprintf(m->key_edit[m->needinput - 1].text,"%d",i);

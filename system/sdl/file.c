@@ -34,10 +34,7 @@ static int numfiles = 0;
 
 void file_init()
 {
-	int i;
-
-	for(i=0;i<16;i++)
-		memset(&files[i],0,sizeof(file_t));
+	memset(files,0,sizeof(file_t) * 16);
 	numfiles = 0;
 }
 

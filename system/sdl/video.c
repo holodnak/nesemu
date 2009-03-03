@@ -60,6 +60,10 @@ video_mode_t videomodes[] = {
 
 void video_reinit()
 {
+#ifdef WII
+	config.windowed = 0;
+	config.fullscreen = 1;
+#endif
 	if(config.windowed != 0) {
 		flags &= ~SDL_FULLSCREEN;
 		screenscale = config.windowscale;
@@ -128,7 +132,9 @@ void video_kill()
 
 void video_setpalentry(int i,u8 r,u8 g,u8 b)
 {
-#ifndef _PROFILE
+#ifdef WII
+	palette32[i] = palette32[i | 128] = (r << 24) | (g << 16) | (b << 8);
+#else
 	palette32[i] = palette32[i | 128] = (r << 16) | (g << 8) | (b << 0);
 #endif
 }
@@ -223,6 +229,34 @@ static void draw3x(u32 *dest,int destp,u32 *src,int srcp,int w,int h)
 	}
 }
 
+static void draw4x(u32 *dest,int destp,u32 *src,int srcp,int w,int h)
+{
+	int x,y;
+
+	for(y=0;y<h;y++) {
+		for(x=0;x<w;x++) {
+			u32 pixel = src[x + (y * srcp)];
+
+			dest[x*4+0 + ((y*4+0) * destp)] = pixel;
+			dest[x*4+1 + ((y*4+0) * destp)] = pixel;
+			dest[x*4+2 + ((y*4+0) * destp)] = pixel;
+			dest[x*4+3 + ((y*4+0) * destp)] = pixel;
+			dest[x*4+0 + ((y*4+1) * destp)] = pixel;
+			dest[x*4+1 + ((y*4+1) * destp)] = pixel;
+			dest[x*4+2 + ((y*4+1) * destp)] = pixel;
+			dest[x*4+3 + ((y*4+1) * destp)] = pixel;
+			dest[x*4+0 + ((y*4+2) * destp)] = pixel;
+			dest[x*4+1 + ((y*4+2) * destp)] = pixel;
+			dest[x*4+2 + ((y*4+2) * destp)] = pixel;
+			dest[x*4+3 + ((y*4+2) * destp)] = pixel;
+			dest[x*4+0 + ((y*4+3) * destp)] = pixel;
+			dest[x*4+1 + ((y*4+3) * destp)] = pixel;
+			dest[x*4+2 + ((y*4+3) * destp)] = pixel;
+			dest[x*4+3 + ((y*4+3) * destp)] = pixel;
+		}
+	}
+}
+
 void ntsc2x(u32 *dest,int destp,u32 *src,int srcp,int w,int h)
 {
 	int x,y;
@@ -307,7 +341,10 @@ void video_endframe()
 				break;
 		}
 	}
-	if(screenscale == 3) {
+	if(screenscale == 4) {
+		draw4x(scr,screen->pitch / 4,tmpscreen,256,256,240);
+	}
+	else if(screenscale == 3) {
 		if(config.filter == 0)
 			draw3x(scr,screen->pitch / 4,tmpscreen,256,256,240);
 		else if(config.filter == 1)

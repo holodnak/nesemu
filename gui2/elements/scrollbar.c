@@ -29,6 +29,19 @@ void scrollbar_draw(scrollbar_t *m)
 //		log_message("m->size,max,position - p = %d, %d, %d, %d\n",m->size,m->max,m->position,p);
 		gui_draw_border(GUI_COLOR_GREY,x,y+p+9,8,8);
 	}
+	else {	//horizontal
+		gui_draw_border(GUI_COLOR_GREY,x,y,m->size,8);
+		gui_draw_border(GUI_COLOR_GREY,x,y,8,8);
+		gui_draw_border(GUI_COLOR_GREY,x+m->size-8,y,8,8);
+		gui_draw_char(GUI_TEXT,x+2,y+2,'\x2');
+		gui_draw_char(GUI_TEXT,x+m->size+2-8,y+2,'\x3');
+
+		if(m->max == 0)
+			return;
+		p = (u32)((double)((double)m->position / (double)m->max) * (double)(m->size - 20));
+//		log_message("m->size,max,position - p = %d, %d, %d, %d\n",m->size,m->max,m->position,p);
+		gui_draw_border(GUI_COLOR_GREY,x+p+9,y,8,8);
+	}
 }
 
 int scrollbar_event(scrollbar_t *m,int event,int data)

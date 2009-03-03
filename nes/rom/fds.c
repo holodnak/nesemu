@@ -26,6 +26,9 @@
 #include "system/file.h"
 #include "system/config.h"
 
+#define KB(nn)	((nn) * 1024)
+#define MB(nn)	(KB(nn * 1024))
+
 static void load_fds_header(rom_t *ret,u8 *header)
 {
 	//set mapper assigned to fds system
@@ -42,9 +45,21 @@ rom_t *rom_load_fds(int fd,rom_t *ret)
 	u8 header[16];
 
 	//first check if the disk system bios rom is loaded
-	if(nes->disksys_rom == 0 && nes->hle_fds_rom == 0) {
-		log_error("fds bios not loaded, cannot load fds disk\n");
-		return(0);
+	if(nes->disksys_rom == 0) {
+		if(nes->hle_fds_rom == 0) {
+			log_error("fds bios not loaded, cannot load fds disk\n");
+			return(0);
+		}
+		config.fdsbios = 1;
+		log_message("using hle fds bios\n");
+	}
+	if(nes->hle_fds_rom == 0) {
+		if(nes->disksys_rom == 0) {
+			log_error("fds bios not loaded, cannot load fds disk\n");
+			return(0);
+		}
+		config.fdsbios = 0;
+		log_message("using nintendo fds bios\n");
 	}
 
 	//read header
@@ -63,9 +78,6 @@ rom_t *rom_load_fds(int fd,rom_t *ret)
 
 	//copy the data read to seperate buffer (used for saving disk changes)
 	memcpy(ret->orig_diskdata,ret->diskdata,ret->disksides * 65500);
-
-	//check if disk is in our database, only retreives some useless info for now
-	rom_checkdb(ret,1);
 
 	return(ret);
 }

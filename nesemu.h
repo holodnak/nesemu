@@ -24,7 +24,7 @@
 extern int quit;
 
 int init();
-void kill();
+void nesemu_kill();
 int loadrom(char *fn);
 
 void loadstate();

@@ -23,8 +23,8 @@ static u8 hle_read(u32 addr)
 
 static void hle_write(u32 addr,u8 data)
 {
-	if((addr & ~1) == 0x4028 && data != 0x12 && data != 0xC && data != 0x10)
-		log_message("hle fds write: $%04X = $%02X\n",addr,data);
+//	if((addr & ~1) == 0x4028 && data != 0x12 && data != 0xC && data != 0x10)
+//		log_message("hle fds write: $%04X = $%02X\n",addr,data);
 	switch(addr) {
 		//hle command write
 		case 0x4028:

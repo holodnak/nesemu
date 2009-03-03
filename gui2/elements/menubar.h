@@ -17,6 +17,7 @@
 #include "gui2/windows/rom_info.h"
 #include "gui2/windows/tracer.h"
 #include "gui2/windows/memory_viewer.h"
+#include "gui2/windows/nametable_viewer.h"
 #include "gui2/windows/about.h"
 
 #define MAX_MENUS	24
@@ -52,7 +53,7 @@ typedef struct menubar_s {
 	//file loaded
 	palette_t palette;
 
-	//file loaded
+	//file loaded                  memory_viewer
 	options_t options;
 
 	//file loaded
@@ -72,6 +73,9 @@ typedef struct menubar_s {
 
 	//memory viewer
 	memory_viewer_t memory_viewer;
+
+	//nametable viewer
+	nt_t nametable_viewer;
 
 	//file loaded
 	about_t about;

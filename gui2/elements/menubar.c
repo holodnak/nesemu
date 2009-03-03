@@ -53,6 +53,7 @@ void menubar_draw(menubar_t *m)
 	tracer_draw(&m->tracer);
 	rom_info_draw(&m->rom_info);
 	memory_viewer_draw(&m->memory_viewer);
+	nt_draw(&m->nametable_viewer);
 	about_draw(&m->about);
 	for(i=0;i<(m->info.h/2);i++)
 		gui_draw_hline(GUI_TITLEBARBACKGROUND+i,x,y++,256);
@@ -98,6 +99,7 @@ int menubar_event(menubar_t *m,int event,int data)
 	rom_info_event(&m->rom_info,event,data);
 	tracer_event(&m->tracer,event,data);
 	memory_viewer_event(&m->memory_viewer,event,data);
+	nt_event(&m->nametable_viewer,event,data);
 	about_event(&m->about,event,data);
 	switch(event) {
 		//mouse button pressed
@@ -282,8 +284,18 @@ static void click_memory_viewer()
 	root->memory_viewer.info.event(&root->memory_viewer,E_REFRESH,0);
 }
 
+static void click_nametables()
+{
+	if((nes == 0) || (nes->rom == 0))
+		return;
+	root->nametable_viewer.isshowing = 1;
+	root->nametable_viewer.info.event(&root->nametable_viewer,E_REFRESH,0);
+}
+
 static void click_softreset()
 {
+	if((nes == 0) || (nes->rom == 0))
+		return;
 	nes_reset(0);
 	//deactivate the gui
 	joykeys[config.gui_keys[0]] = 1;
@@ -291,6 +303,8 @@ static void click_softreset()
 
 static void click_hardreset()
 {
+	if((nes == 0) || (nes->rom == 0))
+		return;
 	nes_reset(1);
 	//deactivate the gui
 	joykeys[config.gui_keys[0]] = 1;
@@ -442,7 +456,7 @@ menuitems_t debugitems[] = {
 	{"Memory Viewer",click_memory_viewer},
 	{"",0},
 	{"Pattern Tables",0},
-	{"Name Tables",0},
+	{"Name Tables",click_nametables},
 	{"",0},
 //	{"Pause/Resume",click_pauseresume},
 //	{"",0},
@@ -547,6 +561,7 @@ void menubar_create(menubar_t *m)
 	rom_info_create(&m->rom_info);
 	tracer_create(&m->tracer);
 	memory_viewer_create(&m->memory_viewer);
+	nt_create(&m->nametable_viewer);
 	about_create(&m->about);
 
 	m->menus[0].click = click_recent;

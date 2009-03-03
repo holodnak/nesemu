@@ -79,13 +79,13 @@ static void hle_loadfiles()
 			char fn[9] = "        \0";
 
 			memcpy(&file_header,nes->rom->diskdata + pos,sizeof(fds_file_header_t));
-			pos += 17;
+			pos += 17;                 
 			memcpy(fn,file_header.name,8);
 			log_message("loadfiles: checking file '%s', id $%X, size $%X, load addr $%04X\n",fn,file_header.fileid,file_header.filesize,file_header.loadaddr);
 			for(k=0;fileidlist[k] != 0xFF && k < 20;k++) {
 				if(file_header.fileid == fileidlist[k]) {
 					log_message("loadfiles: loading file '%s', id $%X, size $%X, load addr $%04X\n",fn,file_header.fileid,file_header.filesize,file_header.loadaddr);
-					loadedfiles++;
+					loadedfiles++;       
 
 					//load into cpu
 					if(file_header.loadarea == 0) {
@@ -127,6 +127,10 @@ static void hle_writefile()
 	fds_file_header2_t file_header2;
 	fds_disk_header_t disk_header;
 
+	if(disknum > 3) {
+		log_warning("hle_writefile: disknum > 3, correcting with mask of $%X\n",3);
+		disknum &= 3;
+	}
 	tmp = 0x100 + nes->cpu.s;
 	retaddr = dead6502_read(tmp + 1) << 0;
 	retaddr |= dead6502_read(tmp + 2) << 8;
@@ -144,14 +148,14 @@ static void hle_writefile()
 	dead6502_write(tmp + 1,retaddr & 0xFF);
 	dead6502_write(tmp + 2,(retaddr >> 8) & 0xFF);
 
-	log_message("hle writefile\n");
-
 	pos = disknum * 65500;
+
 	memcpy(&disk_header,nes->rom->diskdata + pos,sizeof(fds_disk_header_t));
+
 	pos += 57;
 
-	if(nes->cpu.a != 0xFF)
-		disk_header.numfiles = nes->cpu.a;
+	if(nes->cpu.y != 0xFF)
+		disk_header.numfiles = nes->cpu.y;
 
 	//skip thru files to find the position to write the file
 	for(i=0;i<disk_header.numfiles;i++) {
@@ -159,8 +163,12 @@ static void hle_writefile()
 		pos += 17 + file_header.filesize;
 	}
 
+	log_message("hle writefile: disk data pos = %d\n",pos);
+
 	//write the file
 	//get the file write info
+	pos += 3;
+
 	for(i=0;i<17;i++)
 		((u8*)&file_header2)[i] = dead6502_read(addr2 + i);
 	//write header
@@ -169,9 +177,9 @@ static void hle_writefile()
 	//write data
 	for(i=0;i<file_header2.filesize;i++) {
 		if(file_header2.srcarea == 0)
-			nes->rom->diskdata[pos++] = dead6502_read(file_header2.srcaddr);
+			nes->rom->diskdata[pos++] = dead6502_read(file_header2.srcaddr+i);
 		else
-			nes->rom->diskdata[pos++] = ppumem_read(file_header2.srcaddr);
+			nes->rom->diskdata[pos++] = ppumem_read(file_header2.srcaddr+i);
 	}
 	disk_header.numfiles++;
 
@@ -179,8 +187,23 @@ static void hle_writefile()
 	pos = disknum * 65500;
 	memcpy(nes->rom->diskdata + pos,&disk_header,57);
 
-	dead6502_write(0x101,nes->cpu.a);
+	dead6502_write(0x6,disk_header.numfiles);
+
+	pos += 57;
+		for(i=0;i<disk_header.numfiles;i++) {
+			char fn[9] = "        \0";
+
+			memcpy(&file_header,nes->rom->diskdata + pos,sizeof(fds_file_header_t));
+			pos += 17;                 
+			memcpy(fn,file_header.name,8);
+			log_message("hle_writefile: checking file '%s', id $%X, size $%X, load addr $%04X\n",fn,file_header.fileid,file_header.filesize,file_header.loadaddr);
+			pos += file_header.filesize;
+		}
+
+
+	dead6502_write(0x05,0xFF);
 	nes->cpu.a = 0;
+	nes->cpu.x = 0;
 }
 
 static void hle_vramfill()
@@ -321,13 +344,13 @@ pointer
 	tmp1 = dead6502_read(tmp + 1) << 0;
 	tmp1 |= dead6502_read(tmp + 2) << 8;
 
-	log_message("hle ppudataprsr: ptr dataaddr = $%04X\n",tmp1);
+//	log_message("hle ppudataprsr: ptr dataaddr = $%04X\n",tmp1);
 
 	//get data addr
 	addr = dead6502_read(tmp1 + 1) << 0;
 	addr |= dead6502_read(tmp1 + 2) << 8;
 
-	log_message("hle ppudataprsr: dataaddr = $%04X\n",addr);
+//	log_message("hle ppudataprsr: dataaddr = $%04X\n",addr);
 
 	//fixup return address
 	tmp1 += 2;
@@ -338,8 +361,10 @@ pointer
 		ppu_read(0x2002);
 		data = dead6502_read(addr++);
 		//end of data
-		if(data >= 0x80)
+		if(data >= 0x80) {
+			log_message("hle ppudataprsr: end opcode @ $%04X = $%02X\n",addr-1,data);		
 			break;
+		}
 		//jump to subroutine
 		else if(data == 0x4C) {
 			log_message("ppu data jsr\n");
@@ -361,8 +386,10 @@ pointer
 		}
 		//opcode stream
 		else {
+			log_message("hle ppudataprsr: opcode @ $%04X = $%02X\n",addr-1,data);		
 			ppuaddr = (data << 8) | dead6502_read(addr++);
 			data = dead6502_read(addr++);
+			log_message("hle ppudataprsr: %s data (addr=$%04X,data=$%02X)\n",(data & 0x40) ? "filling" : "copying",ppuaddr,data);
 			len = (data & 0x3F) == 0 ? 64 : (data & 0x3F);
 			ctrl = dead6502_read(0xFF) | 4;
 			if((data & 0x80) == 0)
@@ -373,9 +400,11 @@ pointer
 			ppu_write(0x2006,ppuaddr >> 0);
 			for(i=0;i<len;i++) {
 				ppu_write(0x2007,dead6502_read(addr));
-				if((data & 0x40) == 0)
-					addr++;
+				if((data & 0x40) == 0)	//copy or fill?
+					addr++;					//if copy, increment address pointer
 			}
+			if((data & 0x40) != 0)	//fill
+				addr++;					//increment address pointer
 		}
 	}
 }
@@ -446,11 +475,11 @@ static void hle_cputoppucpy()
 		log_message("hle cputoppucpy: read from ppu not supported\n");
 	}
 
-	if(mode & 0xC)
+/*	if(mode & 0xC)
 		addr &= ~0xF;
 
 	//write to ppu
-	else {
+	else */{
 		while(units--) {
 			log_message("hle cputoppucpy: ppu,cpu addr = $%04X,$%04X, mode = %X\n",ppuaddr,addr,mode & 0xC);
 			fill = (mode & 1) ? 0xFF : 0x00;

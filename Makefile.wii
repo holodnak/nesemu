@@ -22,17 +22,22 @@ AR = powerpc-gekko-ar
 #	CXX = g++
 #endif
 
-CFLAGS = -MMD -MP -MF -mrvl -mcpu=750 -meabi -mhard-float -DC_RENDER -DGEKKO -DWII -DSDL -I.
+CFLAGS = -MMD -MP -MF -mrvl -mcpu=750 -meabi -mhard-float -I.
+CFLAGS += -DC_RENDER -DGEKKO -DWII -DSDL
+CFLAGS += -g
+
 LDFLAGS = -g -mrvl -mcpu=750 -meabi -mhard-float -Wl,-Map,$(notdir $@).map
-LDFLAGS += -s -lz -lSDL -lwiiuse -lasnd -ldi -ldb -lbte -logc -lm
+LDFLAGS += -lz -lfat -lSDL -lwiiuse -lasnd -ldi -ldb -lbte -logc -lm
+#LDFLAGS += -s
 
 TARGET = nesemu.wii.elf
 TARGETD = nesemu.wii.dol
 TARGETP = nesemu-packed.wii.elf
 
 # include the wii system code
-#OBJS += $(WII_OBJ)
-OBJS += $(SDL_OBJ) system/wii/filesystem.o
+#OBJS += $(filter-out system/sdl/system.o,$(SDL_OBJ))
+OBJS += system/wii/osd_ngc_gfx.o system/wii/osd_ngc_snd.o
+OBJS += system/wii/filesystem.o system/wii/system.o
 
 CFLAGS += -I$(DEVKITPPC)/include -I$(DEVKITPRO)/libogc/include
 LDFLAGS += -L$(DEVKITPPC)/lib -L$(DEVKITPRO)/libogc/lib/wii

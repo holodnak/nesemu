@@ -11,8 +11,12 @@ CXX = g++
 LD = gcc
 AS = as
 
-CFLAGS = -DLINUX -DSDL -I.
-LDFLAGS = -lz -lm -lpng -lSDL -lSDLmain
+CFLAGS = -DLINUX -DSDL -I. -DC_RENDER
+LDFLAGS = -L/home/james/SDL-1.2.13/lib -lz -lm -lpng -lSDL -lSDLmain
+
+#CFLAGS += -g
+CFLAGS += -O2
+LDFLAGS += -s
 
 TARGET = nesemu.linux.elf
 TARGETP = nesemu-packed.linux.elf
@@ -25,3 +29,6 @@ OBJS += screenshot.o
 OBJS += $(SDL_OBJ) system/linux/filesystem.o system/linux/stricmp.o
 
 include nesemu.make
+
+gdb:
+	gdb $(TARGET) --eval-command=run

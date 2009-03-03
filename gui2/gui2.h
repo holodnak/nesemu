@@ -66,6 +66,8 @@ typedef struct gui2_obj_s {
 	eventfunc_t event;
 } gui2_obj_t;
 
+u8 *gui_draw_getscreen();
+int gui_draw_getscreenpitch();
 int mouseinrange(gui2_obj_t *obj,int data);
 void gui2_init();
 void gui2_kill();

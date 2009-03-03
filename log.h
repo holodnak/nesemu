@@ -21,8 +21,8 @@
 #ifndef __log_h__
 #define __log_h__
 
-#ifndef PS2
-#define LOGGER
+#if (!defined(WII))
+	#define LOGGER
 #endif
 
 void log_init();

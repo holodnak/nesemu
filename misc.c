@@ -244,10 +244,10 @@ static void add_recent(char *fn)
 
 int loadrom(char *fn)
 {
-	log_message("loading rom '%s'\n",fn);
+	log_message("loadrom: loading rom '%s'\n",fn);
 	unloadrom();
 	if(((rom = rom_load(fn)) == 0) || (nes_load(rom) != 0)) {
-		log_message("error loading rom '%s'\n",fn);
+		log_message("loadrom: error loading rom '%s'\n",fn);
 		return(1);
 	}
 	if(rom->diskdata)
@@ -259,7 +259,8 @@ int loadrom(char *fn)
 
 void unloadrom()
 {
-	log_message("unloading rom\n");
+	log_message("unloadrom: unloading rom\n");
+	nes_unload();
 	if(rom) {
 		if(rom->diskdata)
 			savediskstate();
@@ -275,11 +276,7 @@ int load_bios(char *fn,u8 *dest,int size)
 	int fp;
 	char tmp[1024];
 
-#ifdef PS2
-	sprintf(tmp,"mc0:nesemu/%s",fn);
-#else
 	sprintf(tmp,"%s/%s",curdir,fn);
-#endif
 	if((fp = file_open(tmp,"rb")) == -1) {
 		strcat(fn,".gz");
 		if((fp = file_open(tmp,"rb")) == -1) {

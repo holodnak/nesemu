@@ -33,7 +33,10 @@ static void load_ines_header(rom_t *ret,u8 *header)
 	ret->chrmask = rom_createmask(ret->chrsize);
 	ret->vrammask = rom_createmask(0);				//start with no vram, let mapper control this
 	ret->mapper = (header[6] & 0xF0) >> 4;
-	ret->mapper |= header[7] & 0xF0;
+	if(memcmp(&header[8],"\0\0\0\0\0\0\0\0",8) != 0)
+		log_message("load_ines_header:  dirty header! (%c%c%c%c%c%c%c%c%c)\n",header[7],header[8],header[9],header[10],header[11],header[12],header[13],header[14],header[15]);
+	else
+		ret->mapper |= header[7] & 0xF0;
 	if(ret->mirroring & 4)
 		ret->mirroring = 4;
 	else
@@ -1690,9 +1693,8 @@ static char *getboardname(rom_t *rom)
 rom_t *rom_load_ines(int fd,rom_t *ret)
 {
 	u8 header[16];
-	int r;
 
-	//read header
+	//read header (again...)
 	file_read(fd,header,16);
 
 	//load ines header
@@ -1702,8 +1704,8 @@ rom_t *rom_load_ines(int fd,rom_t *ret)
 	ret->prg = (u8*)malloc(ret->prgsize);
 
 	//read in the prg rom
-	if((r = file_read(fd,ret->prg,ret->prgsize)) != ret->prgsize) {
-		log_message("rom_load: error reading prg data (only read %d bytes, wanted %d)\n",r,ret->prgsize);
+	if(file_read(fd,ret->prg,ret->prgsize) != ret->prgsize) {
+		log_message("rom_load: error reading prg data\n");
 		rom_unload(ret);
 		return(0);
 	}
@@ -1738,8 +1740,12 @@ rom_t *rom_load_ines(int fd,rom_t *ret)
 	if(rom_checkdb(ret,0) == 0) {
 		int fd;
 		char str[512];
-
-		if((fd = file_open("c:\\new_crcs.c","uat")) >= 0) {
+#ifdef WIN32
+#define NEW_CRCS "c:\\new_crcs.c"
+#else
+#define NEW_CRCS "new_crcs.c"
+#endif
+		if((fd = file_open(NEW_CRCS,"uat")) >= 0) {
 			sprintf(str,"\t{\"%s\",0x%08X,0x%08X,\"%s\",%s},\n",ret->filename,rom_prgcrc32(ret),rom_chrcrc32(ret),getboardname(ret),((ret->chrsize == 0) ? "ROM_NOCHR" : "0"));
 			file_write(fd,str,strlen(str));
 			file_close(fd);

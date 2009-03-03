@@ -75,28 +75,31 @@ void init()
 	config_load();
 	log_message("inited config\n");
 	video_init();
-	log_message("inited video\n");
-	log_message("initing filesystem\n");
-	filesystem_init();
 	log_message("initing gui\n");
 	gui2_init();
 	gui_draw_setscreensize(256,240);
 	gui_draw_setscreen((u8*)nesscr,256+8);
-	drawbox(lines_init);
+	splash_start(nesscr);
+	splash_adddot();
+	log_message("inited video\n");
+	log_message("initing filesystem\n");
+	filesystem_init();
+	splash_adddot();
 	input_init();
+	splash_adddot();
 	log_message("inited input\n");
 	log_message("initing sound\n");
-#if (defined(LINUX) || defined(OSX))
-	config.soundenabled = 0;
-#endif
 	sound_init();
+	splash_adddot();
 	log_message("init done, saving config\n");
 	config_save();
+	splash_adddot();
 	if(config.soundenabled == 0)
 		apu_disable();
+	splash_adddot();
 }
 
-void kill()
+void nesemu_kill()
 {
 	log_message("killing system\n");
 	config_save();
@@ -147,15 +150,22 @@ int main(int argc,char *argv[])
 	//set our base filename
 	argv0 = argv[0];
 
+	//zero out curdir
+	memset(curdir,0,1024);
+
 	//determine current directory
 #ifdef PS2
 	strcpy(curdir,"mc0:/nesemu");
+#elif defined(WII)
+	strcpy(curdir,"sd:/nesemu");
 #elif (defined(LINUX) || defined(OSX))
 	{
 	char *homedir = getenv("HOME");
 
-	if(homedir)
+	if(homedir) {
 		sprintf(curdir,"%s/.nesemu/",homedir);
+		mkdir(curdir);
+	}
 	}
 #else
 //TODO: win32 target can use documents and settings folder, to be like
@@ -174,11 +184,7 @@ int main(int argc,char *argv[])
 	//safety check
 	if((p = strrchr(curdir,'/')) == 0) {
 		log_error("platform must include path in argv[0]\n");
-#ifdef WII
-		for(;;){}
-#else
 		exit(0);
-#endif
 	}
 	*p = 0;
 	log_message("determined executable directory to be '%s'\n",curdir);
@@ -196,6 +202,7 @@ int main(int argc,char *argv[])
 	//screen buffer (currently only used by the gui)
 	nesscr = (u8*)malloc(256 * (256 + 16) * sizeof(u8));
 
+	memset(nesscr,0,256 * (256 + 16) * sizeof(u8));
 	//initialize system
 	init();
 
@@ -220,27 +227,33 @@ int main(int argc,char *argv[])
 
 	//initialize nes
 	nes_init();
+	splash_adddot();
 
 	//set input devices
 	nes_setinput(0,config.devices[0]);
 	nes_setinput(1,config.devices[1]);
 	nes_setexp(config.expdevice);
+	splash_adddot();
 
 	//try to load game genie bios
 	if(load_bios(genie_path,genie_rom,0x6000) == 0)
 		nes->genie_rom = genie_rom;
+	splash_adddot();
 
 	//try to load real nintendo fds bios
 	if(load_bios(disksys_path,disksys_rom,0x2000) == 0)
 		nes->disksys_rom = disksys_rom;
+	splash_adddot();
 
 	//try to load the hle fds bios
 	if(load_bios(hle_fds_path,hle_fds_rom,0x2000) == 0)
 		nes->hle_fds_rom = hle_fds_rom;
+	splash_adddot();
 
 	//try to load the nsf player bios
 	if(load_bios(nsfbios_path,nsfbios_rom,0x1000) == 0)
 		{}//nes->nsfbios_rom = nsfbios_rom;
+	splash_adddot();
 
 	//no nintendo bios, hle loaded, make sure config has correct selection
 	if(nes->disksys_rom == 0 && nes->hle_fds_rom != 0) config.fdsbios = 1;
@@ -251,6 +264,8 @@ int main(int argc,char *argv[])
 
 	//if a rom filename was passed and that rom is loaded ok
 	if(rom_filename && (loadrom(rom_filename) == 0)) {
+		splash_adddot();
+
 		//set gui to inactive
 		gui_active = 0;
 
@@ -258,8 +273,10 @@ int main(int argc,char *argv[])
 		sound_play();
 
 		//if the load state command line parameter was passed
-		if(doloadstate)
+		if(doloadstate) {
 			loadstate();
+		splash_adddot();
+		}
 	}
 
 	//else activate the gui and stop the sound
@@ -267,9 +284,12 @@ int main(int argc,char *argv[])
 		gui_active = 1;
 		sound_pause();
 	}
+	splash_adddot();
 
 	//debug message
 	log_message("everything initialized ok, beginning main loop\n");
+
+	splash_stop();
 
 	//start the main loop
 	while(quit == 0) {
@@ -295,8 +315,9 @@ int main(int argc,char *argv[])
 				unloadrom();
 				gui_active = 1;
 			}
-			//update the sound output
-			sound_update();
+			else
+				//update the sound output
+				sound_update();
 		}
 	}
 	log_message("exiting...\n");
@@ -304,7 +325,7 @@ int main(int argc,char *argv[])
 	nes_kill();
 	log_message("freeing screen buffer\n");
 	free(nesscr);
-	kill();
+	nesemu_kill();
 	log_message("nesemu exiting...\n");
 	return(0);
 }

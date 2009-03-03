@@ -1,14 +1,14 @@
 # nesemu source code common to all targets
 
 # nes sources
-NES_OBJ = nes/nes.o nes/nes_io.o nes/memory.o nes/nsf.o nes/romdb/crc.o nes/romdb/crc_fds.o
-FDS_OBJ = nes/fds/fds.o nes/fds/hle_fds.o nes/fds/hle_fds_calls.o
-ROM_OBJ = nes/rom/rom.o nes/rom/rom_ines.o nes/rom/rom_ines20.o nes/rom/rom_fds.o
-ROM_OBJ += nes/rom/rom_unif.o nes/rom/rom_nsf.o 
+NES_OBJ = nes/nes.o nes/nes_io.o nes/memory.o nes/nsf/nsfplayer.o nes/romdb/crc.o nes/romdb/crc_fds.o
+FDS_OBJ = nes/fds/nes_fds.o nes/fds/hle_fds.o nes/fds/hle_fds_calls.o
+ROM_OBJ = nes/rom/rom.o nes/rom/ines.o nes/rom/ines20.o nes/rom/fds.o
+ROM_OBJ += nes/rom/unif.o nes/rom/nsf.o 
 NES_OBJ += nes/state/blocks.o nes/state/state.o
 #nes/rom/rom_nst.o
 CPU_OBJ = nes/cpu/dead6502.o nes/cpu/dead6502_disasm.o
-PPU_OBJ = nes/ppu/ppu.o nes/ppu/ppu_io.o nes/ppu/ppu_event.o nes/ppu/ppu_draw.o
+PPU_OBJ = nes/ppu/ppu.o nes/ppu/io.o nes/ppu/event.o nes/ppu/draw.o
 PPU_OBJ += nes/ppu/palette.o nes/ppu/cache.o
 INPUTDEV_OBJ = nes/inputdev/joypad0.o nes/inputdev/joypad1.o nes/inputdev/joypad02.o nes/inputdev/joypad13.o
 INPUTDEV_OBJ += nes/inputdev/zapper.o nes/inputdev/powerpad.o
@@ -19,11 +19,9 @@ BLARGGAPU_OBJ += nes/blarggapu/Nes_Namco.o nes/blarggapu/Nes_Vrc6.o
 BLARGGAPU_OBJ += nes/blarggapu/Blip_Buffer.o nes/blarggapu/Multi_Buffer.o nes/blarggapu/Nonlinear_Buffer.o
 BLARGGAPU_OBJ += nes/blarggapu/blarggapu.o nes/blarggapu/apu_snapshot.o nes/blarggapu/Simple_Apu.o
 
-ifeq ($(BLARGGAPU),1)
-	APU_OBJ = $(BLARGGAPU_OBJ)
-else
-	APU_OBJ = $(MATTAPU_OBJ)
-endif
+#APU_OBJ = $(BLARGGAPU_OBJ)
+APU_OBJ = $(MATTAPU_OBJ)
+
 NES_OBJ += $(ROM_OBJ) $(FDS_OBJ) $(CPU_OBJ) $(PPU_OBJ) $(INPUTDEV_OBJ) $(APU_OBJ)
 
 # gui2 sources
@@ -32,6 +30,8 @@ GUI2_OBJ += gui2/elements/edit.o gui2/elements/text.o gui2/elements/list.o gui2/
 GUI2_OBJ += gui2/windows/videocfg.o gui2/windows/inputcfg.o gui2/windows/soundcfg.o gui2/windows/devices.o gui2/windows/palettecfg.o gui2/windows/about.o gui2/gui2_draw.o
 GUI2_OBJ += gui2/windows/options.o gui2/windows/mappers.o gui2/windows/paths.o gui2/windows/supported_mappers.o gui2/windows/gui_input.o
 GUI2_OBJ += gui2/windows/tracer.o gui2/windows/rom_info.o gui2/windows/memory_viewer.o
+GUI2_OBJ += gui2/windows/nametable_viewer.o
+
 # mapper sources
 CHIPS_OBJ = mappers/chips/mmc1.o mappers/chips/mmc2.o mappers/chips/mmc3.o
 CHIPS_OBJ += mappers/chips/mmc4.o mappers/chips/mmc5.o mappers/chips/mmc6.o
@@ -74,45 +74,45 @@ INES_OBJ += mappers/ines/mapper212.o mappers/ines/mapper214.o
 INES_OBJ += mappers/ines/mapper225.o mappers/ines/mapper230.o mappers/ines/mapper231.o mappers/ines/mapper232.o mappers/ines/mapper234.o
 INES_OBJ += mappers/ines/mapper240.o mappers/ines/mapper242.o
 INES_OBJ += mappers/ines/mapper245.o mappers/ines/mapper246.o mappers/ines/mapper249.o mappers/ines/mapper254.o
-UNIF_OBJ = mappers/unif/mapper_btl-mario1-malee2.o
-UNIF_OBJ += mappers/unif/mapper_btl-biomiraclea.o
-UNIF_OBJ += mappers/unif/mapper_btl-tek2a.o
-UNIF_OBJ += mappers/unif/mapper_bmc-70in1.o
-UNIF_OBJ += mappers/unif/mapper_bmc-fk23c.o
-UNIF_OBJ += mappers/unif/mapper_bmc-generic42in1.o
-UNIF_OBJ += mappers/unif/mapper_bmc-super24in1sc03.o
-UNIF_OBJ += mappers/unif/mapper_colordreams.o
-UNIF_OBJ += mappers/unif/mapper_hvc-un1rom.o
-UNIF_OBJ += mappers/unif/mapper_konami-vrc-1.o
-UNIF_OBJ += mappers/unif/mapper_konami-vrc-2.o
-UNIF_OBJ += mappers/unif/mapper_konami-vrc-3.o
-UNIF_OBJ += mappers/unif/mapper_konami-vrc-4.o
-UNIF_OBJ += mappers/unif/mapper_konami-vrc-6.o
-UNIF_OBJ += mappers/unif/mapper_konami-vrc-7.o
-UNIF_OBJ += mappers/unif/mapper_mlt-caltron6in1.o
-UNIF_OBJ += mappers/unif/mapper_namco_1xx.o
-UNIF_OBJ += mappers/unif/mapper_nes-nrom.o
-UNIF_OBJ += mappers/unif/mapper_nes-axrom.o
-UNIF_OBJ += mappers/unif/mapper_nes-bxrom.o
-UNIF_OBJ += mappers/unif/mapper_nes-cxrom.o
-UNIF_OBJ += mappers/unif/mapper_nes-fxrom.o
-UNIF_OBJ += mappers/unif/mapper_nes-hxrom.o
-UNIF_OBJ += mappers/unif/mapper_nes-jxrom.o
-UNIF_OBJ += mappers/unif/mapper_nes-pxrom.o
-UNIF_OBJ += mappers/unif/mapper_nes-sxrom.o
-UNIF_OBJ += mappers/unif/mapper_nes-txrom.o
-UNIF_OBJ += mappers/unif/mapper_nes-uxrom.o
-UNIF_OBJ += mappers/unif/mapper_sunsoft-fme-7.o
-UNIF_OBJ += mappers/unif/mapper_unl-603-5052.o
-UNIF_OBJ += mappers/unif/mapper_unl-kof97.o
-UNIF_OBJ += mappers/unif/mapper_unl-h2288.o
-UNIF_OBJ += mappers/unif/mapper_unl-22211.o
-UNIF_OBJ += mappers/unif/mapper_unl-sachen-74ls374n.o
-UNIF_OBJ += mappers/unif/mapper_unl-sachen-8259.o
-UNIF_OBJ += mappers/unif/mapper_unl-sa-0036.o
-UNIF_OBJ += mappers/unif/mapper_unl-sa-72007.o
-UNIF_OBJ += mappers/unif/mapper_unl-sa-72008.o
-UNIF_OBJ += mappers/unif/mapper_unl-sa-nrom.o
+UNIF_OBJ = mappers/unif/btl-mario1-malee2.o
+UNIF_OBJ += mappers/unif/btl-biomiraclea.o
+UNIF_OBJ += mappers/unif/btl-tek2a.o
+UNIF_OBJ += mappers/unif/bmc-70in1.o
+UNIF_OBJ += mappers/unif/bmc-fk23c.o
+UNIF_OBJ += mappers/unif/bmc-generic42in1.o
+UNIF_OBJ += mappers/unif/bmc-super24in1sc03.o
+UNIF_OBJ += mappers/unif/colordreams.o
+UNIF_OBJ += mappers/unif/hvc-un1rom.o
+UNIF_OBJ += mappers/unif/konami-vrc-1.o
+UNIF_OBJ += mappers/unif/konami-vrc-2.o
+UNIF_OBJ += mappers/unif/konami-vrc-3.o
+UNIF_OBJ += mappers/unif/konami-vrc-4.o
+UNIF_OBJ += mappers/unif/konami-vrc-6.o
+UNIF_OBJ += mappers/unif/konami-vrc-7.o
+UNIF_OBJ += mappers/unif/mlt-caltron6in1.o
+UNIF_OBJ += mappers/unif/namco_1xx.o
+UNIF_OBJ += mappers/unif/nes-nrom.o
+UNIF_OBJ += mappers/unif/nes-axrom.o
+UNIF_OBJ += mappers/unif/nes-bxrom.o
+UNIF_OBJ += mappers/unif/nes-cxrom.o
+UNIF_OBJ += mappers/unif/nes-fxrom.o
+UNIF_OBJ += mappers/unif/nes-hxrom.o
+UNIF_OBJ += mappers/unif/nes-jxrom.o
+UNIF_OBJ += mappers/unif/nes-pxrom.o
+UNIF_OBJ += mappers/unif/nes-sxrom.o
+UNIF_OBJ += mappers/unif/nes-txrom.o
+UNIF_OBJ += mappers/unif/nes-uxrom.o
+UNIF_OBJ += mappers/unif/sunsoft-fme-7.o
+UNIF_OBJ += mappers/unif/unl-603-5052.o
+UNIF_OBJ += mappers/unif/unl-kof97.o
+UNIF_OBJ += mappers/unif/unl-h2288.o
+UNIF_OBJ += mappers/unif/unl-22211.o
+UNIF_OBJ += mappers/unif/unl-sachen-74ls374n.o
+UNIF_OBJ += mappers/unif/unl-sachen-8259.o
+UNIF_OBJ += mappers/unif/unl-sa-0036.o
+UNIF_OBJ += mappers/unif/unl-sa-72007.o
+UNIF_OBJ += mappers/unif/unl-sa-72008.o
+UNIF_OBJ += mappers/unif/unl-sa-nrom.o
 
 LINUX_OBJ = $(SDL_OBJ) system/linux/filesystem.o system/linux/config.o
 OSX_OBJ = $(LINUX_OBJ) system/osx/stricmp.o
@@ -128,7 +128,7 @@ SDL_OBJ += system/sdl/hq2x/hq2x.o
 SDL_OBJ += system/sdl/hq2x/hq3x.o
 SDL_OBJ += system/sdl/nes_ntsc/nes_ntsc.o
 
-OBJS = nesemu.o log.o misc.o $(NES_OBJ) $(GUI_OBJ) $(GUI2_OBJ) system/config.o
+OBJS = nesemu.o log.o misc.o splash.o $(NES_OBJ) $(GUI2_OBJ) system/config.o
 
 SOURCES = *.c *.h \
 	unused/blarggapu/*.c* unused/blarggapu/*.h* unused/blarggapu/boost/*.h* \
@@ -184,11 +184,11 @@ PACKER = upx
 PACKERFLAGS = --best -o $(TARGETP) $(TARGET)
 
 # check for debug build
-ifeq ($(DEBUG),0)
+#ifeq ($(DEBUG),0)
 	CFLAGS += -O3 -fomit-frame-pointer -funroll-loops
-else
-	CFLAGS += -g
-endif
+#else
+#	CFLAGS += -g
+#endif
 
 # tar command used
 TAR = tar --exclude=*.o -czvf

@@ -32,6 +32,16 @@ extern u8 font_zsnes_char_height;
 extern u8 font_zsnes_map[];
 extern u8 font_zsnes[];
 
+u8 *gui_draw_getscreen()
+{
+	return(screen);
+}
+
+int gui_draw_getscreenpitch()
+{
+	return(pitch);
+}
+
 void gui_draw_setscreen(u8 *s,int p)
 {
 	screen = s;
@@ -199,6 +209,7 @@ void gui_draw_buttonpressed(char *caption,int x,int y,int w,int h)
 #define N GUI_COLOR_DARKERORANGE
 #define M GUI_COLOR_LIGHTERORANGE
 #define P GUI_COLOR_ORANGE
+
 static u8 cursor[10*10] = {
 	P,N,N,N,N,0,0,0,0,0,
 	P,P,N,N,0,0,0,0,0,0,
