@@ -25,7 +25,7 @@ static void hle_loadfiles()
 	addr2 = dead6502_read(retaddr + 3);
 	addr2 |= dead6502_read(retaddr + 4) << 8;
 
-	printf("loadfiles: addr1,2 = $%04X, $%04X\n",addr1,addr2);
+	log_message("loadfiles: addr1,2 = $%04X, $%04X\n",addr1,addr2);
 
 	//get diskid
 	diskid = dead6502_read(addr1);
@@ -623,7 +623,7 @@ static void hle_intro()
 	switch(state) {
 		//init state
 		case 0:
-			printf("intro inited\n");
+			log_message("intro inited\n");
 			dead6502_write(0x2000,0x00);
 			dead6502_write(0x2006,0x3F);
 			dead6502_write(0x2006,0x00);
@@ -635,7 +635,7 @@ static void hle_intro()
 
 		//startup state
 		case 1:
-			printf("intro starting up\n");
+			log_message("intro starting up\n");
 			//skip to load files state
 			state = 3;
 			break;

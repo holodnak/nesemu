@@ -101,7 +101,7 @@ static char *refresh_unif(list_t *l,int m)
 		return(map->board);
 	}
 	else
-		ret[0] = "???";
+		strcpy(ret,"???");
 	return(ret);
 }
 
