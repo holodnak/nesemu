@@ -150,13 +150,13 @@ extern u8 nes_frameirq;
 static void event_89341()
 {
 //	end_frame_counter(ppucycles / 3);
-	if((nes_frame_irqmode & 0x40) == 0) {
-		log_message("generating frame irq\n");
+/*	if((nes_frame_irqmode & 0x40) == 0) {
+//		log_message("generating frame irq\n");
 		nes->apu->frame_irq_occurred = 1;
 		nes_frameirq = 0x40;
 		apu_setcontext(nes->apu);
 		dead6502_irq();
-	}
+	}*/
 }
 
 //scanline cycle 340, lines 21,260
