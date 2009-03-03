@@ -18,6 +18,7 @@
 #include "gui2/windows/tracer.h"
 #include "gui2/windows/memory_viewer.h"
 #include "gui2/windows/nametable_viewer.h"
+#include "gui2/windows/patterntable_viewer.h"
 #include "gui2/windows/about.h"
 
 #define MAX_MENUS	24
@@ -76,6 +77,9 @@ typedef struct menubar_s {
 
 	//nametable viewer
 	nt_t nametable_viewer;
+
+	//patterntable viewer
+	pt_t patterntable_viewer;
 
 	//file loaded
 	about_t about;

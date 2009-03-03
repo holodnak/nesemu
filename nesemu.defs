@@ -30,7 +30,7 @@ GUI2_OBJ += gui2/elements/edit.o gui2/elements/text.o gui2/elements/list.o gui2/
 GUI2_OBJ += gui2/windows/videocfg.o gui2/windows/inputcfg.o gui2/windows/soundcfg.o gui2/windows/devices.o gui2/windows/palettecfg.o gui2/windows/about.o gui2/gui2_draw.o
 GUI2_OBJ += gui2/windows/options.o gui2/windows/mappers.o gui2/windows/paths.o gui2/windows/supported_mappers.o gui2/windows/gui_input.o
 GUI2_OBJ += gui2/windows/tracer.o gui2/windows/rom_info.o gui2/windows/memory_viewer.o
-GUI2_OBJ += gui2/windows/nametable_viewer.o
+GUI2_OBJ += gui2/windows/nametable_viewer.o gui2/windows/patterntable_viewer.o
 
 # mapper sources
 CHIPS_OBJ = mappers/chips/mmc1.o mappers/chips/mmc2.o mappers/chips/mmc3.o

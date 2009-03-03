@@ -47,6 +47,11 @@ static void hle_loadfiles()
 
 	//$FF indicates to load system boot files
 	if(fileidlist[0] == 0xFF) {
+
+		//leet hax
+		log_message("loadfiles: hack!  fileidlist[0]==$FF!  resetting disknum to 0!!!@!@@121112\n");
+		disknum = 0;
+
 		//load boot files
 		for(i=0;i<disk_header.numfiles;i++) {
 			char fn[9] = "        \0";
@@ -157,6 +162,8 @@ static void hle_writefile()
 	if(nes->cpu.y != 0xFF)
 		disk_header.numfiles = nes->cpu.y;
 
+	dead6502_write(6,disk_header.numfiles);
+
 	//skip thru files to find the position to write the file
 	for(i=0;i<disk_header.numfiles;i++) {
 		memcpy(&file_header,nes->rom->diskdata + pos,sizeof(fds_file_header_t));
@@ -204,6 +211,8 @@ static void hle_writefile()
 	dead6502_write(0x05,0xFF);
 	nes->cpu.a = 0;
 	nes->cpu.x = 0;
+	nes->cpu.f &= ~0x80;
+	nes->cpu.f |= 0x02;
 }
 
 static void hle_vramfill()

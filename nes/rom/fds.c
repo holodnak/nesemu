@@ -26,9 +26,6 @@
 #include "system/file.h"
 #include "system/config.h"
 
-#define KB(nn)	((nn) * 1024)
-#define MB(nn)	(KB(nn * 1024))
-
 static void load_fds_header(rom_t *ret,u8 *header)
 {
 	//set mapper assigned to fds system
