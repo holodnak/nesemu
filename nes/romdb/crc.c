@@ -1,6 +1,26 @@
 #include "crc.h"
 
 rom_crc_t rom_crcs[] = {
+	//konami classics
+	{"Contra (KC)",								0x7708B286,0x00000000,"NES-UNROM",ROM_NOCHR},
+	{"Castlevania II - Simon's Quest (KC)",0x9667CC88,0x1AFB99EB,"?",0},
+	{"Super C (KC)",								0x603DA36D,0x153295C1,"NES-TLROM",0},
+	{"Castlevania III - Dracula's Curse (KC)",0x40DBC815,0x1B448E0A,"?",0},
+	{"Castlevania (KC)",							0xACEC652E,0x00000000,"NES-UNROM",ROM_NOCHR},
+	{"Jackal (KC)",								0x718EB40A,0x00000000,"NES-UNROM",ROM_NOCHR},
+
+	//gamecube
+	{"Excitebike (GC)",				0x1FC03F23,0xE5F72401,"NES-NROM-128",0},
+	{"Mario Bros. (GC)",				0xB792AE19,0x10F77435,"NES-NROM-256",0},
+	{"Donkey Kong Jr. (GC)",		0x7114FC58,0x852778AB,"NES-NROM-256",0},
+	{"Donkey Kong (GC)",				0x25F7EE6B,0xA21D7C2E,"NES-NROM-256",0},
+	{"Golf (GC)",						0xF9622BFA,0xFF6FC790,"NES-NROM-128",0},
+	{"Pinball (GC)",					0x07639BAD,0xF2A53B3D,"NES-NROM-128",0},
+	{"Legend of Zelda, The (GC)",	0x46E0D37D,0x00000000,"NES-SLROM",ROM_NOCHR},
+	{"Tennis (GC)",					0x0012A6A2,0x3A34C45B,"NES-NROM-256",0},
+	{"Punch-Out!! (GC)",				0xC032E5B0,0x45D0C815,"NES-PNROM",0},
+	{"Soccer (GC)",					0x32E37DCB,0x307B19AB,"NES-NROM-256",0},
+
 	{"Study and Game 32-in-1 (Ch)",						0xABB2F974,0x00000000,"STUDY-GAME-32IN1",ROM_NOCHR},
 
 	//vrc2 games
@@ -57,6 +77,7 @@ rom_crc_t rom_crcs[] = {
 
 	//pd roms
 	{"CMC Wavy Demo by Chris Covell (PD)",				0xD3A265FF,0x23D8BB8A,"NES-UOROM",0},
+	{"2009",														0x15BB820D,0x23034483,"NES-UOROM",0},
 
 	//asia games
 	{"Magic Jewelry (As)",									0x56A54EAE,0x6E7932E3,"NES-UOROM",0},

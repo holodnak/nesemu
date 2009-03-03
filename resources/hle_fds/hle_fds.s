@@ -406,7 +406,10 @@ xferdone:
 ;	return
 
 .ORG $07A3
-	jmp xferbyte
+	ldx	$4031
+	sta	$4024
+	txa
+	rts
 
 ;ppu data processor
 .ORG $07BB

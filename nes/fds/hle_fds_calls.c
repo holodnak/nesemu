@@ -184,9 +184,9 @@ static void hle_writefile()
 	//write data
 	for(i=0;i<file_header2.filesize;i++) {
 		if(file_header2.srcarea == 0)
-			nes->rom->diskdata[pos++] = dead6502_read(file_header2.srcaddr+i);
+			nes->rom->diskdata[pos++ - 2] = dead6502_read(file_header2.srcaddr+i);
 		else
-			nes->rom->diskdata[pos++] = ppumem_read(file_header2.srcaddr+i);
+			nes->rom->diskdata[pos++ - 2] = ppumem_read(file_header2.srcaddr+i);
 	}
 	disk_header.numfiles++;
 
@@ -651,6 +651,16 @@ static void hle_intro()
 	}
 	dead6502_push(0);
 }
+
+//reimplemented in the 6502 part of the hle bios
+//xfre byte
+/*void hle_xferbyte()
+{
+	u8 tmp = dead6502_read(0x4031);
+
+	dead6502_write(0x4024,nes->cpu.a);
+	nes->cpu.a = tmp;
+}*/
 
 hle_call_t hle_calls[] = {
 	//$0
