@@ -14,9 +14,12 @@ AS = as
 CFLAGS = -DLINUX -DSDL -I. -DC_RENDER
 LDFLAGS = -L/home/james/SDL-1.2.13/lib -lz -lm -lpng -lSDL -lSDLmain
 
-CFLAGS += -g
-CFLAGS += -O2
-#LDFLAGS += -s
+ifeq ($(DEBUG),1)
+	CFLAGS += -g
+else
+	CFLAGS += -O2
+	LDFLAGS += -s
+endif
 
 TARGET = nesemu.linux.elf
 TARGETP = nesemu-packed.linux.elf

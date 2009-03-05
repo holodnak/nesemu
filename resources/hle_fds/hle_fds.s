@@ -152,7 +152,11 @@ infiniteloop:
 ;addresses are decided by the file's header.
 
 .ORG $01F8
-	jmp loadfiles
+loadfiles:
+	lda	#0				;load function number
+	sta	$4028			;store into hle function number register
+	sta	$4029			;execute hle function
+	rts					;return control to program
 
 ;+-----------+
 ;|Append File|
@@ -993,16 +997,6 @@ loop:
 	jmp	loop
 
 .ORG $1000
-
-loadfiles:
-
-	;call our hle loadfiles function
-	lda	#0
-	sta	$4028
-	sta	$4029
-	
-	;return control to program
-	rts
 
 writefile:
 
