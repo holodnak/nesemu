@@ -191,7 +191,12 @@ loadfiles:
 ;may reside after the written one.
 
 .ORG $0239
-	jmp writefile
+	;call our hle writefile function
+	lda	#1
+	sta	$4028
+	sta	$4029
+	;return control to program
+	rts
 
 ;+----------------+
 ;|Check File count|
@@ -998,15 +1003,6 @@ loop:
 
 .ORG $1000
 
-writefile:
-
-	;call our hle writefile function
-	lda	#1
-	sta	$4028
-	sta	$4029
-
-	;return control to program
-	rts
 
 adjfilecount:
 

@@ -125,6 +125,7 @@ static void makestatefilename(char *filename,int type)
 		".state",
 		".diskstate",
 		".sramstate",
+		".laststate",
 		0
 	};
 	
@@ -252,6 +253,8 @@ int loadrom(char *fn)
 	}
 	if(rom->diskdata)
 		loaddiskstate();
+//	if(config.autostates)
+//		loadstate();
 	nes_reset(1);	//perform hard reset
 	add_recent(fn);
 	return(0);
@@ -259,6 +262,8 @@ int loadrom(char *fn)
 
 void unloadrom()
 {
+//	if(config.autostates)
+//		savestate();
 	log_message("unloadrom: unloading rom\n");
 	nes_unload();
 	if(rom) {

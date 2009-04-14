@@ -75,7 +75,7 @@ file_info_t *filesystem_findnext()
 	if(dent != 0) {
 		sprintf(fn,"%s%s",host_path,dent->d_name);
 		if(stat(fn,&statbuf) == -1)
-			return;
+			return(0);
 		file_info.name = dent->d_name;
 		file_info.flags = FI_FLAG_FILE;
 		if(S_ISDIR(statbuf.st_mode))

@@ -23,6 +23,11 @@
 
 #include "defines.h"
 
+u8 *gui_draw_getscreen();
+int gui_draw_getscreenpitch();
+int gui_draw_getscreenwidth();
+int gui_draw_getscreenheight();
+
 void gui_draw_setscreen(u8 *s,int p);
 void gui_draw_setscreensize(int w,int h);
 

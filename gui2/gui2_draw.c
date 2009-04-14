@@ -42,6 +42,16 @@ int gui_draw_getscreenpitch()
 	return(pitch);
 }
 
+int gui_draw_getscreenwidth()
+{
+	return(screen_width);
+}
+
+int gui_draw_getscreenheight()
+{
+	return(screen_height);
+}
+
 void gui_draw_setscreen(u8 *s,int p)
 {
 	screen = s;
