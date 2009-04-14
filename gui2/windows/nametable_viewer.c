@@ -32,30 +32,36 @@ static void draw_tile(u8 *dest,u8* chr,u8 attrib)
 		draw_tileline(dest+i*264,chr[i],chr[i+8],attrib);
 }
 
-static void draw_nt(nt_t *m,int dx,int dy)
+static void draw_nt(nt_t *m,int dx,int dy,int sx,int sy)
 {
 	int i,x,y,s;
 	int color;
-	u8 *dest = gui_draw_getscreen() + 40 * gui_draw_getscreenpitch() + 4;
-	u8 *nt,t,at;
+	u8 *dest = gui_draw_getscreen() + dx + gui_draw_getscreenpitch() * dy;
+	u8 *nt,t,at,ntnum,pt;
 
 	for(i=0;i<64;i++)
 		video_setpalentry(i + 0x80,palette[i].r,palette[i].g,palette[i].b);
-
+	pt = (nes->ppu.ctrl0 & 0x10) >> 2;
 //	nametable = (nes->ppu.scroll >> 10) & 3;
 //	nametableptr = nes->ppu.readpages[8 | nametable];
-	nt = nes->ppu.readpages[8 | 0];
+	ntnum = 8;
 	for(y=0;y<23;y++) {
+		if((y + sy) >= 32)
+			ntnum |= 2;
 		for(x=0;x<30;x++) {
-			s = x + y * 32;
-			t = nt[s];
-			at = nt[0x3C0 + ((s >> 2) & 7) + (((s >> 7) & 7) << 3)];
+			if((x + sx) >= 32)
+				ntnum |= 1;
+			s = (x + sx) + (y + sy) * 32;
+			t = nes->ppu.readpages[ntnum][s];
+			at = nes->ppu.readpages[ntnum][0x3C0 + ((s >> 2) & 7) + (((s >> 7) & 7) << 3)];
 			at = (at >> (((s & 2) | (((s >> 5) & 2) << 1)))) & 3;
 			at = (at << 2) | 0xC0;
-			draw_tile(dest+(x*8)+y*8*264,nes->ppu.readpages[t >> 6] + (t&0x3F)*16,at);
+			draw_tile(dest+(x*8)+y*8*264,nes->ppu.readpages[pt|(t>>6)]+(t&0x3F)*16,at);
 		}
 	}
 }
+
+static u8 ntx,nty;
 
 void nt_draw(nt_t *m)
 {
@@ -73,9 +79,9 @@ void nt_draw(nt_t *m)
 	button_draw(&m->donebtn);
 	scrollbar_draw(&m->hscrollbar);
 	scrollbar_draw(&m->vscrollbar);
-	x += 5;
-	y += 30;
-	draw_nt(m,x,y);
+	x = m->info.x+1;
+	y = m->info.y+10;
+	draw_nt(m,x,y,ntx,nty);
 }
 
 int nt_event(nt_t *m,int event,int data)
@@ -106,16 +112,24 @@ int nt_event(nt_t *m,int event,int data)
 static int click_hscrollbar(void *u,int direction,int increment)
 {
 	nt_t *l = (nt_t*)u;
-	int n;
+	int n = (direction ? 1 : -1) * increment;
 
+	if(((int)ntx - n) < 0)
+		ntx = 0;
+	else if((ntx += (u8)n) > 64)
+		ntx = 64;
 	return(0);
 }
 
 static int click_vscrollbar(void *u,int direction,int increment)
 {
 	nt_t *l = (nt_t*)u;
-	int n;
+	int n = (direction ? 1 : -1) * increment;
 
+	if(((int)nty - n) < 0)
+		nty = 0;
+	else if((nty += (u8)n) > 64)
+		nty = 64;
 	return(0);
 }
 
@@ -125,19 +139,20 @@ void nt_create(nt_t *m)
 
 	memset(m,0,sizeof(nt_t));
 
+	ntx = nty = 0;
 	m->info.type = G_WINDOW;
 	x = m->info.x = 3;
 	y = m->info.y = 21;
 	m->info.w = 250;
-	m->info.h = 210;
+	m->info.h = 202;
 	m->info.draw = (drawfunc_t)nt_draw;
 	m->info.event = (eventfunc_t)nt_event;
 
 	button_create(&m->donebtn,"X",x+m->info.w-9,y,0);
 
-	scrollbar_create(&m->hscrollbar,x+1,y+10,m->info.w-9,1,click_hscrollbar);
-	scrollbar_create(&m->vscrollbar,x+m->info.w-8,y+10+8,m->info.h-19,0,click_vscrollbar);
-	m->hscrollbar.user = m;
-	m->vscrollbar.user = m;
+	scrollbar_create(&m->hscrollbar,x+1,y+m->info.h-8,m->info.w-9,1,click_hscrollbar);
+	scrollbar_create(&m->vscrollbar,x+m->info.w-8,y+10,m->info.h-19,0,click_vscrollbar);
+	m->hscrollbar.user = m->vscrollbar.user = m;
+	m->hscrollbar.max = m->vscrollbar.max = 64;
 }
 

@@ -121,9 +121,23 @@ int menubar_event(menubar_t *m,int event,int data)
 			}
 			//if event was not processed by a menu or button, then move the window
 			if(processed == 0) {
-				m->ismoving = 1;
 #ifndef PS2
-				video_getwindowpos(&msx,&msy);
+				int x,y;
+				mousemove_u mm;
+
+				m->ismoving = 1;
+				mm.data = data;
+				video_getwindowpos(&x,&y);
+//					break;
+				log_message("window moving: ms x = %d, y = %d\n",msx,msy);
+				log_message("window moving: window x = %d, y = %d\n",x,y);
+				log_message("window moving: mouse x = %d, y = %d\n",mm.info.x,mm.info.y);
+				log_message("window moving: mouse xrel = %d, yrel = %d\n",mm.info.xrel,mm.info.yrel);
+				x += mm.info.xrel;
+				y += mm.info.yrel;
+//				if(x == msx && y == msy)
+//					video_setwindowpos(x,y);
+				video_setwindowpos(x,y);
 #endif
 			}
 			break;
@@ -155,13 +169,6 @@ int menubar_event(menubar_t *m,int event,int data)
 				x += mm.info.xrel;
 				y += mm.info.yrel;
 //				SDL_GetRelativeMouseState(&newposx,&newposy);
-//				newposx += posx;
-//				newposy += posy;
-//				newposx = mm.info.x * 3;
-//				newposy = mm.info.y * 3;
-//				if(newposx == posx || newposy == posy)
-//					break;
-				if(x == msx && y == msy)
 				video_setwindowpos(x,y);
 				break;
 			}

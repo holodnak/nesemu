@@ -195,16 +195,20 @@ static void draw1x(u32 *dest,int destp,u32 *src,int srcp,int w,int h)
 static void draw2x(u32 *dest,int destp,u32 *src,int srcp,int w,int h)
 {
 	int x,y;
+	u32 *dest1,*dest2,pixel32;
 
 	for(y=0;y<h;y++) {
+		dest1 = dest;
+		dest2 = dest + destp;
 		for(x=0;x<w;x++) {
-			u32 pixel = src[x + (y * srcp)];
-
-			dest[x*2+0 + ((y*2+0) * destp)] = pixel;
-			dest[x*2+1 + ((y*2+0) * destp)] = pixel;
-			dest[x*2+0 + ((y*2+1) * destp)] = pixel;
-			dest[x*2+1 + ((y*2+1) * destp)] = pixel;
+			pixel32 = src[x];
+			*dest1++ = pixel32;
+			*dest1++ = pixel32;
+			*dest2++ = pixel32;
+			*dest2++ = pixel32;
 		}
+		src += srcp;
+		dest += destp * 2;
 	}
 }
 
@@ -504,13 +508,35 @@ void video_getwindowpos(int *x,int *y)
 	*x = r.left;
 	*y = r.top;
 }
-#else //elif defined(OSX)
+#elif defined(LINUX)
 void video_setwindowpos(int x,int y)
 {
+	SDL_SysWMinfo info;
+	XWindowAttributes attr;
+
+	SDL_VERSION(&info.version);
+	if(SDL_GetWMInfo(&info) == 0)
+		return;
+	info.info.x11.lock_func();
+	XGetWindowAttributes(info.info.x11.display,info.info.x11.wmwindow,&attr); 
+	XMoveWindow(info.info.x11.display,info.info.x11.wmwindow,x,y);
+	info.info.x11.unlock_func();
 }
 
 void video_getwindowpos(int *x,int *y)
 {
+	SDL_SysWMinfo info;
+	XWindowAttributes attr;
+
+	SDL_VERSION(&info.version);
+	if(SDL_GetWMInfo(&info) == 0)
+		return;
+	info.info.x11.lock_func();
+	XGetWindowAttributes(info.info.x11.display,info.info.x11.wmwindow,&attr); 
+//	XMoveWindow(info.info.x11.display,info.info.x11.wmwindow,x,y);
+	info.info.x11.unlock_func();
+	*x = attr.x;
+	*y = attr.y;
 }
 #endif
 ///TODO: write these for osx/linux
