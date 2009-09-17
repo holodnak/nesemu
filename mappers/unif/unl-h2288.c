@@ -22,13 +22,13 @@ static void sync()
 	mmc3_syncmirror();
 }
 
-static u8 read(u32 addr)
+static u8 read5(u32 addr)
 {
 //	log_message("h2288 protection read: $%04X\n",addr);
 	return((addr >> 8 & 0xFE) | (((~addr & 1) & (addr >> 8 & 1)) ^ 1));
 }
 
-static void write(u32 addr,u8 data)
+static void write5(u32 addr,u8 data)
 {
 	if(addr < 0x5800)
 		return;
@@ -48,8 +48,8 @@ static void write_security(u32 addr,u8 data)
 
 static void reset(int hard)
 {
-	mem_setread(5,read);
-	mem_setwrite(5,write);
+	mem_setread(5,read5);
+	mem_setwrite(5,write5);
 	mmc3_init(mmc3_sync);
 	mem_setwrite(8,write_security);
 }

@@ -8,7 +8,7 @@ static u8 rowdata[16];
 //keyboard clock bit and current row
 static u8 clock,row;
 
-static u8 read()
+static u8 read_kb()
 {
 	u8 ret = 0;
 
@@ -20,7 +20,7 @@ static u8 read()
 	return(ret ^ 0x1E);
 }
 
-static void write(u8 data)
+static void write_kb(u8 data)
 {
 //	log_message("keyboard write = $%02X\n",data);
 	if((data & 2) == 0 && clock)	//increment row
@@ -28,7 +28,7 @@ static void write(u8 data)
 	clock = data & 2;
 }
 
-static void strobe()
+static void strobe_kb()
 {
 	int i;
 
@@ -121,4 +121,4 @@ static void strobe()
 
 }
 
-inputdev_t exp_studykeyboard = {read,write,strobe,0};
+inputdev_t exp_studykeyboard = {read_kb,write_kb,strobe_kb,0};

@@ -10,7 +10,7 @@ static void sync()
 	mem_setchr8(0,chr);
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	prg[0] = prg[1] = (addr >> 2) & 3;
 	chr = addr & 3;
@@ -22,7 +22,7 @@ static void init(int hard)
 	int i;
 
 	for(i=8;i<0x10;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	prg[0] = prg[1] = 0;
 	chr = 0;
 	sync();

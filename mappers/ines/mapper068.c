@@ -35,7 +35,7 @@ static void sync()
 	}
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	switch(addr & 0xF000) {
 		case 0x8000: chr[0] = data; break;
@@ -57,7 +57,7 @@ static void reset(int hard)
 	nes_setsramsize(2);
 	mem_setsram8(6,0);
 	for(i=8;i<0x10;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	prg = 0;
 	for(i=0;i<4;i++)
 		chr[i] = i;

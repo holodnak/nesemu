@@ -11,7 +11,7 @@ static void sync()
 	ppu_setmirroring(((~reg[0]) >> 5) & 1);
 }
 
-static void write(u32 addr,u8 data)
+static void write_reg(u32 addr,u8 data)
 {
 	if(addr < 0x6800)
 		reg[0] = addr & 0x3F;
@@ -25,7 +25,7 @@ void caltron_init(int hard)
 	int i;
 
 	for(i=6;i<0x10;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_reg);
 	reg[0] = reg[1] = 0;
 	sync();
 }

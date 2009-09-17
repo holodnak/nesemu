@@ -17,7 +17,7 @@ static void sync()
 	mem_setprg16(0xC,0xFF);
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	switch(addr) {
 		case 0x8000:
@@ -40,7 +40,7 @@ static void init(int hard)
 	int i;
 
 	for(i=8;i<16;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	for(i=0;i<6;i++) {
 		prg[i & 1] = 0;
 		chr[i] = 0;

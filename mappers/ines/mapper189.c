@@ -13,7 +13,7 @@ static void sync()
 	mmc3_syncsram();
 }
 
-static void write(u32 addr,u8 data)
+static void write4_reg(u32 addr,u8 data)
 {
 	if(addr == 0x4120) {
 		reg = data | (data >> 4);
@@ -26,7 +26,7 @@ static void write(u32 addr,u8 data)
 static void init(int hard)
 {
 	write4 = mem_getwrite(4);
-	mem_setwrite(4,write);
+	mem_setwrite(4,write4_reg);
 	reg = 0;
 	mmc3_init(sync);
 }

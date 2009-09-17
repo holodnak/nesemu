@@ -12,7 +12,7 @@ static void sync()
 	mem_setvram8(0,0);
 }
 
-static void write(u32 addr,u8 data)
+static void write_lo(u32 addr,u8 data)
 {
 	data &= 0xF;
 	switch(addr & 0xF000) {
@@ -28,6 +28,13 @@ static void write(u32 addr,u8 data)
 		case 0xB000:
 			irqcounter = (irqcounter & 0x0FFF) | (data << 12);
 			break;
+	}
+}
+
+static void write_hi(u32 addr,u8 data)
+{
+	data &= 0xF;
+	switch(addr & 0xF000) {
 		case 0xC000:
 			irqenabled = data & 2;
 			break;
@@ -42,8 +49,10 @@ void vrc3_init(int hard)
 {
 	int i;
 
-	for(i=8;i<0x10;i++)
-		mem_setwrite(i,write);
+	for(i=0x8;i<0xC;i++)
+		mem_setwrite(i,write_lo);
+	for(i=0xC;i<0x10;i++)
+		mem_setwrite(i,write_hi);
 	prg = 0;
 	irqenabled = 0;
 	irqcounter = 0;

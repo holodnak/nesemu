@@ -19,14 +19,14 @@ static void sync()
 	ppu_setmirroring(((latch_addr >> 13) & 1) ^ 1);
 }
 
-static u8 read(u32 addr)
+static u8 read5(u32 addr)
 {
 	if(addr < 0x5800)
 		return(0);
 	return(regs[addr & 3]);
 }
 
-static void write(u32 addr,u8 data)
+static void write5(u32 addr,u8 data)
 {
 	if(addr < 0x5800)
 		return;
@@ -35,8 +35,8 @@ static void write(u32 addr,u8 data)
 
 static void reset(int hard)
 {
-	mem_setread(5,read);
-	mem_setwrite(5,write);
+	mem_setread(5,read5);
+	mem_setwrite(5,write5);
 	latch_init(sync);
 }
 

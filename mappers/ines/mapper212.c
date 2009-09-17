@@ -19,7 +19,7 @@ static void sync()
 		ppu_setmirroring(MIRROR_H);
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	if((addr & 0x4000) == 0x4000) {
 		prg[0] = (addr & 7) >> 1;
@@ -39,7 +39,7 @@ static void init(int hard)
 	int i;
 
 	for(i=8;i<0x10;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	prg[0] = prg[1] = 0;
 	chr = 0;
 	mirror = 0;

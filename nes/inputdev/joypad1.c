@@ -24,7 +24,7 @@
 static u32 data;
 static u8 counter;
 
-static u8 read()
+static u8 read1()
 {
 	return(((data >> counter++) & 1) | 0x40);
 }
@@ -43,4 +43,4 @@ static void strobe()
 	counter = 0;
 }
 
-inputdev_t dev_joypad1 = {read,0,strobe,0};
+inputdev_t dev_joypad1 = {read1,0,strobe,0};

@@ -9,7 +9,7 @@ static void sync()
 	mem_setprg8(0xC,prg);
 }
 
-static void write(u32 addr,u8 data)
+static void write_reg(u32 addr,u8 data)
 {
 	switch(addr & 0xF000) {
 		case 0x4000:
@@ -48,9 +48,9 @@ void smb2ja_init(int hard)
 	int i;
 
 	write4 = mem_getwrite(4);
-	mem_setwrite(4,write);
+	mem_setwrite(4,write_reg);
 	for(i=6;i<0x10;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_reg);
 	prg = 0;
 	irqenabled = 0;
 	mem_setprg8(0x6,6);

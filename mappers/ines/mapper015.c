@@ -44,7 +44,7 @@ static void sync()
 	ppu_setmirroring((reg & 0x40) ? MIRROR_H : MIRROR_V);
 }
 
-void write(u32 addr,u8 data)
+void write_upper(u32 addr,u8 data)
 {
 	reg = data;
 	mode = addr & 3;
@@ -56,7 +56,7 @@ static void init(int hard)
 	int i;
 
 	for(i=8;i<0x10;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	mem_setvram8(0,0);
 	reg = 0;
 	mode = 0;

@@ -22,7 +22,7 @@ static void sync()
 		ppu_setmirroring(MIRROR_V);
 }
 
-static void write(u32 addr,u8 data)
+static void write_vrc2(u32 addr,u8 data)
 {
 	data &= 0x1F;
 	switch(addr & 0xF000) {
@@ -81,7 +81,7 @@ void vrc2_init(int revision)
 		case KONAMI_VRC2B: map = vrc2b_map; break;
 	}
 	for(i=8;i<0x10;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_vrc2);
 	for(i=0;i<8;i++) {
 		prg[i & 1] = 0;
 		chr[i] = 0;

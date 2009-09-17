@@ -11,7 +11,7 @@ static void sync()
 	mem_setchr8(0,reg & 3);
 }
 
-static void write(u32 addr,u8 data)
+static void write_reg(u32 addr,u8 data)
 {
 	if(addr < 0x4020)
 		write4(addr,data);
@@ -24,7 +24,7 @@ static void write(u32 addr,u8 data)
 static void init(int hard)
 {
 	write4 = mem_getwrite(4);
-	mem_setwrite(4,write);
+	mem_setwrite(4,write_reg);
 	reg = 0;
 	sync();
 }

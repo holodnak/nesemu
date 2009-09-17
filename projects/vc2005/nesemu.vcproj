@@ -40,7 +40,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;C:\nesemu-0.2.0&quot;;&quot;C:\zlib-1.2.3&quot;;&quot;C:\SDL-1.2.12\include&quot;"
+				AdditionalIncludeDirectories="&quot;C:\nesemu&quot;;&quot;C:\zlib-1.2.3&quot;;&quot;C:\SDL-1.2.13\include&quot;"
 				PreprocessorDefinitions="SDL;WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;C_RENDER"
 				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
@@ -61,7 +61,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="SDLmain.lib SDL.lib zlib1.lib"
 				LinkIncremental="2"
+				AdditionalLibraryDirectories="&quot;C:\SDL-1.2.13\lib&quot;;&quot;C:\zlib-1.2.3\projects\visualc6\Win32_DLL_Release&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="1"
 				TargetMachine="1"
@@ -120,7 +122,7 @@
 				EnableIntrinsicFunctions="true"
 				FavorSizeOrSpeed="1"
 				OmitFramePointers="true"
-				AdditionalIncludeDirectories="&quot;C:\nesemu-0.2.0&quot;;&quot;C:\zlib-1.2.3&quot;;&quot;C:\SDL-1.2.12\include&quot;"
+				AdditionalIncludeDirectories="&quot;C:\nesemu&quot;;&quot;C:\zlib-1.2.3&quot;;&quot;C:\SDL-1.2.13\include&quot;"
 				PreprocessorDefinitions="SDL;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_DEPRECATE;C_RENDER"
 				RuntimeLibrary="2"
 				UsePrecompiledHeader="0"
@@ -139,7 +141,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalDependencies="SDLmain.lib SDL.lib zlib1.lib"
 				LinkIncremental="1"
+				AdditionalLibraryDirectories="&quot;C:\SDL-1.2.13\lib&quot;;&quot;C:\zlib-1.2.3\projects\visualc6\Win32_DLL_Release&quot;"
 				GenerateDebugInformation="true"
 				SubSystem="2"
 				OptimizeReferences="2"
@@ -196,6 +200,10 @@
 				RelativePath="..\..\screenshot.c"
 				>
 			</File>
+			<File
+				RelativePath="..\..\splash.c"
+				>
+			</File>
 			<Filter
 				Name="nes"
 				>
@@ -209,10 +217,6 @@
 				</File>
 				<File
 					RelativePath="..\..\nes\nes_io.c"
-					>
-				</File>
-				<File
-					RelativePath="..\..\nes\nsf.c"
 					>
 				</File>
 				<Filter
@@ -243,6 +247,18 @@
 						>
 					</File>
 					<File
+						RelativePath="..\..\nes\ppu\draw.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\nes\ppu\event.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\nes\ppu\io.c"
+						>
+					</File>
+					<File
 						RelativePath="..\..\nes\ppu\palette.c"
 						>
 					</File>
@@ -250,32 +266,20 @@
 						RelativePath="..\..\nes\ppu\ppu.c"
 						>
 					</File>
-					<File
-						RelativePath="..\..\nes\ppu\ppu_draw.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\nes\ppu\ppu_event.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\nes\ppu\ppu_io.c"
-						>
-					</File>
 				</Filter>
 				<Filter
 					Name="fds"
 					>
-					<File
-						RelativePath="..\..\nes\fds\fds.c"
-						>
-					</File>
 					<File
 						RelativePath="..\..\nes\fds\hle_fds.c"
 						>
 					</File>
 					<File
 						RelativePath="..\..\nes\fds\hle_fds_calls.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\nes\fds\nes_fds.c"
 						>
 					</File>
 				</Filter>
@@ -327,27 +331,27 @@
 					Name="rom"
 					>
 					<File
+						RelativePath="..\..\nes\rom\fds.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\nes\rom\ines.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\nes\rom\ines20.c"
+						>
+					</File>
+					<File
+						RelativePath="..\..\nes\rom\nsf.c"
+						>
+					</File>
+					<File
 						RelativePath="..\..\nes\rom\rom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\nes\rom\rom_fds.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\nes\rom\rom_ines.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\nes\rom\rom_ines20.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\nes\rom\rom_nsf.c"
-						>
-					</File>
-					<File
-						RelativePath="..\..\nes\rom\rom_unif.c"
+						RelativePath="..\..\nes\rom\unif.c"
 						>
 					</File>
 				</Filter>
@@ -394,6 +398,14 @@
 					</File>
 					<File
 						RelativePath="..\..\nes\state\state.c"
+						>
+					</File>
+				</Filter>
+				<Filter
+					Name="nsf"
+					>
+					<File
+						RelativePath="..\..\nes\nsf\nsfplayer.c"
 						>
 					</File>
 				</Filter>
@@ -705,6 +717,10 @@
 						>
 					</File>
 					<File
+						RelativePath="..\..\mappers\ines\mapper108.c"
+						>
+					</File>
+					<File
 						RelativePath="..\..\mappers\ines\mapper112.c"
 						>
 					</File>
@@ -877,159 +893,159 @@
 					Name="unif"
 					>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_bmc-70in1.c"
+						RelativePath="..\..\mappers\unif\bmc-70in1.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_bmc-fk23c.c"
+						RelativePath="..\..\mappers\unif\bmc-fk23c.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_bmc-generic42in1.c"
+						RelativePath="..\..\mappers\unif\bmc-generic42in1.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_bmc-super24in1sc03.c"
+						RelativePath="..\..\mappers\unif\bmc-super24in1sc03.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_btl-biomiraclea.c"
+						RelativePath="..\..\mappers\unif\btl-biomiraclea.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_btl-mario1-malee2.c"
+						RelativePath="..\..\mappers\unif\btl-mario1-malee2.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_btl-tek2a.c"
+						RelativePath="..\..\mappers\unif\btl-tek2a.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_colordreams.c"
+						RelativePath="..\..\mappers\unif\colordreams.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_hvc-un1rom.c"
+						RelativePath="..\..\mappers\unif\hvc-un1rom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_konami-vrc-1.c"
+						RelativePath="..\..\mappers\unif\konami-vrc-1.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_konami-vrc-2.c"
+						RelativePath="..\..\mappers\unif\konami-vrc-2.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_konami-vrc-3.c"
+						RelativePath="..\..\mappers\unif\konami-vrc-3.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_konami-vrc-4.c"
+						RelativePath="..\..\mappers\unif\konami-vrc-4.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_konami-vrc-6.c"
+						RelativePath="..\..\mappers\unif\konami-vrc-6.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_konami-vrc-7.c"
+						RelativePath="..\..\mappers\unif\konami-vrc-7.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_mlt-caltron6in1.c"
+						RelativePath="..\..\mappers\unif\mlt-caltron6in1.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_namco_1xx.c"
+						RelativePath="..\..\mappers\unif\namco_1xx.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_nes-axrom.c"
+						RelativePath="..\..\mappers\unif\nes-axrom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_nes-bxrom.c"
+						RelativePath="..\..\mappers\unif\nes-bxrom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_nes-cxrom.c"
+						RelativePath="..\..\mappers\unif\nes-cxrom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_nes-fxrom.c"
+						RelativePath="..\..\mappers\unif\nes-fxrom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_nes-hxrom.c"
+						RelativePath="..\..\mappers\unif\nes-hxrom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_nes-jxrom.c"
+						RelativePath="..\..\mappers\unif\nes-jxrom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_nes-nrom.c"
+						RelativePath="..\..\mappers\unif\nes-nrom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_nes-pxrom.c"
+						RelativePath="..\..\mappers\unif\nes-pxrom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_nes-sxrom.c"
+						RelativePath="..\..\mappers\unif\nes-sxrom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_nes-txrom.c"
+						RelativePath="..\..\mappers\unif\nes-txrom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_nes-uxrom.c"
+						RelativePath="..\..\mappers\unif\nes-uxrom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_sunsoft-fme-7.c"
+						RelativePath="..\..\mappers\unif\sunsoft-fme-7.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_unl-22211.c"
+						RelativePath="..\..\mappers\unif\unl-22211.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_unl-603-5052.c"
+						RelativePath="..\..\mappers\unif\unl-603-5052.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_unl-h2288.c"
+						RelativePath="..\..\mappers\unif\unl-h2288.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_unl-kof97.c"
+						RelativePath="..\..\mappers\unif\unl-kof97.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_unl-sa-0036.c"
+						RelativePath="..\..\mappers\unif\unl-sa-0036.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_unl-sa-72007.c"
+						RelativePath="..\..\mappers\unif\unl-sa-72007.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_unl-sa-72008.c"
+						RelativePath="..\..\mappers\unif\unl-sa-72008.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_unl-sa-nrom.c"
+						RelativePath="..\..\mappers\unif\unl-sa-nrom.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_unl-sachen-74ls374n.c"
+						RelativePath="..\..\mappers\unif\unl-sachen-74ls374n.c"
 						>
 					</File>
 					<File
-						RelativePath="..\..\mappers\unif\mapper_unl-sachen-8259.c"
+						RelativePath="..\..\mappers\unif\unl-sachen-8259.c"
 						>
 					</File>
 				</Filter>
@@ -1446,6 +1462,10 @@
 				Name="gui2"
 				>
 				<File
+					RelativePath="..\..\gui2\colors.h"
+					>
+				</File>
+				<File
 					RelativePath="..\..\gui2\font_zsnes.c"
 					>
 				</File>
@@ -1617,6 +1637,10 @@
 						>
 					</File>
 					<File
+						RelativePath="..\..\gui2\windows\nametable_viewer.c"
+						>
+					</File>
+					<File
 						RelativePath="..\..\gui2\windows\options.c"
 						>
 					</File>
@@ -1638,6 +1662,10 @@
 					</File>
 					<File
 						RelativePath="..\..\gui2\windows\paths.h"
+						>
+					</File>
+					<File
+						RelativePath="..\..\gui2\windows\patterntable_viewer.c"
 						>
 					</File>
 					<File
@@ -1881,18 +1909,6 @@
 		</Filter>
 		<File
 			RelativePath="..\..\README"
-			>
-		</File>
-		<File
-			RelativePath="..\..\..\SDL-1.2.12\lib\SDL.lib"
-			>
-		</File>
-		<File
-			RelativePath="..\..\..\SDL-1.2.12\lib\SDLmain.lib"
-			>
-		</File>
-		<File
-			RelativePath="..\..\..\zlib-1.2.3\zlib.lib"
 			>
 		</File>
 	</Files>

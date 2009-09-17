@@ -30,7 +30,7 @@ static void sync()
 	ppu_setmirroring(mirror);
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	switch(addr) {
 		//control register
@@ -79,7 +79,7 @@ static void init(int hard)
 	int i;
 
 	for(i=8;i<16;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	control = 0;
 	mirror = 0;
 	prg[0] = prg[1] = prg[2] = 0xFF;

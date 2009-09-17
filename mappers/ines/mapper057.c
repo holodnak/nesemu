@@ -18,7 +18,7 @@ static void sync()
 		ppu_setmirroring(MIRROR_V);
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	if((addr & 0x8800) == 0x8800)
 		reg[1] = data;
@@ -32,7 +32,7 @@ static void reset(int hard)
 	int i;
 
 	for(i=8;i<16;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	reg[0] = reg[1] = 0;
 	sync();
 }

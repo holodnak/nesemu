@@ -15,7 +15,7 @@ static void sync()
 		ppu_setmirroring(MIRROR_V);
 }
 
-static void write(u32 addr,u8 data)
+static void write_reg(u32 addr,u8 data)
 {
 	switch(addr & 0xE003) {
 		case 0xE000: prg = data & 0xF; sync(); break;
@@ -47,7 +47,7 @@ void biomiraclea_init(int hard)
 	int i;
 
 	for(i=0xE;i<0x10;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_reg);
 	nes_setvramsize(1);
 	prg = 0;
 	mirror = 0;

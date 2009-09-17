@@ -18,7 +18,7 @@ static void sync()
 	ppu_setmirroring(mirror ? MIRROR_H : MIRROR_V);
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 //	log_message("mapper112 write: $%04X = $%02X\n",addr,data);
 	switch(addr & 0xE001) {
@@ -44,7 +44,7 @@ static void init(int hard)
 
 	nes_setsramsize(2);
 	for(i=8;i<16;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	regindex = 0;
 	reg[0] = 0;
 	reg[1] = 1;

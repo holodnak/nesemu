@@ -21,7 +21,7 @@ static void sync()
 	}
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	reg[mode] = data;
 	sync();
@@ -32,7 +32,7 @@ static void reset(int hard)
 	int i;
 
 	for(i=8;i<16;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	if(hard)
 		mode = 1;
 	else

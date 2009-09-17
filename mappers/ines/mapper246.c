@@ -15,14 +15,14 @@ static void sync()
 		mem_setchr2(i * 2,chr[i]);
 }
 
-static u8 read(u32 addr)
+static u8 read6_reg(u32 addr)
 {
 	if(addr >= 0x6800)
 		return(read6(addr));
 	return(0);
 }
 
-static void write(u32 addr,u8 data)
+static void write6_reg(u32 addr,u8 data)
 {
 	if(addr >= 0x6800) {
 		write6(addr,data);
@@ -47,8 +47,8 @@ static void reset(int hard)
 
 	read6 = mem_getread(6);
 	write6 = mem_getwrite(6);
-	mem_setread(6,read);
-	mem_setwrite(6,write);
+	mem_setread(6,read6_reg);
+	mem_setwrite(6,write6_reg);
 	nes_setsramsize(2);
 	mem_setsram8(6,0);
 	for(i=0;i<4;i++)

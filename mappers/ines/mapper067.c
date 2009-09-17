@@ -20,7 +20,7 @@ static void sync()
 	}
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	switch(addr & 0xF800) {
 		case 0x8800: chr[0] = data; break;
@@ -46,7 +46,7 @@ static void reset(int hard)
 	int i;
 
 	for(i=8;i<0x10;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	prg = 0;
 	for(i=0;i<4;i++)
 		chr[i] = 0;

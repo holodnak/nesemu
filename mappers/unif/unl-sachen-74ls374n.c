@@ -16,7 +16,7 @@ static void sync()
 		ppu_setmirroring(MIRROR_V);
 }
 
-static void write(u32 addr,u8 data)
+static void write4_reg(u32 addr,u8 data)
 {
 	if(addr < 0x4020) {
 		write4(addr,data);
@@ -59,7 +59,7 @@ static void write(u32 addr,u8 data)
 static void reset(int hard)
 {
 	write4 = mem_getwrite(4);
-	mem_setwrite(4,write);
+	mem_setwrite(4,write4_reg);
 	cmd = 0;
 	prg = 0;
 	chr = 0;

@@ -17,7 +17,7 @@ static void sync()
 	ppu_setmirroring((reg[0] >> 7) ? MIRROR_H : MIRROR_V);
 }
 
-static void write(u32 addr,u8 data)
+static void writeF(u32 addr,u8 data)
 {
 	switch(addr & 0xFFF8) {
 		case 0xFF80:
@@ -38,20 +38,20 @@ static void write(u32 addr,u8 data)
 	}
 }
 
-static u8 read(u32 addr)
+static u8 readF_reg(u32 addr)
 {
 	u8 data = readF(addr);
 
 	if((addr & 0xF80) == 0xF80)
-		write(addr,data);
+		writeF(addr,data);
 	return(data);
 }
 
 static void init(int hard)
 {
 	readF = mem_getread(0xF);
-	mem_setread(0xF,read);
-	mem_setwrite(0xF,write);
+	mem_setread(0xF,readF_reg);
+	mem_setwrite(0xF,writeF);
 	reg[0] = reg[1] = reg[2] = 0;
 	sync();
 }

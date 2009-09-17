@@ -17,7 +17,7 @@ static void sync()
 	mmc3_syncsram();
 }
 
-static void write(u32 addr,u8 data)
+static void write5(u32 addr,u8 data)
 {
 	if(addr == 0x5FF0) banksize = data;
 	if(addr == 0x5FF1) prgbank = data;
@@ -27,7 +27,7 @@ static void write(u32 addr,u8 data)
 static void reset(int hard)
 {
 	mmc3_init(sync);
-	mem_setwrite(5,write);
+	mem_setwrite(5,write5);
 	nes_setvramsize(1);
 	banksize = 0;
 	prgbank = 0;

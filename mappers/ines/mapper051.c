@@ -20,15 +20,17 @@ static void sync()
 	ppu_setmirroring((mode == 3) ? MIRROR_H : MIRROR_V);
 }
 
-static void write(u32 addr,u8 data)
+static void write67(u32 addr,u8 data)
 {
-	if(addr < 0x8000)
-		mode = ((data >> 3) & 2) | ((data >> 1) & 1);
-	else {
-		bank = (data & 0xF) << 2;
-		if(bank & 4)
-			mode = ((data >> 3) & 2) | (mode & 1);
-	}
+	mode = ((data >> 3) & 2) | ((data >> 1) & 1);
+	sync();
+}
+
+static void write_upper(u32 addr,u8 data)
+{
+	bank = (data & 0xF) << 2;
+	if(bank & 4)
+		mode = ((data >> 3) & 2) | (mode & 1);
 	sync();
 }
 
@@ -36,8 +38,10 @@ static void reset(int hard)
 {
 	int i;
 
-	for(i=6;i<16;i++)
-		mem_setwrite(i,write);
+	for(i=6;i<8;i++)
+		mem_setwrite(i,write67);
+	for(i=8;i<16;i++)
+		mem_setwrite(i,write_upper);
 	nes_setvramsize(1);
 	mem_setvram8(0,0);
 	mode = 1;

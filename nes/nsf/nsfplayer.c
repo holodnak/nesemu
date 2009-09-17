@@ -124,7 +124,7 @@ static u8 read_vectors(u32 addr)
 	return(readptrF[addr & 0xFFF]);
 }
 
-static void write(u32 addr,u8 data)
+static void write45(u32 addr,u8 data)
 {
 	if(addr < 0x4020) {
 		write4(addr,data);
@@ -204,8 +204,8 @@ void nsf_init(int hard)
 	disabled = 0;
 	write4 = mem_getwrite(4);
 	readF = mem_getread(0xF);
-	mem_setwrite(4,write);
-	mem_setwrite(5,write);
+	mem_setwrite(4,write45);
+	mem_setwrite(5,write45);
 	mem_setread(0x3,read_bios);
 	mem_setread(0xF,read_vectors);
 	currentsong = 0;

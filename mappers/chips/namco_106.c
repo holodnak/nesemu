@@ -75,7 +75,7 @@ static void write_5000(u32 addr,u8 data)
 	}
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	switch(addr & 0xF800) {
 		case 0x8000: chr[0] = data; break;
@@ -119,7 +119,7 @@ void namco_106_init(int hard)
 	mem_setwrite(4,write_4000);
 	mem_setwrite(5,write_5000);
 	for(i=8;i<16;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	nes_setvramsize(1);
 	for(i=0;i<8;i++) {
 		chr[i] = 0xFF;

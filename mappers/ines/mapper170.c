@@ -2,21 +2,21 @@
 
 static u8 reg;
 
-static u8 read(u32 addr)
+static u8 read6(u32 addr)
 {
 	return(reg | ((addr >> 8) & 0x7F));
 }
 
-static void write(u32 addr,u8 data)
+static void write67(u32 addr,u8 data)
 {
 	reg = (data << 1) & 0x80;
 }
 
 static void reset(int hard)
 {
-	mem_setread(6,read);
-	mem_setwrite(6,write);
-	mem_setwrite(7,write);
+	mem_setread(6,read6);
+	mem_setwrite(6,write67);
+	mem_setwrite(7,write67);
 	mem_setprg16(0x8,0);
 	mem_setprg16(0xC,-1);
 	if(nes->rom->chrsize)

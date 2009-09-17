@@ -27,7 +27,7 @@ static void sync()
 	ppu_setmirroring(mirror);
 }
 
-static void write(u32 addr,u8 data)
+static void write_reg(u32 addr,u8 data)
 {
 	if(addr & 0x4000) {
 		mode = addr & 0x30;
@@ -50,7 +50,7 @@ void bmc_70in1_reset(int r,int hard)
 	revision = r;
 	for(i=8;i<16;i++) {
 //		mem_setread(i,read);
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_reg);
 	}
 	mode = 0;
 	bankhi = banklo = 0;

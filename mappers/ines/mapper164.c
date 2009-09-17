@@ -22,7 +22,7 @@ static void sync()
 	}
 }
 
-static void write(u32 addr,u8 data)
+static void write5D(u32 addr,u8 data)
 {
 	if((addr & 0x200) != 0)
 		return;
@@ -32,8 +32,8 @@ static void write(u32 addr,u8 data)
 
 static void reset(int hard)
 {
-	mem_setwrite(0x5,write);
-	mem_setwrite(0xD,write);
+	mem_setwrite(0x5,write5D);
+	mem_setwrite(0xD,write5D);
 	nes_setsramsize(2);
 	mem_setvram8(0,0);
 	mem_setsram8(6,0);

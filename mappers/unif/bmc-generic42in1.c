@@ -17,7 +17,7 @@ static void sync()
 		mem_setprg32(0x8,(reg[0] >> 1) | ((reg[0] & 0x80) >> 3));
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	reg[addr & 1] = data;
 	sync();
@@ -28,7 +28,7 @@ static void reset(int hard)
 	int i;
 
 	for(i=8;i<16;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	reg[0] = 0;
 	reg[1] = 0;
 	sync();

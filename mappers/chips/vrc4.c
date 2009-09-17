@@ -40,7 +40,7 @@ static void sync()
 	}
 }
 
-static void write(u32 addr,u8 data)
+static void write_vrc4(u32 addr,u8 data)
 {
 //	log_message("vrc4 write: $%04X = $%02X\n",addr,data);
 	data &= 0x1F;
@@ -154,7 +154,7 @@ void vrc4_init(int revision)
 	}
 	nes_setsramsize(2);
 	for(i=8;i<0x10;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_vrc4);
 	for(i=0;i<8;i++) {
 		prg[i & 1] = 0;
 		chr[i] = 0;

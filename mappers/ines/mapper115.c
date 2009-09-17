@@ -13,7 +13,7 @@ static void sync()
 	mmc3_syncsram();
 }
 
-static void write(u32 addr,u8 data)
+static void write67(u32 addr,u8 data)
 {
 	reg[addr & 1] = data;
 	sync();
@@ -23,8 +23,8 @@ static void reset(int hard)
 {
 	nes_setsramsize(2);
 	reg[0] = reg[1] = 0;
-	mem_setwrite(6,write);
-	mem_setwrite(7,write);
+	mem_setwrite(6,write67);
+	mem_setwrite(7,write67);
 	mmc3_init(sync);
 }
 

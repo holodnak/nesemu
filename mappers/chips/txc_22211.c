@@ -16,7 +16,7 @@ static void sync()
 		mem_setchr8(0,reg[2] & 3);
 }
 
-static u8 read(u32 addr)
+static u8 read_reg(u32 addr)
 {
 	if(addr < 0x4020)
 		return(read4(addr));
@@ -30,7 +30,7 @@ static u8 read(u32 addr)
 	return(0);
 }
 
-static void write(u32 addr,u8 data)
+static void write_reg(u32 addr,u8 data)
 {
 	if(addr < 0x4020)
 		write4(addr,data);
@@ -43,8 +43,8 @@ void txc_22211_reset(int hard,int r)
 	revision = r;
 	read4 = mem_getread(4);
 	write4 = mem_getwrite(4);
-	mem_setread(4,read);
-	mem_setwrite(4,write);
+	mem_setread(4,read_reg);
+	mem_setwrite(4,write_reg);
 	reg[0] = reg[1] = reg[2] = reg[3] = 0;
 	latch_init(sync);
 	mem_setprg32(8,0);

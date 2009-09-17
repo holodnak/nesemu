@@ -12,7 +12,7 @@ static void sync()
 	mmc3_syncsram();
 }
 
-static void write(u32 addr,u8 data)
+static void write67(u32 addr,u8 data)
 {
 	reg = data;
 	sync();
@@ -22,8 +22,8 @@ static void reset(int hard)
 {
 	reg = 0;
 	mmc3_init(sync);
-	mem_setwrite(6,write);
-	mem_setwrite(7,write);
+	mem_setwrite(6,write67);
+	mem_setwrite(7,write67);
 }
 
 MAPPER_INES(47,reset,0,mmc3_line,mmc3_state);

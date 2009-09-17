@@ -33,7 +33,7 @@ void write_4000(u32 addr,u8 data)
 	sync();
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 //	log_message("mapper6 write: $%04X = $%02X\n",addr,data);
 	reg = data;
@@ -47,7 +47,7 @@ static void reset(int hard)
 	write4 = mem_getwrite(4);
 	mem_setwrite(4,write_4000);
 	for(i=8;i<0x10;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	nes_setsramsize(2);
 	mem_setsram8(6,0);
 	reg = 0;

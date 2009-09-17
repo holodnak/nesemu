@@ -8,7 +8,7 @@ static void sync()
 	mem_setchr8(0,0);
 }
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	if(addr == 0x8FFF)
 		latch_write(addr,data);
@@ -20,7 +20,7 @@ static void reset(int hard)
 
 	latch_init(sync);
 	for(i=8;i<16;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 }
 
 MAPPER_INES(108,reset,0,0,latch_state);

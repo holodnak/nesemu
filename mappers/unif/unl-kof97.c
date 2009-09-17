@@ -2,7 +2,7 @@
 #include "mappers/mapper.h"
 #include "nes/memory.h"
 
-static void write(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	if(addr >= 0x8000 && addr < 0xA000) {
 		data = (data & 0xD8) |
@@ -36,7 +36,7 @@ static void reset(int hard)
 
 	mmc3_init(mmc3_sync);
 	for(i=8;i<16;i++)
-		mem_setwrite(i,write);
+		mem_setwrite(i,write_upper);
 	mmc3_sync();
 }
 
