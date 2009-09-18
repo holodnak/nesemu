@@ -120,7 +120,7 @@ int menubar_event(menubar_t *m,int event,int data)
 					processed = 1;
 			}
 			//if event was not processed by a menu or button, then move the window
-			if(processed == 0) {
+			if(processed == 0 && config.windowed != 0) {
 #ifndef PS2
 				int x,y;
 				mousemove_u mm;
@@ -137,7 +137,7 @@ int menubar_event(menubar_t *m,int event,int data)
 				y += mm.info.yrel;
 //				if(x == msx && y == msy)
 //					video_setwindowpos(x,y);
-				video_setwindowpos(x,y);
+//				video_setwindowpos(x,y);
 #endif
 			}
 			break;

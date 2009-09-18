@@ -119,6 +119,7 @@ char *refresh_root(list_t *m,int mode)
 	static char path[] = "/";
 
 	//begin refresh
+	printf("refresh root: mode = %d\n",mode);
 	if(mode == 1) {
 		findfirst = 1;
 		//success
@@ -175,7 +176,7 @@ char *refresh_dir(list_t *m,int mode)
 		} while((fi->flags != FI_FLAG_DIRECTORY) || (strcmp(fi->name,".") == 0) || (strcmp(fi->name,"..") == 0));
 		return(fi->name);
 	}
-#if (!defined(LINUX) && !defined(OSX) && !defined(PS2))
+#if (!defined(LINUX) && !defined(OSX))// && !defined(PS2))
 	else
 		return(refresh_root(m,mode - 2));
 #endif
