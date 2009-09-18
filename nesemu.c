@@ -72,6 +72,8 @@ void init()
 	log_init();
 	log_message("inited system, file and log ok\n");
 	log_message("argv0 = '%s'\n",argv0);
+	log_message("initing filesystem\n");
+	filesystem_init();
 	config_load();
 	log_message("inited config\n");
 	video_init();
@@ -82,8 +84,6 @@ void init()
 	splash_start(nesscr);
 	splash_adddot();
 	log_message("inited video\n");
-	log_message("initing filesystem\n");
-	filesystem_init();
 	splash_adddot();
 	input_init();
 	splash_adddot();
