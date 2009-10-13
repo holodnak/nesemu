@@ -79,7 +79,7 @@ mapper_ines_t *mapper_init_ines(int num)
 	MAPPER(234);
 	MAPPER(240);	MAPPER(242);
 	MAPPER(245);	MAPPER(246);
-	MAPPER(249);
+	MAPPER(249);	MAPPER(253);
 
 	//is this mapper still valid?
 	MAPPER(254);

@@ -511,7 +511,7 @@ void video_getwindowpos(int *x,int *y)
 #elif defined(LINUX)
 void video_setwindowpos(int x,int y)
 {
-	SDL_SysWMinfo info;
+/*	SDL_SysWMinfo info;
 	XWindowAttributes attr;
 
 	SDL_VERSION(&info.version);
@@ -520,12 +520,12 @@ void video_setwindowpos(int x,int y)
 	info.info.x11.lock_func();
 	XGetWindowAttributes(info.info.x11.display,info.info.x11.wmwindow,&attr); 
 	XMoveWindow(info.info.x11.display,info.info.x11.wmwindow,x,y);
-	info.info.x11.unlock_func();
+	info.info.x11.unlock_func();*/
 }
 
 void video_getwindowpos(int *x,int *y)
 {
-	SDL_SysWMinfo info;
+/*	SDL_SysWMinfo info;
 	XWindowAttributes attr;
 
 	SDL_VERSION(&info.version);
@@ -536,7 +536,7 @@ void video_getwindowpos(int *x,int *y)
 //	XMoveWindow(info.info.x11.display,info.info.x11.wmwindow,x,y);
 	info.info.x11.unlock_func();
 	*x = attr.x;
-	*y = attr.y;
+	*y = attr.y;*/
 }
 #endif
 ///TODO: write these for osx/linux
