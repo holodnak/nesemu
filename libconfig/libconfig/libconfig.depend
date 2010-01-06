@@ -1,0 +1,14 @@
+# depslib dependency file v1.0
+1262814918 source:c:\nesemu\libconfig\libconfig\main.cpp
+	<stdio.h>
+	"../libconfig.h"
+
+1262816242 c:\nesemu\libconfig\libconfig.h
+	<string.h>
+
+1262816242 source:c:\nesemu\libconfig\libconfig.cpp
+	<stdio.h>
+	"libconfig.h"
+
+1262816015 source:c:\nesemu\libconfig\textfile.cpp
+
