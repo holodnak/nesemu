@@ -25,6 +25,7 @@
 #include <libmc.h>
 #include <graph.h>
 #include <stdio.h>
+#include "crc32.h"
 
 extern u16 size_sjpcm_irx;
 extern u8 *sjpcm_irx;
@@ -32,16 +33,7 @@ extern u16 size_usbd_irx;
 extern u8 *usbd_irx;
 extern u16 size_usb_mass_irx;
 extern u8 *usb_mass_irx;
-/*
-extern u16 size_fileXio_irx;
-extern u8 *fileXio_irx;
-extern u16 size_ps2hdd_irx;
-extern u8 *ps2hdd_irx;
-extern u16 size_ps2fs_irx;
-extern u8 *ps2fs_irx;
-extern u16 size_ps2atad_irx;
-extern u8 *ps2atad_irx;
-*/
+
 static void LoadModules()
 {
 	int ret;
@@ -133,36 +125,14 @@ static void LoadModules()
 		SleepThread();
 	}
 
-/*	SifExecModuleBuffer(&fileXio_irx, size_fileXio_irx, 0, NULL, &ret);
-	if (ret < 0) {
-		printf("Failed to load module: fileXio_irx");
-		SleepThread();
-	}
 
-	SifExecModuleBuffer(&ps2atad_irx, size_ps2atad_irx, 0, NULL, &ret);
-	if (ret < 0) {
-		printf("Failed to load module: ps2atad_irx");
-		SleepThread();
-	}
-
-	SifExecModuleBuffer(&ps2hdd_irx, size_ps2hdd_irx, sizeof(hddarg), hddarg, &ret);
-	if (ret < 0) {
-		printf("Failed to load module: ps2hdd_irx");
-		SleepThread();
-	}
-
-	SifExecModuleBuffer(&ps2fs_irx, size_ps2fs_irx, sizeof(pfsarg), pfsarg, &ret);
-	if (ret < 0) {
-		printf("Failed to load module: ps2fs_irx");
-		SleepThread();
-	}
-*/
 	fileXioInit();
 
 }
 
 void init_system()
 {
+	crc32gentab();
 	SifInitRpc(0);
 	LoadModules();
 

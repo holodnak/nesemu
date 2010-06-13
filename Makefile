@@ -13,3 +13,5 @@ ps2:
 	$(MAKE) -f Makefile.ps2 $(TARGETS)
 wii:
 	$(MAKE) -f Makefile.wii $(TARGETS)
+all:
+	echo specify a target.\
