@@ -290,7 +290,7 @@ int load_bios(char *fn,u8 *dest,int size)
 		}
 	}
 	if(file_read(fp,dest,size) != (size)) {
-		log_message("failed to load '%s', rom is too small\n",fn);
+		log_message("failed to load '%s', rom is wrong size\n",fn);
 		return(2);
 	}
 	file_close(fp);

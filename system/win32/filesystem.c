@@ -61,6 +61,7 @@ void filesystem_translate_path(char *in,char *out,int outsize)
 {
 	int i;
 
+	memset(out,0,outsize);
 	if(in[0] == '/')
 		strncpy(out,in + 1,outsize);
 	else
@@ -92,12 +93,16 @@ file_info_t *filesystem_findfirst(char *path)
 		filesystem_translate_path(path,host_path,4096);
 
 		//append search filter
-		strcat(host_path,"\\*");
-	printf("finding first in '%s'\n",host_path);
+		if(host_path[strlen(host_path) - 1] != '\\')
+			strcat(host_path,"\\");
+		strcat(host_path,"*");
+		printf("finding first in '%s'\n",host_path);
 
 		hfind = FindFirstFileA(host_path,&wfd);
-		if((hfind == NULL) || (strcmp(wfd.cFileName,"") == 0))
+		if((hfind == NULL) || (strcmp(wfd.cFileName,"") == 0)) {
+			printf("found nothing\n");
 			return(0);
+		}
 		file_info.flags = FI_FLAG_FILE;
 		if(wfd.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 			file_info.flags = FI_FLAG_DIRECTORY;

@@ -75,6 +75,25 @@ static int isrom(char *f)
 		stricmp(f + strlen(f) - 7,".unf.gz") == 0 ||
 		stricmp(f + strlen(f) - 8,".unif.gz") == 0)
 		return(1);
+/*	if(stricmp(f + strlen(f) - 4,".zip") == 0) {
+		int fp;
+
+		printf("zip file!  '%s'\n",f);
+		if((fp = file_open(f,"zrb")) != -1) {
+			u8 header[16];
+
+			//read first 16 bytes of file
+			file_read(fp,header,16);
+			file_close(fp);
+
+			//is rom...yes!
+			if(memcmp(header,"NES\x1A",4) == 0 ||
+				memcmp(header,"FDS\x1A",4) == 0 ||
+				memcmp(header,"NESM\x1A",5) == 0 ||
+				memcmp(header,"UNIF",4) == 0)
+				return(1);
+		}
+	}*/
 //	log_message("'%s' isnt a rom\n",f);
 	return(0);
 }
@@ -208,7 +227,7 @@ static void click_romlist(void *u,char *s)
 
 	strcat(str,l->edit.text);
 
-	if((fp = file_open(str,"rb")) != 0) {
+	if((fp = file_open(str,"rb")) != -1) {
 		u8 header[16];
 		int n;
 
@@ -220,7 +239,8 @@ static void click_romlist(void *u,char *s)
 			n = (header[6] & 0xF0) >> 4;
 			n |= header[7] & 0xF0;
 			sprintf(l->rominfo[0].text,"iNES ROM Image, Mapper %d",n);
-			sprintf(l->rominfo[1].text,"%d PRG Banks, %d CHR Banks",header[4],header[5]);
+			sprintf(l->rominfo[1].text,"%dkb PRG, %dkb CHR",header[4] * 0x4000 / 1024,header[5] * 0x2000 / 1024);
+//			sprintf(l->rominfo[1].text,"%d PRG Banks, %d CHR Banks",header[4],header[5]);
 		}
 		else if(memcmp(header,"FDS\x1A",4) == 0) {
 			sprintf(l->rominfo[0].text,"FDS Disk Image");
@@ -239,14 +259,48 @@ static void click_romlist(void *u,char *s)
 			sprintf(l->rominfo[1].text,"%s%s%s",strs[0],strlen(strs[1])?", ":"",strs[1]);
 		}
 		else if(memcmp(header,"UNIF",4) == 0) {
-			sprintf(l->rominfo[0].text,"UNIF ROM Image");
-			sprintf(l->rominfo[1].text,"No additional info");
+			char blockname[4];
+			u32 blocksize;
+			char board[128];
+			u32 prgsize = 0;
+			u32 chrsize = 0;
+			
+			memset(board,0,128);
+			memset(blockname,0,4);
+			strcpy(board,"Unknown Board");
+			file_read(fp,header,16);		//read the other 16 bytes of unif header
+			while(file_eof(fp) == 0) {
+				//read in block name and block size
+				file_read(fp,blockname,4);
+				file_read(fp,&blocksize,4);
+				if(file_eof(fp) != 0)
+					break;
+				if(strncmp(blockname,"MAPR",4) == 0) {
+					file_read(fp,board,blocksize);
+				}
+				else if(strncmp(blockname,"PRG",3) == 0) {
+					prgsize += blocksize;
+					file_seek(fp,blocksize,SEEK_CUR);
+				}
+				else if(strncmp(blockname,"CHR",3) == 0) {
+					chrsize += blocksize;
+					file_seek(fp,blocksize,SEEK_CUR);
+				}
+				else
+					file_seek(fp,blocksize,SEEK_CUR);		//skip to next block
+			}
+			sprintf(l->rominfo[0].text,"UNIF ROM Image, %s",board);
+			sprintf(l->rominfo[1].text,"%dkb PRG, %dkb CHR",prgsize / 1024,chrsize / 1024);
 		}
 		else {
 			strcpy(l->rominfo[0].text,"unknown rom image type");
 			strcpy(l->rominfo[1].text,"");
 		}
 		file_close(fp);
+	}
+	else {
+		strcpy(l->rominfo[0].text,"error opening rom");
+		strcpy(l->rominfo[1].text,"");
 	}
 }
 

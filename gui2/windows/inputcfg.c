@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include "gui2/windows/inputcfg.h"
+#include "gui2/keyname.h"
 
 /*
 
@@ -44,7 +45,7 @@ void input_draw(input_t *m)
 		for(i=0;i<370;i++) {
 			if(joykeys[i]) {
 				config.joy_keys[0][m->needinput - 1] = i;
-				sprintf(m->key_edit[m->needinput - 1].text,"%d",i);
+				sprintf(m->key_edit[m->needinput - 1].text,"%s",keyname(i));
 				m->needinput = 0;
 				break;
 			}
@@ -137,11 +138,11 @@ void input_create(input_t *m)
 	for(i=0;i<8;i++) {
 		text_create(&m->key_label[i],x,y+12*i+2,btns[i]);
 		edit_create(&m->key_edit[i],x+6*7,y+12*i,21,10,0);
-		sprintf(m->key_edit[i].text,"%d",config.joy_keys[0][i]);
+		sprintf(m->key_edit[i].text,"%s",keyname(config.joy_keys[0][i]));
 
 		text_create(&m->key_label2[i],x+105,y+12*i+2,btns[i]);
 		edit_create(&m->key_edit2[i],x+6*7+105,y+12*i,21,10,0);
-		sprintf(m->key_edit2[i].text,"%d",config.joy_keys[1][i]);
+		sprintf(m->key_edit2[i].text,"%s",keyname(config.joy_keys[1][i]));
 	}
 	x += 20 + 6 + 6 * 7;
 	button_create(&m->key_button[0],"Set",x,y+12*0,click_key0);

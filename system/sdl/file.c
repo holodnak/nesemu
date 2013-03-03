@@ -42,6 +42,8 @@ void file_kill()
 {
 }
 
+extern int errno;
+
 int file_open(char *filename,char *mode)
 {
 	int fd = 0;
@@ -51,20 +53,30 @@ int file_open(char *filename,char *mode)
 		uncompressed = 1;
 		mode++;
 	}
-	if(*mode == 'z') {
+	else if(*mode == 'z') {
 		uncompressed = 0;
 		mode++;
+	}
+	else {
+		if(stricmp(filename + strlen(filename) - 3,".gz") != 0)
+			uncompressed = 1;
 	}
 	for(fd=0;fd<16;fd++) {
 		if(files[fd].gzfd == 0 && files[fd].fd == 0) {
 			files[fd].flags = uncompressed;
 			if(uncompressed == 0) {
+				printf("opening compressed file '%s'\n",filename);
 				if((files[fd].gzfd = gzopen(filename,mode)))
 					return(fd);
+				printf("error opening compressed file '%s'\n",filename);
+				return(-1);
 			}
 			else {
+				printf("opening uncompressed file '%s'\n",filename);
 				if((files[fd].fd = fopen(filename,mode)))
 					return(fd);
+				printf("error opening uncompressed file '%s'\n",filename);
+				return(-1);
 			}
 		}
 	}

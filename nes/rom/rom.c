@@ -270,6 +270,7 @@ int rom_checkdb(rom_t *ret,int whichdb)
 	if(whichdb == 0) {
 		prgcrc = rom_prgcrc32(ret);
 		chrcrc = rom_chrcrc32(ret);
+		printf("rom crcs = %08X %08X\n",prgcrc,chrcrc);
 		for(i=0;rom_crcs[i].name;i++) {
 			rom_crc_t *rc = &rom_crcs[i];
 

@@ -110,6 +110,13 @@ static configvar_t configvars[] = {
 	{0,0,0,0}
 };
 
+static int is_white(char ch)
+{
+	if(ch == ' ' || ch == '\t' || ch == '\r' || ch == '\n')
+		return(1);
+	return(0);
+}
+
 //load configuration file
 int config_load()
 {
@@ -119,7 +126,7 @@ int config_load()
 	config_defaults();
 
 	//try to open config file
-	if((fd = file_open(path_config,"rt")) == -1) {
+	if((fd = file_open(path_config,"urt")) == -1) {
 		log_warning("cannot open config file '%s'\n",path_config);
 		return(1);
 	}
@@ -128,6 +135,8 @@ int config_load()
 		char name[256],data[256];
 		int i;
 
+		memset(name,0,256);
+		memset(data,0,256);
 		file_gets(fd,line,512);
 //		log_message("read line: '%s'\n",line);
 		//eat whitespace from beginning of var name
@@ -146,6 +155,8 @@ int config_load()
 		for(oldp++;*oldp == ' ' || *oldp == '\t';oldp++);
 		strcpy(name,line);
 		strcpy(data,oldp);
+		while(is_white(data[strlen(data) - 1]))
+			data[strlen(data) - 1] = 0;
 		for(i=0;configvars[i].type != 0;i++) {
 			//variable match
 			if(strcmp(name,configvars[i].name) == 0) {
@@ -158,6 +169,7 @@ int config_load()
 		}
 	}
 	file_close(fd);
+	printf("state path = '%s'\n",config.path_state);
 #ifndef PS2
 	log_message("creating directories\n");
 	mkdir(config.path_state);
