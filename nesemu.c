@@ -27,6 +27,7 @@
 #include "nes/state/state.h"
 #include "log.h"
 #include "misc.h"
+#include "splash.h"
 #include "nes/romdb/romdb.h"
 #ifdef SDL
 #include <SDL/SDL.h>
@@ -65,7 +66,7 @@ int quit = 0;
 
 static char *lines_init[] = {"Loading...","NESEMU v"VERSION,"","http://ps2.fapexpert.com","http://code.google.com/p/nesemu",0};
 
-void init()
+void nesemu_init()
 {
 	init_system();
 	file_init();
@@ -128,6 +129,7 @@ int main(int argc,char *argv[])
 	char *p,*rom_filename = 0;
 	int i,doloadstate = 0;
 
+	memset(path_config,0,1024);
 	log_message("nesemu - version "VERSION"\n\n");
 
 /*************/{
@@ -179,15 +181,15 @@ int main(int argc,char *argv[])
 	}
 #endif
 #endif
-	log_message("curdir = '%s'\n",curdir);
-
 	//safety check
 	if((p = strrchr(curdir,'/')) == 0) {
 		log_error("platform must include path in argv[0]\n");
 		exit(0);
 	}
 	*p = 0;
+
 	log_message("determined executable directory to be '%s'\n",curdir);
+	sprintf(path_config,"%s/nesemu.cfg",curdir);
 
 	//parse command line arguments (if they are given)
 	if(argc > 1) {
@@ -195,6 +197,17 @@ int main(int argc,char *argv[])
 			if(strcmp("--mappers",argv[i]) == 0) {
 				showmappers();
 				return(0);
+			}
+			else if(strcmp("--config",argv[i]) == 0) {
+				i++;
+				if(i < argc) {
+					strncpy(path_config,argv[i],1024);
+					log_message("using configuration file '%s'\n",path_config);
+				}
+				else {
+					log_message("please specify a filename after --config\n");
+					return(0);
+				}
 			}
 		}
 	}
@@ -204,7 +217,7 @@ int main(int argc,char *argv[])
 
 	memset(nesscr,0,256 * (256 + 16) * sizeof(u8));
 	//initialize system
-	init();
+	nesemu_init();
 
 	//parse command line arguments (if they are given)
 	if(argc > 1) {

@@ -28,7 +28,6 @@ void config_defaults()
 {
 	int i;
 
-	sprintf(path_config,"%s/nesemu.cfg",curdir);
 	sprintf(defaults.path_rom,"%s/",curdir);
 	sprintf(defaults.path_state,"%s/state/",curdir);
 	sprintf(defaults.path_cheat,"%s/cheat/",curdir);

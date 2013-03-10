@@ -2,6 +2,7 @@
 #include <string.h>
 #include "gui2/windows/tracer.h"
 #include "nesemu.h"
+#include "nes/ppu/event.h"
 
 /*
 

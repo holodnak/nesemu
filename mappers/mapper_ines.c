@@ -24,9 +24,10 @@
 #include "nes/ppu/ppu.h"
 #include "nes/nes.h"
 
-#define MAPPER(n) \
+#define MAPPER(n) { \
 	extern mapper_ines_t mapper##n; \
-	if(num == n)return(&mapper##n);
+	if(num == n) return(&mapper##n); \
+	}
 
 #ifdef __cplusplus
 extern "C" 

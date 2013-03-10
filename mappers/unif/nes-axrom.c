@@ -21,4 +21,3 @@ MAPPER_UNIF(nes_amrom, "NES-AMROM", reset,0,0,latch_state,INFO(128,0,0,0,8,0));
 MAPPER_UNIF(nes_anrom, "NES-ANROM", reset,0,0,latch_state,INFO(128,0,0,0,8,0));
 MAPPER_UNIF(nes_an1rom,"NES-AN1ROM",reset,0,0,latch_state,INFO(64, 0,0,0,8,0));
 MAPPER_UNIF(nes_aorom, "NES-AOROM", reset,0,0,latch_state,INFO(256,0,0,0,8,0));
-

@@ -35,9 +35,8 @@ static void draw_tile(u8 *dest,u8* chr,u8 attrib)
 static void draw_nt(nt_t *m,int dx,int dy,int sx,int sy)
 {
 	int i,x,y,s;
-	int color;
 	u8 *dest = gui_draw_getscreen() + dx + gui_draw_getscreenpitch() * dy;
-	u8 *nt,t,at,ntnum,pt;
+	u8 t,at,ntnum,pt;
 
 	for(i=0;i<64;i++)
 		video_setpalentry(i + 0x80,palette[i].r,palette[i].g,palette[i].b);

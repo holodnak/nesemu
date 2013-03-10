@@ -30,10 +30,10 @@ static void reset(int hard)
 	sync();
 }
 
-static void state(u8 *data)
+static void state(int mode,u8 *data)
 {
-	reg = *data;
+	STATE_U8(reg);
 	sync();
 }
 
-MAPPER_INES(34,reset,0,0,state);
+MAPPER_INES20(34,reset,0,0,state);

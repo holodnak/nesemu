@@ -1,4 +1,5 @@
 #include <string.h> //for memcpy
+#include <stdlib.h> //for rand
 #include "nes/fds/hle_fds_calls.h"
 #include "nes/fds/nes_fds.h"
 #include "nes/nes.h"

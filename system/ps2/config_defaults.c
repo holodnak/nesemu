@@ -33,10 +33,10 @@ void config_defaults()
 	int i;
 
 	strcpy(path_config,"mc0:nesemu/nesemu.cfg");
-
 	sprintf(defaults.path_rom,"/mc0:");
 	sprintf(defaults.path_state,"mc0:/nesemu/state/");
 	sprintf(defaults.path_cheat,"mc0:/nesemu/cheat/");
+	sprintf(defaults.path_shots,"mc0:/nesemu/shots/");
 	defaults.filter = 0;
 	defaults.fdsbios = 0;
 	defaults.fullscreen = 0;

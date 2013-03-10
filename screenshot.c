@@ -213,11 +213,10 @@ void screenshot()
 {
 	char filename[512];
 	char shotext[8];
-	int i,j,fd,shotnum = 0;
+	int fd,shotnum = 0;
 #ifdef USE_PNG
 	png_color color0;
 #endif
-	u8 *d,*p;
 
 	if(nes == 0 || nes->rom == 0)
 		return;

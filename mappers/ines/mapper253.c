@@ -5,7 +5,7 @@
 #include <stdio.h>
 
 static unsigned char prg[2],mirror;
-static unsigned short chr[8];
+static unsigned char chr[8];		//was a short...why?  been too long
 static int irqcounter,irqcycles,irqclock;
 static unsigned char irqlatch,irqenable;
 
@@ -111,20 +111,18 @@ static void init(int hard)
 
 void line(int line,int pcycles)
 {
-	u8 n;
-
-       if(irqenable & 2 ) {
-                if((irqclock += (pcycles / 3)) >= 114) {
-                        irqclock -= 114;
-                        if(irqcounter == 0xFF) {
-                                irqcounter = irqlatch;
-                                irqenable = (irqenable & 1) * 3;
-                                dead6502_irq();
-                        } else {
-                                irqcounter++;
-                        }
-                }
-        }
+	if(irqenable & 2 ) {
+		if((irqclock += (pcycles / 3)) >= 114) {
+			irqclock -= 114;
+			if(irqcounter == 0xFF) {
+				irqcounter = irqlatch;
+				irqenable = (irqenable & 1) * 3;
+				dead6502_irq();
+			} else {
+				irqcounter++;
+			}
+		}
+	}
 }
 
 static void state(int mode,u8 *data)

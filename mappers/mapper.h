@@ -34,6 +34,15 @@ typedef struct mapper_ines_s {
 	void (*state)(int,u8*);		//load/save state information
 	} mapper_ines_t;
 
+//ines 2.0 mapper
+typedef struct mapper_ines20_s {
+	int num;							//mapper number
+	void (*reset)(int);			//mapper reset function
+	void (*tile)(u8,int);		//tile read handler
+	void (*line)(int,int);		//scanline handler
+	void (*state)(int,u8*);		//load/save state information
+	} mapper_ines20_t;
+
 //board information
 typedef struct board_info_s {
 	u16	prg,chr;		//prg/chr sizes in kilobytes
@@ -56,6 +65,9 @@ typedef struct mapper_unif_s {
 
 #define MAPPER_INES(num,reset,tile,line,state) \
 	mapper_ines_t mapper##num = {num,reset,tile,line,state}
+
+#define MAPPER_INES20(num,reset,tile,line,state) \
+	mapper_ines20_t mapper20##num = {num,reset,tile,line,state}
 
 #define INFO(prg,chr,sram,wram,vram,mirror) \
 	{prg,chr,sram,wram,vram,mirror}

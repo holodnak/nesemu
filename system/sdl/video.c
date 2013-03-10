@@ -25,6 +25,7 @@
 #include "defines.h"
 #include "system/system.h"
 #include "gui2/gui2.h"
+#include "gui2/gui2_draw.h"
 
 //#include "libfilter.h"
 
@@ -32,7 +33,7 @@
 #include "system/sdl/interpolate/interpolate.h"
 #include "system/sdl/hq2x/hq2x.h"
 #include "system/sdl/hq2x/hq3x.h"
-#include "system/sdl/nes_ntsc/nes_ntsc.h"
+//#include "system/sdl/nes_ntsc/nes_ntsc.h"
 
 //#define _PROFILE
 
@@ -85,8 +86,8 @@ void video_reinit()
 	SDL_ShowCursor(0);
 }
 
-static nes_ntsc_setup_t setup;
-static nes_ntsc_t *ntsc;
+//static nes_ntsc_setup_t setup;
+//static nes_ntsc_t *ntsc;
 
 #include "nes/ppu/palette.h"
 
@@ -104,13 +105,13 @@ void video_init()
 	tmpscreen = (u32*)malloc(256*256*4);
 	oldscreen = (u32*)malloc(256*256*4);
 	nesscreen = (u8*)malloc(256*256);
-	ntsc = (nes_ntsc_t*)malloc(sizeof(nes_ntsc_t));
-	setup = nes_ntsc_composite;
-	setup.merge_fields = 1;
+//	ntsc = (nes_ntsc_t*)malloc(sizeof(nes_ntsc_t));
+//	setup = nes_ntsc_composite;
+//	setup.merge_fields = 1;
 //	setup.hue = (double)config.hue / 10.0f;
 //	setup.saturation = (double)config.sat;
 //	setup.sharpness = custom_sharpness;
-	nes_ntsc_init(ntsc,&setup);
+//	nes_ntsc_init(ntsc,&setup);
 	hq2x_InitLUTs();
 	hq3x_InitLUTs();
 }
@@ -123,11 +124,11 @@ void video_kill()
 	if(tmpscreen)	free(tmpscreen);
 	if(oldscreen)	free(oldscreen);
 	if(nesscreen)	free(nesscreen);
-	if(ntsc)			free(ntsc);
+//	if(ntsc)			free(ntsc);
 	tmpscreen = 0;
 	oldscreen = 0;
 	nesscreen = 0;
-	ntsc = 0;
+//	ntsc = 0;
 }
 
 void video_setpalentry(int i,u8 r,u8 g,u8 b)
@@ -269,7 +270,7 @@ void ntsc2x(u32 *dest,int destp,u32 *src,int srcp,int w,int h)
 		interpolate2x(dest,destp,src,srcp,w,h);
 		return;
 	}
-	nes_ntsc_blit(ntsc,nesscreen+(8*256),256,0,256,224,dest,destp*4);
+//	nes_ntsc_blit(ntsc,nesscreen+(8*256),256,0,256,224,dest,destp*4);
 	for(y=224*2/2;--y>=0;) {
 		u32 *in = dest + y * destp;
 		u32 *out = dest + y * 2 * destp;
@@ -292,7 +293,7 @@ void ntsc3x(u32 *dest,int destp,u32 *src,int srcp,int w,int h)
 		interpolate3x(dest,destp,src,srcp,w,h);
 		return;
 	}
-	nes_ntsc_blit(ntsc,nesscreen,256,0,256,240,dest,destp*4);
+//	nes_ntsc_blit(ntsc,nesscreen,256,0,256,240,dest,destp*4);
 }
 
 void video_endframe()
@@ -357,8 +358,8 @@ void video_endframe()
 			interpolate3x(scr,screen->pitch / 4,tmpscreen,256,256,240);
 		else if(config.filter == 3)
 		{}
-		else
-			ntsc3x(scr,screen->pitch / 4,tmpscreen,256,256,240);
+//		else
+//			ntsc3x(scr,screen->pitch / 4,tmpscreen,256,256,240);
 	}
 	else if(screenscale == 2) {
 		if(config.filter == 0)
@@ -368,8 +369,8 @@ void video_endframe()
 		else if(config.filter == 2)
 //			hq2x_32((u8*)tmpscreen,(u8*)scr,256,240,256);
 			interpolate2x(scr,screen->pitch / 4,tmpscreen,256,256,240);
-		else
-			ntsc2x(scr,screen->pitch / 4,tmpscreen,256,256,240);
+//		else
+//			ntsc2x(scr,screen->pitch / 4,tmpscreen,256,256,240);
 	}
 	else if(screenscale == 1)
 		draw1x(scr,screen->pitch/4,tmpscreen,256,256,240);

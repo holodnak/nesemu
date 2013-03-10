@@ -18,22 +18,12 @@
  *   59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.             *
  ***************************************************************************/
 
-#include <string.h>
-#include "defines.h"
-#include "mapper.h"
-#include "nes/ppu/ppu.h"
-#include "nes/nes.h"
+#ifndef __splash_h__
+#define __splash_h__
 
-#define MAPPER(n,s) { \
-	extern mapper_ines20_t mapper20##n; \
-	if(num == n) return(&mapper20##n); \
-	}
+void splash_start(u8 *dest);
+void splash_stop();
+void splash_draw();
+void splash_adddot();
 
-mapper_ines20_t *mapper_init_ines20(int num)
-{
-//	MAPPER(34,0);
-//	MAPPER(34,1);
-
-	//no mapper found, return error
-	return(0);
-}
+#endif

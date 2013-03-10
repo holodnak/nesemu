@@ -4,8 +4,6 @@
 
 static void sync()
 {
-	int i;
-
 	mmc3_syncprg(0x3F,(mmc3_getchrbank(0) & 2) << 5);
 	if(nes->rom->chrsize)
 		mmc3_syncchr(0xFF,0);

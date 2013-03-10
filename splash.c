@@ -1,5 +1,7 @@
 #include <memory.h>
 #include "defines.h"
+#include "gui2/gui2_draw.h"
+#include "system/video.h"
 
 int progress = 0;
 static u8 *scr = 0;

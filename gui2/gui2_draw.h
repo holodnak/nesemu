@@ -41,6 +41,7 @@ void gui_draw_text(u8 color,int x,int y,char *str);
 void gui_draw_text_highlight(u8 color,u8 bgcolor,int x,int y,char *str);
 void gui_draw_text2(u8 color,int x,int y,int len,char *str);
 void gui_draw_text2_highlight(u8 color,u8 bgcolor,int x,int y,int len,char *str);
+void gui_draw_text32(u32 *dest,int pitch,u8 color,int x,int y,char *str);
 
 void gui_draw_window(char *title,int x,int y,int w,int h);
 void gui_draw_border(u8 color,int x,int y,int w,int h);

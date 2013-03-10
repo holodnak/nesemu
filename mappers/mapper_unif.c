@@ -24,7 +24,7 @@
 #include "nes/ppu/ppu.h"
 #include "nes/nes.h"
 
-#define MAPPER(n) \
+#define MAPPER(n) { \
 	extern mapper_unif_t mapper_##n; \
 	if(unifsearch) { \
 		unifcounter++; \
@@ -35,7 +35,8 @@
 		} \
 	} \
 	else if(stricmp(board,mapper_##n.board) == 0) \
-		return(&mapper_##n);
+		return(&mapper_##n); \
+	}
 
 #ifdef __cplusplus
 extern "C" 

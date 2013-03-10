@@ -28,8 +28,6 @@ SDL_Joystick *joystick = 0;
 
 void init_system()
 {
-	int i;
-
 	if (SDL_Init(SDL_INIT_AUDIO | SDL_INIT_VIDEO | SDL_INIT_JOYSTICK)) {
 		printf("error at sdl init!\n");
 		exit(0);

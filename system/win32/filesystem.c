@@ -84,6 +84,7 @@ file_info_t *filesystem_findfirst(char *path)
 	//see if we are browsing the root directory
 	printf("finding first in '%s'\n",path);
 	if(strcmp("/",path) == 0) {
+		printf("findfirst:  find_root = %d (%s)\n",find_root,root[find_root].name);
 		find_root = 0;
 		file_info.flags = FI_FLAG_DIRECTORY;
 		file_info.name = root[find_root++].name;
@@ -116,6 +117,7 @@ file_info_t *filesystem_findnext()
 	if(find_root) {
 		if(root[find_root].flags == 0)
 			return(0);
+		printf("findnext:  find_root = %d (%s)\n",find_root,root[find_root].name);
 		file_info.flags = FI_FLAG_DIRECTORY;
 		file_info.name = root[find_root++].name;
 	}

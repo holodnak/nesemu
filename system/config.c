@@ -22,6 +22,8 @@ file config
 saves data to config file
 */
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "system/system.h"
 #include "system/keys.h"
 #include "version.h"

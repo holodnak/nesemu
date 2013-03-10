@@ -7,7 +7,7 @@ void interpolate2x(void *void_dst,u32 dst_slice,void *void_src,u32 src_slice,u32
 	u32 *dest = (u32*)void_dst;
 	u32 *src = (u32*)void_src;
 	u32 *p;
-	int x,y;
+	u32 x,y;
 
 	for(y=0;y<height;y++) {
 		p = dest + dst_slice;
@@ -28,7 +28,7 @@ void interpolate3x(void *void_dst,u32 dst_slice,void *void_src,u32 src_slice,u32
 	u32 *dest = (u32*)void_dst;
 	u32 *src = (u32*)void_src;
 	u32 *p1,*p2,*p3;
-	int x,y;
+	u32 x,y;
 
 	for(y=1;y<height;y++) {
 		p1 = dest;

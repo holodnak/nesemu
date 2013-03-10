@@ -42,7 +42,7 @@ void gui_input_draw(gui_input_t *m)
 		for(i=0;i<370;i++) {
 			if(joykeys[i]) {
 				config.gui_keys[m->needinput - 1] = i;
-				sprintf(m->key_edit[m->needinput - 1].text,"%d",keyname(i));
+				sprintf(m->key_edit[m->needinput - 1].text,"%s",keyname(i));
 				m->needinput = 0;
 				break;
 			}

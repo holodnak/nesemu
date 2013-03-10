@@ -1,5 +1,5 @@
 # set nesemu version
-VERSION=0.2.3
+VERSION=0.2.4
 
 # set something else...
 WHAT=ISIT?

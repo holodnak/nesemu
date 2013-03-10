@@ -100,10 +100,12 @@ static int ParseCommandLine(char *cmdline, char **argv)
 	return(argc);
 }
 
+extern int main(int argc,char *argv[]);
+
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance,
    LPSTR lpCmdLine, int nCmdShow)
 {
-	int ret,argc;
+	int argc;
 	char **argv;
 
 	/* Parse it into argv and argc */

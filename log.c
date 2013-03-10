@@ -59,7 +59,7 @@ void log_print(char *str)
 	//output message to console
 	printf(str);
 
-	//if log file isnt open, maybe logging is disabled
+	//if log file isnt open, maybe logging is disabled or file isnt opened yet
 	if(logfd == 0)
 		return;
 
