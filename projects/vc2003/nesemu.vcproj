@@ -569,6 +569,9 @@
 						RelativePath="..\..\mappers\ines\mapper143.c">
 					</File>
 					<File
+						RelativePath="..\..\mappers\ines\mapper150.c">
+					</File>
+					<File
 						RelativePath="..\..\mappers\ines\mapper164.c">
 					</File>
 					<File

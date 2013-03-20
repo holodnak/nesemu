@@ -63,6 +63,7 @@ mapper_ines_t *mapper_init_ines(int num)
 	MAPPER(132);	MAPPER(133);
 	MAPPER(137);
 	MAPPER(140);	MAPPER(143);
+	MAPPER(150);
 	MAPPER(164);	MAPPER(165);
 	MAPPER(170);
 	MAPPER(172);	MAPPER(173);

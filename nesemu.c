@@ -209,20 +209,7 @@ int main(int argc,char *argv[])
 					return(0);
 				}
 			}
-		}
-	}
-
-	//screen buffer (currently only used by the gui)
-	nesscr = (u8*)malloc(256 * (256 + 16) * sizeof(u8));
-
-	memset(nesscr,0,256 * (256 + 16) * sizeof(u8));
-	//initialize system
-	nesemu_init();
-
-	//parse command line arguments (if they are given)
-	if(argc > 1) {
-		for(i=1;i<argc;i++) {
-			if(strcmp("--loadstate",argv[i]) == 0)
+			else if(strcmp("--loadstate",argv[i]) == 0)
 				doloadstate = 1;
 #ifndef PS2
 			else if(strcmp("--windowed",argv[i]) == 0)
@@ -233,10 +220,29 @@ int main(int argc,char *argv[])
 			else if(strcmp("--setupmc1",argv[i]) == 0)
 				system_setupsavelocation(1);
 #endif
-			else
-				rom_filename = argv[i];
+			else if(strcmp("--rom",argv[i]) == 0) {
+				i++;
+				if(i < argc) {
+					rom_filename = argv[i];
+					log_message("auto-loading rom '%s'\n",rom_filename);
+				}
+				else {
+					log_message("please specify a filename after --rom\n");
+					return(0);
+				}
+			}
+			else {
+				log_message("ignoring invalid command line argument '%s'\n",argv[i]);
+			}
 		}
 	}
+
+	//screen buffer (currently only used by the gui)
+	nesscr = (u8*)malloc(256 * (256 + 16) * sizeof(u8));
+	memset(nesscr,0,256 * (256 + 16) * sizeof(u8));
+
+	//initialize system
+	nesemu_init();
 
 	//initialize nes
 	nes_init();

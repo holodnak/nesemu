@@ -68,4 +68,18 @@ static void line(int line,int pcycles)
 	}
 }
 
+static void state(int mode,u8 *data)
+{
+	STATE_U8(prg);
+	STATE_U8(chr[0]);
+	STATE_U8(chr[1]);
+	STATE_U8(chr[2]);
+	STATE_U8(chr[3]);
+	STATE_U8(mirror);
+	STATE_U8(irqenabled);
+	STATE_U8(irqwrite);
+	STATE_U32(irqcounter);
+	sync();
+}
+
 MAPPER_INES(67,reset,0,line,0);
