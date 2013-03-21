@@ -44,7 +44,7 @@ static void sync()
 	ppu_setmirroring((reg & 0x40) ? MIRROR_H : MIRROR_V);
 }
 
-void write_upper(u32 addr,u8 data)
+static void write_upper(u32 addr,u8 data)
 {
 	reg = data;
 	mode = addr & 3;
@@ -63,10 +63,10 @@ static void init(int hard)
 	sync();
 }
 
-void mapper15_state(int mode,u8 *data)
+static void state(int mode,u8 *data)
 {
 	STATE_U8(reg);
 	STATE_U8(mode);
 }
 
-MAPPER_INES(15,init,0,0,mapper15_state);
+MAPPER_INES(15,init,0,0,state);

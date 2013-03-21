@@ -206,6 +206,7 @@ void ppu_write(u32 addr,u8 data)
 //			log_message("2007 write: ppuscroll = $%04X, scanline = %d\n",nes->ppu.scroll,nes->scanline);
 
 			//bootleg mmc3 ppu addr check
+			//NEEDS TO BE FIXED, AFFECTS ALL MAPPERS
 			if(((lastaddr & 0x1000) == 0) && (nes->ppu.scroll & 0x1000)) {
 //				log_message("ppu write: a12 toggled! line %d, lastaddr = %04X, addr = %04X\n",nes->scanline,lastaddr,nes->ppu.scroll);
 				if(nes->mapper->line)

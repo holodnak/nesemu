@@ -38,7 +38,7 @@ mapper_ines_t *mapper_init_ines(int num)
 	MAPPER(4);		MAPPER(5);		MAPPER(6);		MAPPER(7);
 	MAPPER(8);		MAPPER(9);		MAPPER(10);		MAPPER(11);
 	MAPPER(13);
-	MAPPER(15);	/*	MAPPER(16);*/	MAPPER(18);
+	MAPPER(15);	/*	MAPPER(16);*/	MAPPER(17);		MAPPER(18);
 	MAPPER(19);
 						MAPPER(21);		MAPPER(22);		MAPPER(23);
 	MAPPER(24);		MAPPER(25);		MAPPER(26);		MAPPER(27);
