@@ -36,7 +36,8 @@ static void reset(int hard)
 
 static void state(int mode,u8 *data)
 {
-
+	STATE_ARRAY_U8(reg,2);
+	sync();
 }
 
 MAPPER_UNIF(bmc_generic42in1,"BMC-Generic42in1",reset,0,0,state,INFO(32 + 4,8,0,2,0,0));

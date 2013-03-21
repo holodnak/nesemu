@@ -34,8 +34,16 @@ static void reset(int hard)
 	chrbank = 0;
 }
 
+static void state(int mode,u8 *data)
+{
+	STATE_U8(banksize);
+	STATE_U8(prgbank);
+	STATE_U8(chrbank);
+	mmc3_state(mode,data);
+}
+
 MAPPER_UNIF(
 	bmc_super24in1sc03,"BMC-Super24in1SC03",
-	reset,0,mmc3_line,mmc3_state,
+	reset,0,mmc3_line,state,
 	INFO(4096,2048,0,0,0,0)
 );

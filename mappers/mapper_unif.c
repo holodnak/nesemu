@@ -134,15 +134,8 @@ mapper_unif_t *mapper_init_unif(char *board)
 	MAPPER(nes_tvrom);
 	MAPPER(nes_tqrom);
 
-	//unrom variations
 	MAPPER(nes_unrom);
-	MAPPER(hvc_unrom);
-	MAPPER(konami_unrom);
-
-	//uorom variations
 	MAPPER(nes_uorom);
-	MAPPER(hvc_uorom);
-	MAPPER(jaleco_uorom);
 
 	//sunsoft mappers
 	MAPPER(sunsoft_fme_7);

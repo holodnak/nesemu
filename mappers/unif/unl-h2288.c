@@ -54,8 +54,14 @@ static void reset(int hard)
 	mem_setwrite(8,write_security);
 }
 
+static void state(int mode,u8 *data)
+{
+	STATE_ARRAY_U8(reg,2);
+	mmc3_state(mode,data);
+}
+
 MAPPER_UNIF(unl_h2288,"UNL-H2288",
-	reset,0,0,mmc3_state,
+	reset,0,0,state,
 	INFO(256,256,0,0,0,0)
 );
 

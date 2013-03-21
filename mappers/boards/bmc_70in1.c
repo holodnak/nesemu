@@ -66,4 +66,5 @@ void bmc_70in1_state(int mode,u8 *data)
 	STATE_U8(bankhi);
 	STATE_U8(banklo);
 	STATE_U8(chrbank);
+	sync();
 }
