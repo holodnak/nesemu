@@ -65,4 +65,17 @@ static void reset(int hard)
 	sync();
 }
 
-MAPPER_INES(68,reset,0,0,0);
+static void state(int mode,u8 *data)
+{
+	STATE_U8(prg);
+	STATE_U8(chr[0]);
+	STATE_U8(chr[1]);
+	STATE_U8(chr[2]);
+	STATE_U8(chr[3]);
+	STATE_U8(nt[0]);
+	STATE_U8(nt[1]);
+	STATE_U8(mirror);
+	sync();
+}
+
+MAPPER_INES(68,reset,0,0,state);

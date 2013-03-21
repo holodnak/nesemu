@@ -31,12 +31,17 @@ static void syncprg()
 	switch(bankmode & 7) {
 		case 0:
 			mem_setprg8(0x6,(prg[3] << 2) + 3);
-			mem_setprg32(0x8,0xFF);
+			mem_setprg8(0x8,0xFC);
+			mem_setprg8(0xA,0xFD);
+			mem_setprg8(0xC,0xFE);
+			mem_setprg8(0xE,0xFF);
 			break;
 		case 1:
 			mem_setprg8(0x6,(prg[3] << 1) + 1);
-			mem_setprg16(0x8,prg[1]);
-			mem_setprg16(0xC,0xFF);
+			mem_setprg8(0x8,prg[1]);
+			mem_setprg8(0xA,prg[1] + 1);
+			mem_setprg8(0xC,0xFE);
+			mem_setprg8(0xE,0xFF);
 			break;
 		case 2:
 			mem_setprg8(0x6,prg[3]);
@@ -54,12 +59,17 @@ static void syncprg()
 			break;
 		case 4:
 			mem_setprg8(0x6,(prg[3] << 2) + 3);
-			mem_setprg32(0x8,prg[3]);
+			mem_setprg8(0x8,0xFC);
+			mem_setprg8(0xA,0xFD);
+			mem_setprg8(0xC,0xFE);
+			mem_setprg8(0xE,0xFF);
 			break;
 		case 5:
 			mem_setprg8(0x6,(prg[3] << 1) + 1);
-			mem_setprg16(0x8,prg[1]);
-			mem_setprg16(0xC,prg[3]);
+			mem_setprg8(0x8,prg[1]);
+			mem_setprg8(0xA,prg[1] + 1);
+			mem_setprg8(0xC,prg[3]);
+			mem_setprg8(0xE,prg[3] + 1);
 			break;
 		case 6:
 			mem_setprg8(0x6,prg[3]);
@@ -80,20 +90,46 @@ static void syncprg()
 
 static void syncchr()
 {
+	u8 bank;
+
 	if(chrcontrol & 0x20) {
 		switch(bankmode & 0x18) {
 			case 0x00:
-				mem_setchr8(0,chrlo[0] | (chrhi[0] << 8));
+				bank = chrlo[0] | (chrhi[0] << 8);
+				mem_setchr1(0,bank + 0);
+				mem_setchr1(1,bank + 1);
+				mem_setchr1(2,bank + 2);
+				mem_setchr1(3,bank + 3);
+				mem_setchr1(4,bank + 4);
+				mem_setchr1(5,bank + 5);
+				mem_setchr1(6,bank + 6);
+				mem_setchr1(7,bank + 7);
 				break;
 			case 0x08:
-				mem_setchr4(0,chrlo[0] | (chrhi[0] << 8));
-				mem_setchr4(4,chrlo[4] | (chrhi[4] << 8));
+				bank = chrlo[0] | (chrhi[0] << 8);
+				mem_setchr1(0,bank + 0);
+				mem_setchr1(1,bank + 1);
+				mem_setchr1(2,bank + 2);
+				mem_setchr1(3,bank + 3);
+				bank = chrlo[4] | (chrhi[4] << 8);
+				mem_setchr1(4,bank + 0);
+				mem_setchr1(5,bank + 1);
+				mem_setchr1(6,bank + 2);
+				mem_setchr1(7,bank + 3);
 				break;
 			case 0x10:
-				mem_setchr2(0,chrlo[0] | (chrhi[0] << 8));
-				mem_setchr2(2,chrlo[2] | (chrhi[2] << 8));
-				mem_setchr2(4,chrlo[4] | (chrhi[4] << 8));
-				mem_setchr2(6,chrlo[6] | (chrhi[6] << 8));
+				bank = chrlo[0] | (chrhi[0] << 8);
+				mem_setchr1(0,bank + 0);
+				mem_setchr1(1,bank + 1);
+				bank = chrlo[2] | (chrhi[2] << 8);
+				mem_setchr1(2,bank + 0);
+				mem_setchr1(3,bank + 1);
+				bank = chrlo[4] | (chrhi[4] << 8);
+				mem_setchr1(4,bank + 0);
+				mem_setchr1(5,bank + 1);
+				bank = chrlo[6] | (chrhi[6] << 8);
+				mem_setchr1(6,bank + 0);
+				mem_setchr1(7,bank + 1);
 				break;
 			case 0x18:
 				mem_setchr1(0,chrlo[0] | (chrhi[0] << 8));
@@ -110,23 +146,54 @@ static void syncchr()
 	else {
 		switch(bankmode & 0x18) {
 			case 0x00:
-				mem_setchr8(0,chrlo[0] | ((chrcontrol & 0x1F) << 8));
+				bank = chrlo[0] | ((chrcontrol & 0x1F) << 8);
+				mem_setchr1(0,bank + 0);
+				mem_setchr1(1,bank + 1);
+				mem_setchr1(2,bank + 2);
+				mem_setchr1(3,bank + 3);
+				mem_setchr1(4,bank + 4);
+				mem_setchr1(5,bank + 5);
+				mem_setchr1(6,bank + 6);
+				mem_setchr1(7,bank + 7);
 				break;
 			case 0x08:
-				mem_setchr4(0,chrlo[0] | ((chrcontrol & 0x1F) << 8));
-				mem_setchr4(4,chrlo[4] | ((chrcontrol & 0x1F) << 8));
+				bank = chrlo[0] | ((chrcontrol & 0x1F) << 8);
+				mem_setchr1(0,bank + 0);
+				mem_setchr1(1,bank + 1);
+				mem_setchr1(2,bank + 2);
+				mem_setchr1(3,bank + 3);
+				bank = chrlo[4] | ((chrcontrol & 0x1F) << 8);
+				mem_setchr1(4,bank + 0);
+				mem_setchr1(5,bank + 1);
+				mem_setchr1(6,bank + 2);
+				mem_setchr1(7,bank + 3);
 				break;
 			case 0x10:
-				mem_setchr2(0,chrlo[0] | ((chrcontrol & 0x1F) << 8));
-				mem_setchr2(2,chrlo[2] | ((chrcontrol & 0x1F) << 8));
-				mem_setchr2(4,chrlo[4] | ((chrcontrol & 0x1F) << 8));
-				mem_setchr2(6,chrlo[6] | ((chrcontrol & 0x1F) << 8));
+				bank = chrlo[0] | ((chrcontrol & 0x1F) << 8);
+				mem_setchr1(0,bank + 0);
+				mem_setchr1(1,bank + 1);
+				if((chrcontrol & 0x80) == 0)
+					bank = chrlo[2] | ((chrcontrol & 0x1F) << 8);
+				mem_setchr1(2,bank + 0);
+				mem_setchr1(3,bank + 1);
+				bank = chrlo[4] | ((chrcontrol & 0x1F) << 8);
+				mem_setchr1(4,bank + 0);
+				mem_setchr1(5,bank + 1);
+				bank = chrlo[6] | ((chrcontrol & 0x1F) << 8);
+				mem_setchr1(6,bank + 0);
+				mem_setchr1(7,bank + 1);
 				break;
 			case 0x18:
 				mem_setchr1(0,chrlo[0] | ((chrcontrol & 0x1F) << 8));
 				mem_setchr1(1,chrlo[1] | ((chrcontrol & 0x1F) << 8));
-				mem_setchr1(2,chrlo[2] | ((chrcontrol & 0x1F) << 8));
-				mem_setchr1(3,chrlo[3] | ((chrcontrol & 0x1F) << 8));
+				if((chrcontrol & 0x80) == 0) {
+					mem_setchr1(2,chrlo[2] | ((chrcontrol & 0x1F) << 8));
+					mem_setchr1(3,chrlo[3] | ((chrcontrol & 0x1F) << 8));
+				}
+				else {
+					mem_setchr1(2,chrlo[0] | ((chrcontrol & 0x1F) << 8));
+					mem_setchr1(3,chrlo[1] | ((chrcontrol & 0x1F) << 8));
+				}
 				mem_setchr1(4,chrlo[4] | ((chrcontrol & 0x1F) << 8));
 				mem_setchr1(5,chrlo[5] | ((chrcontrol & 0x1F) << 8));
 				mem_setchr1(6,chrlo[6] | ((chrcontrol & 0x1F) << 8));
@@ -191,10 +258,10 @@ void mapper90_write_mul(u32 addr,u8 data)
 void mapper90_write_prg(u32 addr,u8 data)
 {
 //	log_message("mapper90 write prg: $%04X = $%02X\n",addr,data);
-//	if(addr >= 0x8008)
-//		return;
-	prg[addr & 3] = data;
-	syncprg();
+	if(addr < 0x8008) {
+		prg[addr & 3] = data & 0x7F;
+		syncprg();
+	}
 }
 
 void mapper90_write_chrlo(u32 addr,u8 data)
@@ -275,6 +342,7 @@ static void irqtick()
 		irqmask = 7;
 	else
 		irqmask = 0xFF;
+
 
 	//count down
 	if(irqmode & 0x80) {

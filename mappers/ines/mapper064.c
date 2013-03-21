@@ -130,6 +130,7 @@ static void state(int mode,u8 *data)
 	STATE_U8(irqsource);
 	STATE_U8(irqenabled);
 	STATE_U8(irqcounter);
+	sync();
 }
 
 MAPPER_INES(64,init,0,line,state);

@@ -56,4 +56,10 @@ static void init(int hard)
 	sync();
 }
 
-MAPPER_INES(234,init,0,0,0);
+static void state(int mode,u8 *data)
+{
+	STATE_ARRAY_U8(reg,3);
+	sync();
+}
+
+MAPPER_INES(234,init,0,0,state);

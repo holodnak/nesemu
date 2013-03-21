@@ -67,6 +67,7 @@ static void state(int mode,u8 *data)
 {
 	STATE_U8(reg);
 	STATE_U8(mode);
+	sync();
 }
 
 MAPPER_INES(15,init,0,0,state);

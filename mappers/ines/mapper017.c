@@ -103,6 +103,7 @@ static void state(int mode,u8 *data)
 	STATE_U8(mirror);
 	STATE_U8(irqenabled);
 	STATE_U32((u32)irqcycles);
+	sync();
 }
 
 MAPPER_INES(17,reset,0,line,state);

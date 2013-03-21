@@ -82,4 +82,4 @@ static void state(int mode,u8 *data)
 	sync();
 }
 
-MAPPER_INES(67,reset,0,line,0);
+MAPPER_INES(67,reset,0,line,state);

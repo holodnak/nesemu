@@ -70,4 +70,15 @@ static void init(int hard)
 	sync();
 }
 
-MAPPER_INES(137,init,0,0,0);
+static void state(int mode,u8 *data)
+{
+	STATE_U8(cmd);
+	STATE_U8(prg);
+	STATE_U8(mirror);
+	STATE_ARRAY_U8(chrlo,4);
+	STATE_U8(chrhi);
+	STATE_U8(chrbank);
+	sync();
+}
+
+MAPPER_INES(137,init,0,0,state);
