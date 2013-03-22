@@ -23,4 +23,4 @@ MAPPER_UNIF(nes_tvrom, "NES-TVROM", reset,0,mmc3_line,mmc3_state,INFO( 64, 64,0,
 MAPPER_UNIF(nes_tksrom,"NES-TKSROM",reset,0,mmc3_line,mmc3_state,INFO(512,128,8,0,0,0));
 MAPPER_UNIF(nes_tlsrom,"NES-TLSROM",reset,0,mmc3_line,mmc3_state,INFO(512,128,0,0,0,0));
 
-MAPPER_UNIF(nes_tqrom, "NES-TQROM", reset,0,mmc3_line,mmc3_state,INFO(128, 64,0,0,8,0));
+//MAPPER_UNIF(nes_tqrom, "NES-TQROM", reset,0,mmc3_line,mmc3_state,INFO(128, 64,0,0,8,0));

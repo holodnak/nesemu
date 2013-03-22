@@ -10,7 +10,6 @@ static void sync()
 		mem_setprg16(8,reg[0] & 0xF);
 	mmc3_syncchr(0xFF,(reg[1] & 1) << 8);
 	mmc3_syncmirror();
-	mmc3_syncsram();
 }
 
 static void write67(u32 addr,u8 data)
@@ -21,11 +20,17 @@ static void write67(u32 addr,u8 data)
 
 static void reset(int hard)
 {
-	nes_setsramsize(2);
 	reg[0] = reg[1] = 0;
+	mmc3_init(sync);
+	mem_unsetcpu8(6);
 	mem_setwrite(6,write67);
 	mem_setwrite(7,write67);
-	mmc3_init(sync);
 }
 
-MAPPER_INES(115,reset,0,mmc3_line,mmc3_state);
+static void state(int mode,u8 *data)
+{
+	STATE_ARRAY_U8(reg,2);
+	mmc3_state(mode,data);
+}
+
+MAPPER_INES(115,reset,0,mmc3_line,state);

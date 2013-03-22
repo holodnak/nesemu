@@ -1740,12 +1740,8 @@ rom_t *rom_load_ines(int fd,rom_t *ret)
 	if(rom_checkdb(ret,0) == 0) {
 		int fd;
 		char str[512];
-#ifdef WIN32
-#define NEW_CRCS "c:\\new_crcs.c"
-#else
-#define NEW_CRCS "new_crcs.c"
-#endif
-		if((fd = file_open(NEW_CRCS,"uat")) >= 0) {
+
+		if((fd = file_open("new_crcs.c","uat")) >= 0) {
 			sprintf(str,"\t{\"%s\",0x%08X,0x%08X,\"%s\",%s},\n",ret->filename,rom_prgcrc32(ret),rom_chrcrc32(ret),getboardname(ret),((ret->chrsize == 0) ? "ROM_NOCHR" : "0"));
 			file_write(fd,str,strlen(str));
 			file_close(fd);

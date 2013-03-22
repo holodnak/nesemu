@@ -206,7 +206,7 @@ rom_crc_t rom_crcs[] = {
 	{"Gumshoe (UE)",											0x7B5BD2DE,0xDC371E9E,"NES-GNROM",0},
 	{"Gyromite (JUE)",										0x21B099F3,0xD0135A78,"NES-NROM-256",0},
 //	{"Micro Machines (Aladdin) (UE)",					0x24BA12DD,0x00000000,"CAMERICA-ALGN",ROM_NOCHR | SPRITE0_HACK},
-	{"High Speed (U)",										0x1255036F,0x028F3D82,"NES-TQROM",0},
+//	{"High Speed (U)",										0x1255036F,0x028F3D82,"NES-TQROM",0},
 	{"Hogan's Alley (JU)",									0x8963AE6E,0x5DF42FC4,"NES-NROM-128",0},
 	{"Hot Slot (UE)",											0xA0DAD6E4,0x756E634F,"NES-CNROM",0},
 	{"Ice Climber (JE)",										0xD548307F,0xFD98F4D3,"NES-NROM-128",0},
@@ -262,6 +262,9 @@ rom_crc_t rom_crcs[] = {
 	{"Zelda 2 - The Adventure of Link (U)",			0xEE8C9971,0x9C41CE57,"NES-SKROM",SPRITE0_HACK},
 	{"Zen Intergalactic Ninja (U)",						0x58A407BB,0x589EBFDC,"NES-TLROM",0},
 	{"Zombie Nation (U)",									0x407793C0,0xBB0AD971,"NES-TLROM",0},
+
+	//unlicensed
+	{"Magic Dragon (Unl)",									0xAAB15466,0x4937921D,"?",0},
 
 	//end
 	{0,0,0,0,0}
