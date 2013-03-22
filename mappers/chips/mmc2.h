@@ -3,6 +3,7 @@
 
 #include "defines.h"
 
+void mmc2_sync();
 void mmc2_init(int hard);
 void mmc2_write(u32 addr,u8 value);
 void mmc2_tile(u8 tile,int highpt);

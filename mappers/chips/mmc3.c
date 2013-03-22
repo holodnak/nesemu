@@ -42,6 +42,11 @@ u8 mmc3_getchrbank(int n)
 	return(chr[n ^ ((command & 0x80) >> 5)]);
 }
 
+u8 mmc3_getchrreg(int n)
+{
+	return(chr[n & 7]);
+}
+
 void mmc3_syncprg(int a,int o)
 {
 	mem_setprg8(0x8,(mmc3_getprgbank(0) & a) | o);
