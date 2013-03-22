@@ -132,7 +132,7 @@ mapper_unif_t *mapper_init_unif(char *board)
 	MAPPER(nes_tr1rom);
 	MAPPER(nes_tsrom);
 	MAPPER(nes_tvrom);
-	MAPPER(nes_tqrom);
+//	MAPPER(nes_tqrom);
 
 	MAPPER(nes_unrom);
 	MAPPER(nes_uorom);

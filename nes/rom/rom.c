@@ -302,8 +302,6 @@ int rom_checkdb(rom_t *ret,int whichdb)
 			if(ret->diskdata && rc->prgcrc == diskcrc) {
 				log_message("disk found in database:\n");
 				log_message("  name: %s\n",rc->name);
-//				log_message("  year: %s\n",rc->board);
-//				log_message("  manufacturer: %s\n",rc->board);
 				strcpy(ret->name,rc->name);
 				if(rc->flags & SPRITE0_HACK) {
 					ret->sprite0hack = 8;
