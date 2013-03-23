@@ -1,5 +1,6 @@
 #include <time.h>
 #include "mappers/mappers.h"
+#include "mappers/boardid.h"
 #include "nes/nes.h"
 #include "nes/ppu/ppu.h"
 #include "mappers/sound/s_FDS.h"
@@ -253,4 +254,4 @@ void fds_state(int mode,u8 *data)
 	STATE_U16(irqlatch);
 }
 
-mapper_t mapper_fds = {20,fds_reset,0,fds_line,fds_state};
+MAPPER(B_FDS,fds_reset,0,fds_line,fds_state);

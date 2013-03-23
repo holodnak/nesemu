@@ -80,12 +80,15 @@ typedef struct mapper_s {
 	void (*state)(int,u8*);		//load/save state information
 } mapper_t;
 
-u32 get_unif_boardid(char *board);
-u32 get_ines_boardid(int num);
-u32 get_ines20_boardid(int num,int sub);
+//converting from ines|ines20|unif to internal board id
+int get_ines_boardid(int num);
+int get_ines20_boardid(int num,int sub);
+int get_unif_boardid(char *board);
 
+//helper for getting supported mapper list
 const char *get_unif_board(int idx);
 
+//initialize mapper and get mapper_t struct
 mapper_t *mapper_init(int board);
 
 #include "nes/nes.h"

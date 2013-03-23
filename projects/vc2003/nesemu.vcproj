@@ -529,6 +529,9 @@
 						RelativePath="..\..\mappers\boards\pxrom.c">
 					</File>
 					<File
+						RelativePath="..\..\mappers\boards\sachen-74ls374n.c">
+					</File>
+					<File
 						RelativePath="..\..\mappers\boards\sxrom.c">
 					</File>
 					<File

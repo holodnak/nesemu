@@ -1,4 +1,5 @@
 #include "mappers/mappers.h"
+#include "mappers/boardid.h"
 #include "nes/nes.h"
 #include "nes/fds/hle_fds.h"
 #include "nes/fds/hle_fds_calls.h"
@@ -59,4 +60,4 @@ static void hle_fds_state(int mode,u8 *data)
 	fds_state(mode,data);
 }
 
-mapper_t mapper_hle_fds = {20,hle_fds_reset,0,hle_fds_line,hle_fds_state};
+MAPPER(B_HLEFDS,hle_fds_reset,0,hle_fds_line,hle_fds_state);

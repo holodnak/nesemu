@@ -248,4 +248,4 @@ void nsf_state(int mode,u8 *data)
 {
 }
 
-mapper_t mapper_nsf = {B_NSF,nsf_init,0,nsf_line,nsf_state};
+MAPPER(B_NSF,nsf_init,0,nsf_line,nsf_state);

@@ -93,7 +93,7 @@ int nes_load(rom_t *r)
 	//init the nes
 	nes_init();
 
-	if(r->boardid > 0) {
+	if(r->boardid >= 0) {
 		mapper_t *mapper = mapper_init(r->boardid);
 
 		if(mapper == 0) {

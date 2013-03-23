@@ -22,22 +22,31 @@
 #define __boardid_h__
 
 enum boardid_e {
-	B_UNSUPPORTED = 0,
-	B_FDS,
-	B_NSF,
-	B_NROM,
+
+	//unsupported board
+	B_UNSUPPORTED = -1,
+
+	//licensed
+	B_NROM = 0,
 	B_AxROM,
 	B_CxROM,
 	B_PxROM,
 	B_SxROM,
 	B_TxROM,
 	B_UxROM,
-
 	B_NES_EVENT,
 
+	//unlicensed
+	B_SACHEN_74LS374,
 	B_MAGICSERIES,
 
-	B_BOARDEND
+	//for getting a count of supported boards
+	B_BOARDEND,
+
+	//extra support
+	B_NSF,
+	B_FDS,
+	B_HLEFDS,
 };
 
 #endif

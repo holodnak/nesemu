@@ -28,6 +28,7 @@
 #include "nes/state/state.h"
 #include "log.h"
 #include "misc.h"
+#include "mappers/boardid.h"
 
 #ifdef PS2
 #define LINES2 \
@@ -47,27 +48,24 @@ static rom_t *rom;
 
 void showmappers()
 {
-/*	int i,n1,n2;
-	mapper_unif_t *unif;
+	int i,n;
+	const char *str;
 
-	log_message("supported ines mappers: 0");
-	for(n1=0,i=1;i<256;i++) {
-		if(mapper_init_ines(i)) {
+	log_message("supported ines mappers:  0");
+	for(n=1,i=1;i<256;i++) {
+		if(get_ines_boardid(i)) {
 			log_message(", %d",i);
-			n1++;
+			n++;
 		}
 	}
 
 	log_message("\nsupported unif mappers:\n");
-	for(n2=0,i=0;i<1000;i++) {
-		unif = mapper_init_unif(0);
-		if(unif == 0)
+	for(i=0;;i++) {
+		if((str = get_unif_board(i)) == 0)
 			break;
-		log_message("   %s\n",unif->board);
-		n2++;
+		log_message("   %s\n",str);
 	}
-	log_message("\n%d ines mappers, %d unif mappers\n",n1,n2);*/
-	log_message("\nshowmappers() currently broken\n");
+	log_message("\n%d ines mappers, %d unif mappers, %d internal boards supported\n",n,i,B_BOARDEND);
 }
 
 extern u8 *nesscr;

@@ -9,7 +9,16 @@
 
 mapper_t *mapper_init(int board)
 {
-	MAPPER(B_NROM);		MAPPER(B_SxROM);		MAPPER(B_UxROM);		MAPPER(B_CxROM);
-	MAPPER(B_TxROM);		MAPPER(B_PxROM);
+	//boards
+	MAPPER(B_NROM);			MAPPER(B_SxROM);			MAPPER(B_UxROM);			MAPPER(B_CxROM);
+	MAPPER(B_TxROM);			MAPPER(B_PxROM);
+
+	MAPPER(B_SACHEN_74LS374);
+
+	//extras
+	MAPPER(B_NSF);
+	MAPPER(B_FDS);
+	MAPPER(B_HLEFDS);
+
 	return(0);
 }

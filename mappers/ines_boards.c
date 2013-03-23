@@ -1,7 +1,8 @@
 #include "mapperinc.h"
 
 struct ines_boardid_s {
-	int num,boardid;
+	int num;
+	int boardid;
 };
 
 #define INES_BOARD_START()		static struct ines_boardid_s boards[] = {
@@ -17,9 +18,10 @@ INES_BOARD_START()
 	INES_BOARD(7,		B_AxROM)
 	INES_BOARD(9,		B_PxROM)
 	INES_BOARD(107,	B_MAGICSERIES)
+	INES_BOARD(150,	B_SACHEN_74LS374)
 INES_BOARD_END()
 
-u32 get_ines_boardid(int num)
+int get_ines_boardid(int num)
 {
 	int i;
 
