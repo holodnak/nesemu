@@ -1,8 +1,8 @@
 #ifndef __hle_fds_h__
 #define __hle_fds_h__
 
-#include "mappers/mapper.h"
+#include "mappers/mappers.h"
 
-extern mapper_ines_t mapper_hle_fds;
+//extern mapper_ines_t mapper_hle_fds;
 
 #endif

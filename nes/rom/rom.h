@@ -83,11 +83,15 @@ typedef struct rom_s {
 	u8			*orig_diskdata;			//untouched disk data
 	u8			disksides;					//number of sides for fds disk
 
+/*
 	//ines mapper number, and ines 2.0 submapper
 	int		mapper,submapper;
 
 	//unif board name
 	char		board[512];
+*/
+	//internal board id
+	int		boardid;
 
 	//mirroring
 	int		mirroring;

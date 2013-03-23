@@ -2,7 +2,7 @@
 #include <string.h>
 #include "gui2/windows/mappers.h"
 #include "nesemu.h"
-#include "mappers/mapper.h"
+#include "mappers/mappers.h"
 
 /*
 
@@ -45,9 +45,9 @@ void mappers_draw(mappers_t *m)
 	gui_draw_border(GUI_COLOR_GREY,x,y,m->info.w,9);
 	button_draw(&m->donebtn);
 	if(nes->rom) {
-		switch(nes->rom->mapper) {
+		switch(nes->rom->boardid) {
 			//nes-event
-			case 105:
+			case B_NES_EVENT:
 				gui_draw_text(GUI_TEXT,x+2,y+2,"NES-EVENT Configuration");
 				mapper105_draw(m);
 				break;
@@ -82,9 +82,9 @@ int mappers_event(mappers_t *m,int event,int data)
 			break;
 	}
 	if(nes->rom) {
-		switch(nes->rom->mapper) {
+		switch(nes->rom->boardid) {
 			//nes-event
-			case 105:
+			case B_NES_EVENT:
 				mapper105_event(m,event,data);
 				break;
 		}
@@ -92,36 +92,36 @@ int mappers_event(mappers_t *m,int event,int data)
 	return(0);
 }
 
-extern mapper_ines_t mapper105;
+//extern mapper_ines_t mapper105;
 
 static u8 data[16];
 
 void click_mapper105_check0(void *u,int s)
 {
-	mapper105.state(STATE_SAVECFG,data);
+//	mapper105.state(STATE_SAVECFG,data);
 	data[0] = (data[0] & ~1) | (s << 0);
-	mapper105.state(STATE_LOADCFG,data);
+//	mapper105.state(STATE_LOADCFG,data);
 }
 
 void click_mapper105_check1(void *u,int s)
 {
-	mapper105.state(STATE_SAVECFG,data);
+//	mapper105.state(STATE_SAVECFG,data);
 	data[0] = (data[0] & ~2) | (s << 1);
-	mapper105.state(STATE_LOADCFG,data);
+//	mapper105.state(STATE_LOADCFG,data);
 }
 
 void click_mapper105_check2(void *u,int s)
 {
-	mapper105.state(STATE_SAVECFG,data);
+//	mapper105.state(STATE_SAVECFG,data);
 	data[0] = (data[0] & ~4) | (s << 2);
-	mapper105.state(STATE_LOADCFG,data);
+//	mapper105.state(STATE_LOADCFG,data);
 }
 
 void click_mapper105_check3(void *u,int s)
 {
-	mapper105.state(STATE_SAVECFG,data);
+//	mapper105.state(STATE_SAVECFG,data);
 	data[0] = (data[0] & ~8) | (s << 3);
-	mapper105.state(STATE_LOADCFG,data);
+//	mapper105.state(STATE_LOADCFG,data);
 }
 
 void mappers_create(mappers_t *m)

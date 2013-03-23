@@ -25,19 +25,20 @@
 #include "nes/nes.h"
 #include "system/file.h"
 
-static void load_ines_header(rom_t *ret,u8 *header)
+static int load_ines_header(rom_t *ret,u8 *header)
 {
+	int mapper;
+
 	ret->prgsize = header[4] * 0x4000;
 	ret->chrsize = header[5] * 0x2000;
 	ret->prgmask = rom_createmask(ret->prgsize);
 	ret->chrmask = rom_createmask(ret->chrsize);
 	ret->vrammask = rom_createmask(0);				//start with no vram, let mapper control this
-	ret->mapper = (header[6] & 0xF0) >> 4;
+	mapper = (header[6] & 0xF0) >> 4;
 	if(memcmp(&header[8],"\0\0\0\0\0\0\0\0",8) != 0)
 		log_message("load_ines_header:  dirty header! (%c%c%c%c%c%c%c%c%c)\n",header[7],header[8],header[9],header[10],header[11],header[12],header[13],header[14],header[15]);
 	else
-		ret->mapper |= header[7] & 0xF0;
-	ret->submapper = -1;
+		mapper |= header[7] & 0xF0;
 	if(ret->mirroring & 4)
 		ret->mirroring = 4;
 	else
@@ -45,12 +46,19 @@ static void load_ines_header(rom_t *ret,u8 *header)
 	if(header[6] & 2)
 		rom_setsramsize(ret,2);
 	log_message("load_ines_header:  %dkb prg, %dkb chr, mapper %d, %s mirroring\n",
-		ret->prgsize / 1024,ret->chrsize / 1024,ret->mapper,
+		ret->prgsize / 1024,ret->chrsize / 1024,mapper,
 		(ret->mirroring == 4) ? "four screen" :
 		((ret->mirroring == 0) ? "horizontal" : "vertical"));
+
+	ret->boardid = get_ines_boardid(mapper);
+	if(ret->boardid == B_UNSUPPORTED) {
+		log_message("load_ines_header:  ines mapper %d unsupported\n",mapper);
+		return(1);
+	}
+	return(0);
 }
 
-static char *getboardname(rom_t *rom)
+/*static char *getboardname(rom_t *rom)
 {
 	static char ret[32];
 
@@ -142,7 +150,7 @@ static char *getboardname(rom_t *rom)
 		case 11: strcpy(ret,"COLORDREAMS-74*377"); break;
 	}
 	return(ret);
-}
+}*/
 
 rom_t *rom_load_ines(int fd,rom_t *ret)
 {
@@ -151,8 +159,10 @@ rom_t *rom_load_ines(int fd,rom_t *ret)
 	//read header (again...)
 	file_read(fd,header,16);
 
-	//load ines header
-	load_ines_header(ret,header);
+	//load ines 2.0 header
+	if(load_ines_header(ret,header) != 0) {
+		return(0);
+	}
 
 	//allocate memory for the prg rom
 	ret->prg = (u8*)malloc(ret->prgsize);
@@ -191,7 +201,10 @@ rom_t *rom_load_ines(int fd,rom_t *ret)
 		rom_setvramsize(ret,1);
 
 	//look for rom in database and update its mapper info
-	if(rom_checkdb(ret,0) == 0) {
+	if(rom_checkdb(ret,0) == -1) {
+		return(0);
+	}
+/*	if(rom_checkdb(ret,0) == 0) {
 		int fd;
 		char str[512];
 
@@ -200,7 +213,7 @@ rom_t *rom_load_ines(int fd,rom_t *ret)
 			file_write(fd,str,strlen(str));
 			file_close(fd);
 		}
-	}
+	}*/
 
 	return(ret);
 }

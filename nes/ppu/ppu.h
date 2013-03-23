@@ -22,6 +22,7 @@
 #define __ppu_h__
 
 #include "defines.h"
+#include "nes/ppu/cache.h"
 #include "nes/rom/rom.h"
 
 typedef struct ppu_s {

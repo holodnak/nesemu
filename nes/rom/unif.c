@@ -44,6 +44,7 @@ rom_t *rom_load_unif(int fd,rom_t *ret)
 	u32 chrcrc32[16];
 	u8 n,header[32];
 	char *wrtr;
+	char boardname[512];
 
 	//clear prg/chr info
 	memset(prgsize,0,sizeof(u32) * 16);
@@ -89,8 +90,7 @@ rom_t *rom_load_unif(int fd,rom_t *ret)
 					rom_unload(ret);
 					return(0);
 				}
-				ret->mapper = -1;
-				file_read(fd,ret->board,blocksize);
+				file_read(fd,boardname,blocksize);
 				break;
 
 			//mirroring flag
@@ -219,8 +219,16 @@ rom_t *rom_load_unif(int fd,rom_t *ret)
 		convert_tiles(ret->chr,ret->cache_hflip,ret->chrsize / 16,1);
 	}
 
+	ret->boardid = get_unif_boardid(boardname);
+	if(ret->boardid == B_UNSUPPORTED) {
+		log_message("rom_load_unif:  unsupported unif board '%s'\n",boardname);
+		return(0);
+	}
+
 	//look for rom in database and update its mapper info
-	rom_checkdb(ret,0);
+	if(rom_checkdb(ret,0) == -1) {
+		return(0);
+	}
 
 	return(ret);
 }

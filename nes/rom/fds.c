@@ -29,7 +29,7 @@
 static void load_fds_header(rom_t *ret,u8 *header)
 {
 	//set mapper assigned to fds system
-	ret->mapper = 20;
+	ret->boardid = B_FDS;
 
 	//set number of disk sides
 	ret->disksides = header[4];

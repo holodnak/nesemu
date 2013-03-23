@@ -21,7 +21,7 @@
 //#include <stdio.h> //for log_message
 #include <string.h>
 #include "nes/nes.h"
-#include "mappers/mapper.h"
+#include "mappers/mappers.h"
 #include "system/system.h"
 
 #define BIOS_IDLE		0x00
@@ -243,4 +243,8 @@ void nsf_init(int hard)
 	sync();
 }
 
-MAPPER_INES(NSF_MAPPER,nsf_init,0,nsf_line,0);
+void nsf_state(int mode,u8 *data)
+{
+}
+
+mapper_t mapper_nsf = {B_NSF,nsf_init,0,nsf_line,nsf_state};

@@ -45,7 +45,7 @@ rom_t *rom_load_nsf(int fd,rom_t *ret)
 	//copy header to rom struct
 	memcpy(&ret->nsf,&header,sizeof(nsfheader_t));
 
-	ret->mapper = NSF_MAPPER;
+	ret->boardid = B_NSF;
 	ret->prgsize = size;
 	ret->prg = (u8*)malloc(size);
 

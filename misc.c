@@ -47,7 +47,7 @@ static rom_t *rom;
 
 void showmappers()
 {
-	int i,n1,n2;
+/*	int i,n1,n2;
 	mapper_unif_t *unif;
 
 	log_message("supported ines mappers: 0");
@@ -66,7 +66,8 @@ void showmappers()
 		log_message("   %s\n",unif->board);
 		n2++;
 	}
-	log_message("\n%d ines mappers, %d unif mappers\n",n1,n2);
+	log_message("\n%d ines mappers, %d unif mappers\n",n1,n2);*/
+	log_message("\nshowmappers() currently broken\n");
 }
 
 extern u8 *nesscr;

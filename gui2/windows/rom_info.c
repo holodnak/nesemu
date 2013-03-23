@@ -72,7 +72,7 @@ int rom_info_event(rom_info_t *m,int event,int data)
 				strncpy(m->labels[11].text,nes->rom->name,30);
 				sprintf(m->labels[12].text,"%d kb",nes->rom->prgsize / 1024);
 				sprintf(m->labels[13].text,"%d kb",nes->rom->chrsize / 1024);
-				sprintf(m->labels[14].text,"%s",nes->rom->board);
+//				sprintf(m->labels[14].text,"%s",nes->rom->board);
 				switch(nes->rom->mirroring) {
 					case 0:sprintf(m->labels[15].text,"Horizontal");break;
 					case 1:sprintf(m->labels[15].text,"Vertical");break;
@@ -81,7 +81,7 @@ int rom_info_event(rom_info_t *m,int event,int data)
 			}
 
 			//display nsf info
-			else if(nes->rom->mapper == NSF_MAPPER) {
+			else if(nes->rom->boardid == B_NSF) {
 				strcpy(m->labels[0].text,"File:");
 				strcpy(m->labels[1].text,"Name:");
 				strcpy(m->labels[2].text,"PRG Size:");
@@ -90,7 +90,7 @@ int rom_info_event(rom_info_t *m,int event,int data)
 			//display fds info
 			//TODO: fancy feature: browse/view the files on the disk
 			//TODO: contain extended information about these in the romdb
-			else if(nes->rom->mapper == 20) {
+			else if(nes->rom->boardid == B_FDS) {
 				strcpy(m->labels[0].text,"File:");
 				strcpy(m->labels[1].text,"Name:");
 				strcpy(m->labels[2].text,"Size:");
@@ -101,7 +101,7 @@ int rom_info_event(rom_info_t *m,int event,int data)
 			}
 
 			//not in rom database and mapper is -1...UNIF rom
-			else if(nes->rom->mapper == -1) {
+/*			else if(nes->rom->mapper == -1) {
 				strcpy(m->labels[0].text,"File:");
 				strcpy(m->labels[1].text,"Name:");
 				strcpy(m->labels[2].text,"PRG Size:");
@@ -118,7 +118,7 @@ int rom_info_event(rom_info_t *m,int event,int data)
 					case 1:sprintf(m->labels[15].text,"Vertical");break;
 					default:sprintf(m->labels[15].text,"Four Screen");break;
 				}
-			}
+			}*/
 
 			//regular ines rom image
 			else {
@@ -132,7 +132,7 @@ int rom_info_event(rom_info_t *m,int event,int data)
 				sprintf(m->labels[11].text,"<not in database>");
 				sprintf(m->labels[12].text,"%d kb",nes->rom->prgsize / 1024);
 				sprintf(m->labels[13].text,"%d kb",nes->rom->chrsize / 1024);
-				sprintf(m->labels[14].text,"%d",nes->rom->mapper);
+//				sprintf(m->labels[14].text,"%d",nes->rom->mapper);
 				switch(nes->rom->mirroring) {
 					case 0:sprintf(m->labels[15].text,"Horizontal");break;
 					case 1:sprintf(m->labels[15].text,"Vertical");break;

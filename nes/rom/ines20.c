@@ -32,8 +32,10 @@ static u32 ramtable[16] = {
 	KB(256),	KB(512),	MB(1),	(u32)-1,
 };
 
-static void load_ines20_header(rom_t *ret,u8 *header)
+static int load_ines20_header(rom_t *ret,u8 *header)
 {
+	int mapper,submapper;
+
 	//prg and chr sizes
 	ret->prgsize = (header[4] | ((header[9] & 0x0F) << 8)) * 0x4000;
 	ret->chrsize = (header[5] | ((header[9] & 0xF0) << 4)) * 0x2000;
@@ -69,10 +71,10 @@ static void load_ines20_header(rom_t *ret,u8 *header)
 	ret->vrammask = rom_createmask(ret->vramsize);
 
 	//assign mapper numbers
-	ret->mapper = (header[6] & 0xF0) >> 4;
-	ret->mapper |= (header[7] & 0xF0) << 0;
-	ret->mapper |= (header[9] & 1) << 8;
-	ret->submapper = header[9] >> 4;
+	mapper = (header[6] & 0xF0) >> 4;
+	mapper |= (header[7] & 0xF0) << 0;
+	mapper |= (header[9] & 1) << 8;
+	submapper = header[9] >> 4;
 
 	//find correct mirroring
 	ret->mirroring = header[6] & 1;
@@ -85,9 +87,16 @@ static void load_ines20_header(rom_t *ret,u8 *header)
 		ret->vramsize / 1024,ret->wramsize / 1024,
 		ret->sramsize / 1024,ret->svramsize / 1024);
 	log_message("   mapper %d.%d, %s mirroring, %s\n",
-		ret->mapper,ret->submapper,
+		mapper,submapper,
 		(ret->mirroring == 4) ? "four screen" : ((ret->mirroring == 0) ? "horizontal" : "vertical"),
 		(ret->ntsc && ret->pal) ? "ntsc + pal" : (ret->ntsc ? "ntsc" : "pal"));
+
+	ret->boardid = get_ines20_boardid(mapper,submapper);
+	if(ret->boardid == B_UNSUPPORTED) {
+		log_message("load_ines20_header:  ines 2.0 mapper %d.%d unsupported\n",mapper,submapper);
+		return(1);
+	}
+	return(0);
 }
 
 rom_t *rom_load_ines20(int fd,rom_t *ret)
@@ -98,7 +107,9 @@ rom_t *rom_load_ines20(int fd,rom_t *ret)
 	file_read(fd,header,16);
 
 	//load ines 2.0 header
-	load_ines20_header(ret,header);
+	if(load_ines20_header(ret,header) != 0) {
+		return(0);
+	}
 
 	//allocate memory for the prg rom
 	ret->prg = (u8*)malloc(ret->prgsize);
@@ -137,7 +148,9 @@ rom_t *rom_load_ines20(int fd,rom_t *ret)
 		rom_setvramsize(ret,1);
 
 	//check if rom is in our database, and update its info
-	rom_checkdb(ret,0);
+	if(rom_checkdb(ret,0) == -1) {
+		return(0);
+	}
 
 	log_message("loaded ines2.0 (ret = $%08X)\n",ret);
 	return(ret);

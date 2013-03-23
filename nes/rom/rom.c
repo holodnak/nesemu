@@ -122,32 +122,13 @@ rom_t *rom_load(const char *filename)
 
 	//see if it is an ines rom image
 	else if(memcmp(header,inesident,4) == 0) {
-/*		int loaded = 0;
-
-		//check header for ines 2.0 or old ines format
-		if(((header[7] & 0xC) == 8) && (rom_load_ines20(fd,ret) == 0)) {
-			log_message("cant load ines2.0, trying ines...\n");
-			file_seek(fd,0,SEEK_SET);
-		}
-		else
-			loaded = 1;
-		if(loaded == 0 && rom_load_ines(fd,ret) == 0) {
-			file_close(fd);
-			return(0);
-		}*/
-/*		if((((header[7] & 0xC) == 8) && (rom_load_ines20(fd,ret) == 0)) ||
-			()) {
-			file_close(fd);
-			return(0);
-		}*/
-		int success = 0;
-
 		if((header[7] & 0xC) == 8) {
-			success = (rom_load_ines20(fd,ret) == 0) ? 0 : 1;
-			if(success == 0)
-				file_seek(fd,0,SEEK_SET);
+			if(rom_load_ines20(fd,ret) == 0) {
+				file_close(fd);
+				return(0);
+			}
 		}
-		if(success == 0 && rom_load_ines(fd,ret) == 0) {
+		else if(rom_load_ines(fd,ret) == 0) {
 			file_close(fd);
 			return(0);
 		}
@@ -307,8 +288,11 @@ int rom_checkdb(rom_t *ret,int whichdb)
 					log_message("  sprite0 hack enabled\n");
 				}
 				if(strcmp(rc->board,"?") != 0) {
-					strcpy(ret->board,rc->board);
-					ret->mapper = -1;
+					ret->boardid = get_unif_boardid(rc->board);
+					if(ret->boardid == B_UNSUPPORTED) {
+						log_message("rom_checkdb:  unsupported board '%s'\n",rc->board);
+						return(-1);
+					}
 				}
 				ret->indatabase = 1;
 				return(1);
@@ -335,6 +319,7 @@ int rom_checkdb(rom_t *ret,int whichdb)
 			}
 		}
 	}
+
 	strcpy(ret->name,ret->filename);
 	return(0);
 }

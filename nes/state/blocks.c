@@ -48,15 +48,15 @@ static void *readblock(int fp,int size)
 int blocks_loadheader(int fp,stateheader_t *header)
 {
 	if(file_read(fp,header,sizeof(stateheader_t)) != sizeof(stateheader_t)) {
-		log_message("nes_load: error reading header data\n");
+		log_message("blocks_loadheader: error reading header data\n");
 		return(1);
 	}
 	if(memcmp(header->ident,stateident,4) != 0) {
-		log_message("nes_load: bad state ident\n");
+		log_message("blocks_loadheader: bad state ident\n");
 		return(1);
 	}
 	if(header->version != stateversion) {
-		log_message("nes_load: state version is unsupported (version = %d)\n",header->version);
+		log_message("blocks_loadheader: state version is unsupported (version = %d)\n",header->version);
 		return(1);
 	}
 	return(0);

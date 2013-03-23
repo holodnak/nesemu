@@ -58,23 +58,21 @@ int supported_mappers_event(supported_mappers_t *m,int event,int data)
 
 static char *refresh_ines(list_t *l,int m)
 {
-	static int curmapper;
+	static int curmapper,n;
 	static char ret[32];
-	mapper_ines_t *map;
 
 	//begin refresh
 	if(m == 1) {
 		curmapper = 0;
-		//success
-		return(0);
+		return(0);	//success
 	}
 	//get next item
 	else if(m == 0) {
 		do {
-			map = mapper_init_ines(curmapper++);
+			n = get_ines_boardid(curmapper++);
 			if(curmapper > 256)
 				return(0);
-		} while(map == 0);
+		} while(n == B_UNSUPPORTED);
 		sprintf(ret,"%d",curmapper - 1);
 		return(ret);
 	}
@@ -85,23 +83,20 @@ static char *refresh_ines(list_t *l,int m)
 
 static char *refresh_unif(list_t *l,int m)
 {
-	static int curmapper;
-	static char ret[32];
-	mapper_unif_t *map;
+	static int idx;
+	static char *ret = "???";
 
 	//begin refresh
 	if(m == 1) {
-		//success
-		return(0);
+		idx = 0;
+		return(0);	//success
 	}
 	//get next item
 	else if(m == 0) {
-		if((map = mapper_init_unif(0)) == 0)
+		if((ret = get_unif_board(idx++)) == 0)
 			return(0);
-		return(map->board);
+		return(ret);
 	}
-	else
-		strcpy(ret,"???");
 	return(ret);
 }
 

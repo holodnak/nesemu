@@ -21,6 +21,7 @@
 #include "defines.h"
 #include "memory.h"
 #include "nes.h"
+#include "nes_io.h"
 
 //set read page function pointer
 void mem_setread(int page,readfunc_t readfunc)

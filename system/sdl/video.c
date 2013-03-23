@@ -375,7 +375,7 @@ void video_endframe()
 	else if(screenscale == 1)
 		draw1x(scr,screen->pitch/4,tmpscreen,256,256,240);
 
-	if(nes && nes->rom && nes->rom->mapper == 20 && fdsdrive) {
+	if(nes && nes->rom && nes->rom->boardid == B_FDS && fdsdrive) {
 		//draw fds drive read/write icon...
 		u32 *scr = (u32*)screen->pixels;
 		int x,y,pitch = screen->pitch / 4;

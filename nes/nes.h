@@ -31,7 +31,7 @@
 #define INPUT_RIGHT	0x80
 
 #include "defines.h"
-#include "mappers/mapper.h"
+#include "mappers/mappers.h"
 #include "nes/rom/rom.h"
 #include "nes/ppu/ppu.h"
 #include "nes/apu/mattapu.h"
@@ -55,7 +55,7 @@ typedef struct nes_s
 	int	scanline;			//current scanline
 
 	dead6502data	cpu;			//cpu data
-	mapper_ines_t	*mapper;		//mapper functions
+	mapper_t			*mapper;		//mapper functions
 	rom_t				*rom;			//ptr to current rom (specified by nes_load)
 	apu_t				*apu;			//apu context
 	ppu_t				ppu;			//ppu data

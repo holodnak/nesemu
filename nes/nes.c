@@ -93,8 +93,24 @@ int nes_load(rom_t *r)
 	//init the nes
 	nes_init();
 
+	if(r->boardid > 0) {
+		mapper_t *mapper = mapper_init(r->boardid);
+
+		if(mapper == 0) {
+			log_message("nes_load:  rom not supported.  no mapper support.\n");
+			return(1);
+		}
+		nes->mapper = mapper;
+		nes->rom = r;
+		ppu_setmirroring(nes->rom->mirroring);
+		return(0);
+	}
+
+	log_message("nes_load:  error.  rom with unsupported mapper loaded.\n");
+	return(1);
+
 	//if this is a unif rom
-	if(r->mapper == -1) {
+/*	if(r->mapper == -1) {
 		mapper_unif_t *mapper;
 
 		if((mapper = mapper_init_unif(r->board)) == 0) {
@@ -141,7 +157,7 @@ int nes_load(rom_t *r)
 	}
 	nes->rom = r;
 	ppu_setmirroring(nes->rom->mirroring);
-	return(0);
+	return(0);*/
 }
 
 void nes_unload()				//unload nes rom
