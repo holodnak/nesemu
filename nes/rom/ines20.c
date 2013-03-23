@@ -24,6 +24,7 @@
 #include "defines.h"
 #include "nes/nes.h"
 #include "system/file.h"
+#include "mappers/boardid.h"
 
 static u32 ramtable[16] = {
 	B(0),		B(128),	B(256),	B(512),

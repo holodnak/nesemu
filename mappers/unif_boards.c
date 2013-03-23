@@ -1,5 +1,5 @@
 #include <string.h>
-#include "mappers.h"
+#include "mapperinc.h"
 
 struct unif_board_s {
 	const char *name;
@@ -37,8 +37,26 @@ UNIF_BOARD_START()
 	UNIF_BOARD("NES-CNROM",					B_CxROM)
 
 	//SxROM boards
-	UNIF_BOARD("NES-SLROM",					B_SxROM)
+	UNIF_BOARD("NES-SAROM",					B_SxROM)
+	UNIF_BOARD("NES-SBROM",					B_SxROM)
+	UNIF_BOARD("NES-SCROM",					B_SxROM)
+	UNIF_BOARD("NES-SEROM",					B_SxROM)
+	UNIF_BOARD("NES-SFROM",					B_SxROM)
+	UNIF_BOARD("NES-SGROM",					B_SxROM)
+	UNIF_BOARD("NES-SHROM",					B_SxROM)
+	UNIF_BOARD("NES-SJROM",					B_SxROM)
 	UNIF_BOARD("NES-SKROM",					B_SxROM)
+	UNIF_BOARD("NES-SLROM",					B_SxROM)
+	UNIF_BOARD("NES-SNROM",					B_SxROM)
+	UNIF_BOARD("NES-SOROM",					B_SxROM)
+	UNIF_BOARD("NES-SUROM",					B_SxROM)
+	UNIF_BOARD("NES-SXROM",					B_SxROM)
+
+	//TxROM boards
+	UNIF_BOARD("NES-TLROM",					B_TxROM)
+	UNIF_BOARD("NES-TKROM",					B_TxROM)
+	UNIF_BOARD("NES-TFROM",					B_TxROM)
+	UNIF_BOARD("NES-TBROM",					B_TxROM)
 
 	//PxROM boards
 	UNIF_BOARD("NES-PNROM",					B_PxROM)

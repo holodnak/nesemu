@@ -72,21 +72,6 @@
 	{int i; for(i=0;i<(siz);i++)	\
 		STATE_U8((arr)[i]); }
 
-enum boardid_e {
-	B_UNSUPPORTED = 0,
-	B_FDS,
-	B_NSF,
-	B_NROM,
-	B_SxROM,
-	B_UxROM,
-	B_CxROM,
-	B_TxROM,
-	B_PxROM,
-
-	B_NES_EVENT,
-	B_BOARDEND
-};
-
 typedef struct mapper_s {
 	int boardid;					//internal board id
 	void (*reset)(int);			//mapper reset function

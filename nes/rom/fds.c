@@ -25,6 +25,7 @@
 #include "nes/nes.h"
 #include "system/file.h"
 #include "system/config.h"
+#include "mappers/boardid.h"
 
 static void load_fds_header(rom_t *ret,u8 *header)
 {

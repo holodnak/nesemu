@@ -1,4 +1,4 @@
-#include "mappers/mappers.h"
+#include "mappers/mapperinc.h"
 #include "mappers/chips/mmc3.h"
 
 static void reset(int hard)

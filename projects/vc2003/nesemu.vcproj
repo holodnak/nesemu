@@ -517,6 +517,9 @@
 					Name="boards"
 					Filter="">
 					<File
+						RelativePath="..\..\mappers\boards\axrom.c">
+					</File>
+					<File
 						RelativePath="..\..\mappers\boards\cxrom.c">
 					</File>
 					<File
@@ -970,6 +973,9 @@
 			<Filter
 				Name="mappers"
 				Filter="">
+				<File
+					RelativePath="..\..\mappers\boardid.h">
+				</File>
 				<File
 					RelativePath="..\..\mappers\mappers.h">
 				</File>

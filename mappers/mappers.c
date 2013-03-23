@@ -1,4 +1,4 @@
-#include "mappers.h"
+#include "mapperinc.h"
 
 #undef MAPPER
 #define MAPPER(n) \

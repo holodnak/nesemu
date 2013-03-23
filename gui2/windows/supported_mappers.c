@@ -2,6 +2,7 @@
 #include <string.h>
 #include "gui2/windows/supported_mappers.h"
 #include "nesemu.h"
+#include "mappers/boardid.h"
 
 /*
 
@@ -93,7 +94,7 @@ static char *refresh_unif(list_t *l,int m)
 	}
 	//get next item
 	else if(m == 0) {
-		if((ret = get_unif_board(idx++)) == 0)
+		if((ret = (char*)get_unif_board(idx++)) == 0)
 			return(0);
 		return(ret);
 	}

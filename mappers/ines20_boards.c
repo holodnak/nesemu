@@ -1,4 +1,4 @@
-#include "mappers.h"
+#include "mapperinc.h"
 
 #define INES20_BOARD(n,s,b)	{n,s,b}
 #define INES20_BOARD_END()		{-1,-1,-1}

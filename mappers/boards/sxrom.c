@@ -1,6 +1,5 @@
-#include "mappers/mappers.h"
+#include "mappers/mapperinc.h"
 #include "mappers/chips/mmc1.h"
-#include "nes/nes.h"
 
 static void reset(int hard)
 {
