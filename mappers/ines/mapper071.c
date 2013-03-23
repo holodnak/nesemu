@@ -27,6 +27,7 @@ static void init(int hard)
 {
 	int i;
 
+	log_message("mapper71 init\n");
 	mem_setwrite(0x9,write_low);
 	for(i=0xC;i<0x10;i++)
 		mem_setwrite(i,write_high);

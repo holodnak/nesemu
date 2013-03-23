@@ -137,7 +137,8 @@ typedef struct mapper_unif_s {
 #ifdef __cplusplus
 extern "C" {
 #endif
-mapper_ines_t *mapper_init_ines(int n);
+mapper_ines_t *mapper_init_ines(int num);
+mapper_ines20_t *mapper_init_ines20(int num,int sub);
 mapper_unif_t *mapper_init_unif(char *board);
 #ifdef __cplusplus
 }

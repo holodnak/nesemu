@@ -122,9 +122,32 @@ rom_t *rom_load(const char *filename)
 
 	//see if it is an ines rom image
 	else if(memcmp(header,inesident,4) == 0) {
+/*		int loaded = 0;
+
 		//check header for ines 2.0 or old ines format
-		if((((header[7] & 0xC) == 8) && (rom_load_ines20(fd,ret) == 0)) ||
-			(rom_load_ines(fd,ret) == 0)) {
+		if(((header[7] & 0xC) == 8) && (rom_load_ines20(fd,ret) == 0)) {
+			log_message("cant load ines2.0, trying ines...\n");
+			file_seek(fd,0,SEEK_SET);
+		}
+		else
+			loaded = 1;
+		if(loaded == 0 && rom_load_ines(fd,ret) == 0) {
+			file_close(fd);
+			return(0);
+		}*/
+/*		if((((header[7] & 0xC) == 8) && (rom_load_ines20(fd,ret) == 0)) ||
+			()) {
+			file_close(fd);
+			return(0);
+		}*/
+		int success = 0;
+
+		if((header[7] & 0xC) == 8) {
+			success = (rom_load_ines20(fd,ret) == 0) ? 0 : 1;
+			if(success == 0)
+				file_seek(fd,0,SEEK_SET);
+		}
+		if(success == 0 && rom_load_ines(fd,ret) == 0) {
 			file_close(fd);
 			return(0);
 		}

@@ -37,6 +37,7 @@ static void load_ines_header(rom_t *ret,u8 *header)
 		log_message("load_ines_header:  dirty header! (%c%c%c%c%c%c%c%c%c)\n",header[7],header[8],header[9],header[10],header[11],header[12],header[13],header[14],header[15]);
 	else
 		ret->mapper |= header[7] & 0xF0;
+	ret->submapper = -1;
 	if(ret->mirroring & 4)
 		ret->mirroring = 4;
 	else

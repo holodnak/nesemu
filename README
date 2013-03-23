@@ -4,10 +4,11 @@ usage:
   nesemu.exe [options] [romfile.ext]
 
   options:
-    --mappers    - output all supported mappers and exit
-    --windowed   - start in windowed mode
-    --fullscreen - start in fullscreen mode
-    --loadstate  - load state after loaded 'romfile.ext'
+    --mappers       - output all supported mappers and exit
+    --windowed      - start in windowed mode
+    --fullscreen    - start in fullscreen mode
+    --loadstate     - load state after loaded 'romfile.ext'
+    --config <file> - use <file> as configuration file
 
   note: options are supported on all platforms.  please see the
   section about 'filename translation' for information on passing
@@ -98,85 +99,3 @@ thanks:
     I would have to ask them myself.
 
 please send all feedback to jamesholodnak _at_ gmail.com
-
-todo:
-mapper67
-fix mapper71 states
-234
-230
-137
-
-nsf player crashes
-
-test mappers 191, 192, 194
-
-MAKE ALL BLARGG PPU TESTS PASS!  ASAP!
-!!!
-MAKE ALL BLARGG PPU TESTS PASS!  ASAP!
-
-not working roms:
-	action 52
-		. mapper not supported
-	bandit kings of ancient china
-		. mapper not supported
-	cheetahman 2
-		. mapper not supported
-	bugs bunny birthday bash (prototype)
-		. crashes on load
-
-slight problem roms:
-	addams family - pugleys scavenger hunt
-		. was broken, fixed with sprite0 hack, now title screen is blank
-	adventures of captain comic
-		. scrolls one extra scanline along the top status area
-	adventures of rocky and bullwinkle
-		. when scrolling, occasional garbage appears for a few frames
-		. probably the mmc3 scanline irq
-	al unser racing
-		. occasional one-scanline delay in a scroll toggle...
-		  causes a one pixel high horizontal green line to be
-		  painted down the right side of the track
-	baby boomer
-		. sound goes funny and takes a long time before game actually begins
-	bad dudes
-		. status area gets garbage for a couple frames, occasionally
-		. probably mmc3 line irq
-	baseball simulator 1.000
-		. when batting, bottom part of screen shakes
-	battletoads & double dragon
-		. sometimes it misses a sprite0 hit, then the screen will bounce
-	bee 52
-		. title screen messed up
-		. main game is all messed up and slowed
-		. locks up during game		
-	big nose freaks out
-		. extremely wild graphics glitches during game
-	big nose the caveman
-		. crud on the left side of the screen
-	bill elliotts nascar
-		. race track looks like all other racing games
-	bo jackson baseball
-		. title screen glitched for a second when it first appears
-		. probably mmc3 line irq
-	bram stokers dracula
-		. status area has garbage
-	burai fighter
-		. game doesnt scroll much (unplayable)
-	challenge of the dragon
-		. screen flicker everywhere
-	crystalis
-		. screen shakes when a message box is up
-	cybernoid
-		. title screen has one dirty scanline
-	mafat conspiricy - golgo 13
-		. screwed chr
-
-	walkuere no bouken
-		. mirroring problems?
-
-	young indiana jones
-		. game locks up
-	zelda 2
-		. ???: locks up when flute is used
-
-game testing letters completed: #ABCE X

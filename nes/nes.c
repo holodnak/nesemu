@@ -113,17 +113,31 @@ int nes_load(rom_t *r)
 			nes_setsramsize(mapper->info.sram / 4);
 		log_message("unif mapper '%s' loaded\n",r->board);
 	}
+	//fds disk?
 	else if(r->mapper == 20) {
 		//disk should never be loaded if the bios is not found
 		nes->mapper = (config.fdsbios ? &mapper_hle_fds : &mapper_fds);
 		printf("%s mapper loaded\n",config.fdsbios ? "hle fds" : "fds");
 	}
-	else {
+	//old ines format
+	else if(r->submapper == -1) {
 		if((nes->mapper = mapper_init_ines(r->mapper)) == 0) {
 			log_message("ines mapper %d not supported\n",r->mapper);
 			return(1);
 		}
 		log_message("ines mapper %d loaded\n",r->mapper);
+	}
+	//must be ines 2.0
+	else if(r->submapper >= 0) {
+		if((nes->mapper = mapper_init_ines(r->mapper)) == 0) {
+			log_message("ines 2.0 mapper %d.%d not supported\n",r->mapper,r->submapper);
+			return(1);
+		}
+		log_message("ines mapper %d.%d loaded\n",r->mapper,r->submapper);
+	}
+	else {
+		log_message("strange error with loading the rom.\n");
+		return(1);
 	}
 	nes->rom = r;
 	ppu_setmirroring(nes->rom->mirroring);

@@ -35,8 +35,8 @@ static u32 ramtable[16] = {
 static void load_ines20_header(rom_t *ret,u8 *header)
 {
 	//prg and chr sizes
-	ret->prgsize = header[4] | ((header[9] & 0x0F) << 8);
-	ret->chrsize = header[5] | ((header[9] & 0xF0) << 4);
+	ret->prgsize = (header[4] | ((header[9] & 0x0F) << 8)) * 0x4000;
+	ret->chrsize = (header[5] | ((header[9] & 0xF0) << 4)) * 0x2000;
 
 	//work ram size
 	ret->wramsize = ramtable[header[10] & 0xF];
@@ -81,7 +81,9 @@ static void load_ines20_header(rom_t *ret,u8 *header)
 
 	log_message("load_ines20_header:\n");
 	log_message("   %dkb prg, %dkb chr, %dkb vram, %dkb wram, %dkbsram, %dkb bvram\n",
-		ret->prgsize,ret->chrsize,ret->vramsize,ret->wramsize,ret->sramsize,ret->svramsize);
+		ret->prgsize / 1024,ret->chrsize / 1024,
+		ret->vramsize / 1024,ret->wramsize / 1024,
+		ret->sramsize / 1024,ret->svramsize / 1024);
 	log_message("   mapper %d.%d, %s mirroring, %s\n",
 		ret->mapper,ret->submapper,
 		(ret->mirroring == 4) ? "four screen" : ((ret->mirroring == 0) ? "horizontal" : "vertical"),
@@ -137,5 +139,6 @@ rom_t *rom_load_ines20(int fd,rom_t *ret)
 	//check if rom is in our database, and update its info
 	rom_checkdb(ret,0);
 
+	log_message("loaded ines2.0 (ret = $%08X)\n",ret);
 	return(ret);
 }

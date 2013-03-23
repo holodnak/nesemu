@@ -1072,6 +1072,34 @@
 					</File>
 				</Filter>
 			</Filter>
+			<Filter
+				Name="mappers-new"
+				Filter="">
+				<File
+					RelativePath="..\..\mappers-new\ines20_boards.c">
+				</File>
+				<File
+					RelativePath="..\..\mappers-new\ines_boards.c">
+				</File>
+				<File
+					RelativePath="..\..\mappers-new\mappers.c">
+					<FileConfiguration
+						Name="Debug|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32">
+						<Tool
+							Name="VCCLCompilerTool"
+							ObjectFile="$(IntDir)/$(InputName)1.obj"/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="..\..\mappers-new\unif_boards.c">
+				</File>
+			</Filter>
 		</Filter>
 		<Filter
 			Name="Header Files"
@@ -1537,6 +1565,13 @@
 						RelativePath="..\..\system\win32\resource.h">
 					</File>
 				</Filter>
+			</Filter>
+			<Filter
+				Name="mappers-new"
+				Filter="">
+				<File
+					RelativePath="..\..\mappers-new\mappers.h">
+				</File>
 			</Filter>
 		</Filter>
 		<Filter

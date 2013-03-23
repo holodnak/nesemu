@@ -265,6 +265,7 @@ rom_crc_t rom_crcs[] = {
 
 	//unlicensed
 	{"Magic Dragon (Unl)",									0xAAB15466,0x4937921D,"?",0},
+//	{"Fire Hawk (Unl) [!].nes",							0x1BC686A8,0x00000000,"?",ROM_NOCHR | SPRITE0_HACK},
 
 	//end
 	{0,0,0,0,0}

@@ -1,0 +1,12 @@
+core
+ . ppu needs work, sprite0 needs to be fixed once and for all
+ . make all blargg ppu tests pass
+
+mappers
+ . fix mapper 71
+ . fix mapper 165
+ . test mappers 191, 192, 194
+
+other
+ . nsf player crashes
+ . finish the hle fds bios
