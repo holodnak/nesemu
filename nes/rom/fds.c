@@ -27,11 +27,11 @@
 #include "system/config.h"
 #include "mappers/boardid.h"
 
+static u8 fdsident[] = "FDS\x1a";
+static u8 fdsident2[] = "\x01*NINTENDO-HVC*";
+
 static void load_fds_header(rom_t *ret,u8 *header)
 {
-	//set mapper assigned to fds system
-	ret->boardid = B_FDS;
-
 	//set number of disk sides
 	ret->disksides = header[4];
 
@@ -63,8 +63,24 @@ rom_t *rom_load_fds(int fd,rom_t *ret)
 	//read header
 	file_read(fd,header,16);
 
-	//load fds disk header
-	load_fds_header(ret,header);
+	if(memcmp(header,fdsident2,15) == 0) {
+		int size;
+
+		file_seek(fd,0,SEEK_END);
+		size = file_tell(fd);
+		if((size % 65500) != 0) {
+			log_message("rom_load_fds:  strange disk image size, aborting\n");
+			return(0);
+		}
+		ret->disksides = size / 65500;
+		file_seek(fd,0,SEEK_SET);
+	}
+	else if(memcmp(header,fdsident,4) == 0) {
+		load_fds_header(ret,header);
+	}
+
+	//set mapper assigned to fds system
+	ret->boardid = B_FDS;
 
 	//allocate memory for disk data
 	ret->diskdata = (u8*)malloc(ret->disksides * 65500);
@@ -77,5 +93,6 @@ rom_t *rom_load_fds(int fd,rom_t *ret)
 	//copy the data read to seperate buffer (used for saving disk changes)
 	memcpy(ret->orig_diskdata,ret->diskdata,ret->disksides * 65500);
 
+	log_message("rom_load_fds:  loaded disk, %d sides\n",ret->disksides);
 	return(ret);
 }

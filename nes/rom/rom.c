@@ -37,6 +37,7 @@
 static u8 nstident[] = "NST\0";
 static u8 inesident[] = "NES\x1a";
 static u8 fdsident[] = "FDS\x1a";
+static u8 fdsident2[] = "\x01*NINTENDO-HVC*";
 static u8 unifident[] = "UNIF";
 static u8 nsfident[] = "NESM\x1a";
 
@@ -136,7 +137,7 @@ rom_t *rom_load(const char *filename)
 	}
 
 	//if the file is an fds disk image
-	else if(memcmp(header,fdsident,4) == 0) {
+	else if(memcmp(header,fdsident,4) == 0 || memcmp(header,fdsident2,15) == 0) {
 		if(rom_load_fds(fd,ret) == 0) {
 			file_close(fd);
 			return(0);

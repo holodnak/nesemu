@@ -19,7 +19,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="&quot;C:\DELL\drivers\R8088\zlib-1.2.7&quot;;&quot;C:\DELL\drivers\R8088\SDL-1.2.15\include&quot;;..\.."
+				AdditionalIncludeDirectories="&quot;D:\Development\zlib-1.2.7&quot;;&quot;D:\Development\SDL-1.2.15\include&quot;;&quot;C:\DELL\drivers\R8088\zlib-1.2.7&quot;;&quot;C:\DELL\drivers\R8088\SDL-1.2.15\include&quot;;..\.."
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE;__MSVC__;SDL"
 				MinimalRebuild="TRUE"
 				BasicRuntimeChecks="3"
@@ -32,10 +32,10 @@
 				Name="VCCustomBuildTool"/>
 			<Tool
 				Name="VCLinkerTool"
-				AdditionalDependencies="SDL.lib SDLmain.lib zlib.lib"
+				AdditionalDependencies="SDL.lib zlib.lib"
 				OutputFile="$(OutDir)/nesemu.exe"
 				LinkIncremental="2"
-				AdditionalLibraryDirectories="&quot;C:\mingw\home\Guest\zlib\debug&quot;;&quot;C:\DELL\drivers\R8088\SDL-1.2.15\lib&quot;"
+				AdditionalLibraryDirectories="&quot;D:\Development\SDL-1.2.15\lib&quot;;&quot;D:\Development\zlib-1.2.7\win32\zlib\Debug&quot;;C:\mingw\home\Guest\zlib\debug;&quot;C:\DELL\drivers\R8088\SDL-1.2.15\lib&quot;"
 				IgnoreAllDefaultLibraries="FALSE"
 				IgnoreDefaultLibraryNames=""
 				GenerateDebugInformation="TRUE"
@@ -77,7 +77,7 @@
 				FavorSizeOrSpeed="1"
 				OptimizeForProcessor="3"
 				OptimizeForWindowsApplication="TRUE"
-				AdditionalIncludeDirectories="&quot;C:\DELL\drivers\R8088\zlib-1.2.7&quot;;&quot;C:\DELL\drivers\R8088\SDL-1.2.15\include&quot;;..\.."
+				AdditionalIncludeDirectories="&quot;D:\Development\zlib-1.2.7&quot;;&quot;D:\Development\SDL-1.2.15\include&quot;;&quot;C:\DELL\drivers\R8088\zlib-1.2.7&quot;;&quot;C:\DELL\drivers\R8088\SDL-1.2.15\include&quot;;..\.."
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE;__MSVC__;SDL"
 				RuntimeLibrary="4"
 				UsePrecompiledHeader="0"
@@ -90,10 +90,10 @@
 				Name="VCLinkerTool"
 				AdditionalOptions="/NODEFAULTLIB:libcmt.lib /NODEFAULTLIB:msvcrt.lib /NODEFAULTLIB:libcd.lib /NODEFAULTLIB:libcmtd.lib /NODEFAULTLIB:msvcrtd.lib
 "
-				AdditionalDependencies="SDL.lib SDLmain.lib zlib.lib"
+				AdditionalDependencies="SDL.lib zlib.lib"
 				OutputFile="$(OutDir)/nesemu.exe"
 				LinkIncremental="1"
-				AdditionalLibraryDirectories="&quot;C:\mingw\home\Guest\zlib\Release&quot;;&quot;C:\DELL\drivers\R8088\SDL-1.2.15\lib&quot;"
+				AdditionalLibraryDirectories="&quot;D:\Development\SDL-1.2.15\lib&quot;;&quot;D:\Development\zlib-1.2.7\win32\zlib\Release&quot;;C:\mingw\home\Guest\zlib\Release;&quot;C:\DELL\drivers\R8088\SDL-1.2.15\lib&quot;"
 				GenerateDebugInformation="TRUE"
 				SubSystem="1"
 				OptimizeReferences="2"
