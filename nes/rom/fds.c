@@ -80,15 +80,17 @@ rom_t *rom_load_fds(int fd,rom_t *ret)
 	}
 
 	//set mapper assigned to fds system
-	ret->boardid = B_FDS;
+	ret->boardid = (config.fdsbios == 0) ? B_FDS : B_HLEFDS;
 
 	//allocate memory for disk data
 	ret->diskdata = (u8*)malloc(ret->disksides * 65500);
 	ret->orig_diskdata = (u8*)malloc(ret->disksides * 65500);
 
 	//try to read fds disk data
-	if(file_read(fd,ret->diskdata,ret->disksides * 65500) != (ret->disksides * 65500))
-		log_warning("warning: error reading all of disk data\n");
+	if(file_read(fd,ret->diskdata,ret->disksides * 65500) != (ret->disksides * 65500)) {
+		log_error("reading all of disk data\n");
+		return(0);
+	}
 
 	//copy the data read to seperate buffer (used for saving disk changes)
 	memcpy(ret->orig_diskdata,ret->diskdata,ret->disksides * 65500);

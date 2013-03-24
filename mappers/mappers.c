@@ -9,10 +9,13 @@
 
 mapper_t *mapper_init(int board)
 {
-	//boards
+	//nintendo boards
 	MAPPER(B_NROM);			MAPPER(B_SxROM);			MAPPER(B_UxROM);			MAPPER(B_CxROM);
 	MAPPER(B_TxROM);			MAPPER(B_PxROM);
 
+	//unlicensed
+	MAPPER(B_BIOMIRACLEA);
+	MAPPER(B_MARIO1_MALEE2);
 	MAPPER(B_SACHEN_74LS374);
 
 	//extras

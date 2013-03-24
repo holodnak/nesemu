@@ -520,7 +520,13 @@
 						RelativePath="..\..\mappers\boards\axrom.c">
 					</File>
 					<File
+						RelativePath="..\..\mappers\boards\biomiraclea.c">
+					</File>
+					<File
 						RelativePath="..\..\mappers\boards\cxrom.c">
+					</File>
+					<File
+						RelativePath="..\..\mappers\boards\mario1-malee2.c">
 					</File>
 					<File
 						RelativePath="..\..\mappers\boards\nrom.c">

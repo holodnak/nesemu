@@ -37,6 +37,8 @@ enum boardid_e {
 	B_NES_EVENT,
 
 	//unlicensed
+	B_BIOMIRACLEA,
+	B_MARIO1_MALEE2,
 	B_SACHEN_74LS374,
 	B_MAGICSERIES,
 
