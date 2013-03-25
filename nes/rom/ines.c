@@ -202,19 +202,24 @@ rom_t *rom_load_ines(int fd,rom_t *ret)
 		rom_setvramsize(ret,1);
 
 	//look for rom in database and update its mapper info
-	if(rom_checkdb(ret,0) == -1) {
+/*	if(rom_checkdb(ret,0) == -1) {
 		return(0);
-	}
-/*	if(rom_checkdb(ret,0) == 0) {
+	}*/
+	if(rom_checkdb(ret,0) == 0) {
 		int fd;
 		char str[512];
-
-		if((fd = file_open("c:\\mingw\\new_crcs.c","uat")) >= 0) {
+#ifdef WIN32
+	#define CRCFILE "c:\\mingw\\new_crcs.c"
+#else
+	#define CRCFILE "NEW_CRCS.C"
+#endif
+#define getboardname(n) "?"
+		if((fd = file_open(CRCFILE,"uat")) >= 0) {
 			sprintf(str,"\t{\"%s\",0x%08X,0x%08X,\"%s\",%s},\n",ret->filename,rom_prgcrc32(ret),rom_chrcrc32(ret),getboardname(ret),((ret->chrsize == 0) ? "ROM_NOCHR" : "0"));
 			file_write(fd,str,strlen(str));
 			file_close(fd);
 		}
-	}*/
+	}
 
 	return(ret);
 }

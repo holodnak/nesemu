@@ -30,6 +30,7 @@ enum boardid_e {
 	B_NROM = 0,
 	B_AxROM,
 	B_CxROM,
+	B_HxROM,
 	B_PxROM,
 	B_SxROM,
 	B_TxROM,
@@ -37,9 +38,10 @@ enum boardid_e {
 	B_NES_EVENT,
 
 	//unlicensed
+	B_CALTRON6IN1,
 	B_BIOMIRACLEA,
 	B_MARIO1_MALEE2,
-	B_SACHEN_74LS374,
+	B_SACHEN_74LS374N,
 	B_MAGICSERIES,
 
 	//for getting a count of supported boards

@@ -235,6 +235,7 @@ rom_crc_t rom_crcs[] = {
 	{"Rad Racer (U)",											0x8B9D3E9C,0x00000000,"NES-SGROM",ROM_NOCHR},
 	{"Rad Racer 2 (U)",										0xAB90E397,0x07DF55D8,"NES-TBROM",SPRITE0_HACK},
 	{"R.C. Pro-Am 2 (U)",									0x9EDD2159,0x00000000,"NES-AOROM",SPRITE0_HACK},
+	{"Star Tropics (U)",										0xBEB88304,0x42236F71,"NES-HKROM",0},
 	{"Super C (U)",											0xC7FBECC3,0x153295C1,"NES-TLROM",0},
 	{"Super Glove Ball (U)",								0xEFCF375D,0x00000000,"NES-UNROM",ROM_NOCHR},
 	{"Super Mario Bros - Duck Hunt (U)",				0x81069812,0x7ECDA8B3,"NES-MHROM",0},
@@ -261,6 +262,7 @@ rom_crc_t rom_crcs[] = {
 	{"Zanac (U)",												0xE292AA10,0x00000000,"NES-UNROM",ROM_NOCHR},
 	{"Zelda 2 - The Adventure of Link (U)",			0xEE8C9971,0x9C41CE57,"NES-SKROM",SPRITE0_HACK},
 	{"Zen Intergalactic Ninja (U)",						0x58A407BB,0x589EBFDC,"NES-TLROM",0},
+	{"Zoda's Revenge - Star Tropics II (U)",			0x80FB117E,0x0CA74E1A,"NES-HKROM",0},
 	{"Zombie Nation (U)",									0x407793C0,0xBB0AD971,"NES-TLROM",0},
 
 	//unlicensed

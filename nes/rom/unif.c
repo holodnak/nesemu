@@ -226,6 +226,10 @@ rom_t *rom_load_unif(int fd,rom_t *ret)
 		return(0);
 	}
 
+	log_message("rom_load_unif:  load rom successful.\n");
+	log_message("   board '%s'\n",boardname);
+	log_message("   %dkb prg, %dkb chr\n",ret->prgsize / 1024,ret->chrsize / 1024);
+
 	//look for rom in database and update its mapper info
 	if(rom_checkdb(ret,0) == -1) {
 		return(0);

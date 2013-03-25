@@ -98,18 +98,12 @@ void mmc3_init(void (*s)())
 	command = 0;
 	prg[0] = 0x3C;
 	prg[1] = 0x3D;
-	chr[0] = 0;
-	chr[1] = 1;
-	chr[2] = 2;
-	chr[3] = 3;
-	chr[4] = 4;
-	chr[5] = 5;
-	chr[6] = 6;
-	chr[7] = 7;
+	for(i=0;i<8;i++)
+		chr[i] = i;
 	mirror = 0;
 	sramenabled = 1;
 	irqcounter = irqlatch = 0;
-	irqenabled = 0;
+	irqenabled = irqreload = 0;
 	sync();
 }
 
@@ -219,5 +213,6 @@ void mmc3_state(int mode,u8 *data)
 	STATE_U8(irqlatch);
 	STATE_U8(irqcounter);
 	STATE_U8(irqenabled);
+	STATE_U8(irqreload);
 	sync();
 }
