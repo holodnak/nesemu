@@ -24,7 +24,7 @@
 #include "defines.h"
 #include "nes/nes.h"
 #include "system/file.h"
-#include "mappers/boardid.h"
+#include "mappers/mapperid.h"
 
 static int load_ines_header(rom_t *ret,u8 *header)
 {

@@ -32,7 +32,7 @@
 #include "system/file.h"
 #include "nes/nes.h"
 #include "nes/romdb/crc.h"
-#include "mappers/boardid.h"
+#include "mappers/mapperid.h"
 
 static u8 nstident[] = "NST\0";
 static u8 inesident[] = "NES\x1a";

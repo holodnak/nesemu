@@ -1,6 +1,6 @@
 #include <time.h>
 #include "mappers/mappers.h"
-#include "mappers/boardid.h"
+#include "mappers/mapperid.h"
 #include "nes/nes.h"
 #include "nes/ppu/ppu.h"
 #include "mappers/sound/s_FDS.h"

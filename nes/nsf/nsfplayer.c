@@ -23,7 +23,7 @@
 #include "nes/nes.h"
 #include "mappers/mappers.h"
 #include "system/system.h"
-#include "mappers/boardid.h"
+#include "mappers/mapperid.h"
 
 #define BIOS_IDLE		0x00
 #define BIOS_INIT		0x01

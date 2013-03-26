@@ -1,5 +1,5 @@
 #include "mappers/mapperinc.h"
-#include "mappers/chips/mmc1.h"
+#include "mappers/chips/c_mmc1.h"
 
 static u8 prglock,irqenabled,dip;
 static u32 irqmax,irqcounter;

@@ -2,7 +2,7 @@
 #include <string.h>
 #include "gui2/windows/rom_info.h"
 #include "nesemu.h"
-#include "mappers/boardid.h"
+#include "mappers/mapperid.h"
 
 /*
 

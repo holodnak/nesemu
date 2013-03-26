@@ -2,7 +2,7 @@
 #include <string.h>
 #include "gui2/windows/supported_mappers.h"
 #include "nesemu.h"
-#include "mappers/boardid.h"
+#include "mappers/mapperid.h"
 
 /*
 

@@ -26,6 +26,11 @@ enum boardid_e {
 	//unsupported board
 	B_UNSUPPORTED = -1,
 
+	//extra support
+	B_NSF = -2,
+	B_FDS = -3,
+	B_HLEFDS = -4,
+
 	//licensed
 	//nintendo
 	B_NROM = 0,
@@ -76,11 +81,6 @@ enum boardid_e {
 
 	//for getting a count of supported boards
 	B_BOARDEND,
-
-	//extra support
-	B_NSF,
-	B_FDS,
-	B_HLEFDS,
 };
 
 #endif

@@ -25,7 +25,7 @@
 #include "nes/nes.h"
 #include "nes/nsf/nsfplayer.h"
 #include "system/file.h"
-#include "mappers/boardid.h"
+#include "mappers/mapperid.h"
 
 rom_t *rom_load_nsf(int fd,rom_t *ret)
 {

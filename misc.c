@@ -28,7 +28,7 @@
 #include "nes/state/state.h"
 #include "log.h"
 #include "misc.h"
-#include "mappers/boardid.h"
+#include "mappers/mapperid.h"
 
 #ifdef PS2
 #define LINES2 \
@@ -53,7 +53,7 @@ void showmappers()
 
 	log_message("supported ines mappers:  0");
 	for(n=1,i=1;i<256;i++) {
-		if(get_ines_boardid(i)) {
+		if(get_ines_boardid(i) >= 0) {
 			log_message(", %d",i);
 			n++;
 		}

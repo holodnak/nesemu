@@ -1,5 +1,5 @@
 #include "mappers/mappers.h"
-#include "mappers/boardid.h"
+#include "mappers/mapperid.h"
 #include "nes/nes.h"
 #include "nes/fds/hle_fds.h"
 #include "nes/fds/hle_fds_calls.h"

@@ -23,7 +23,7 @@
 #include <SDL/SDL.h>
 #include <SDL/SDL_syswm.h>
 #include "defines.h"
-#include "mappers/boardid.h"
+#include "mappers/mapperid.h"
 #include "system/system.h"
 #include "gui2/gui2.h"
 #include "gui2/gui2_draw.h"

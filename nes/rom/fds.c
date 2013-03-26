@@ -25,7 +25,7 @@
 #include "nes/nes.h"
 #include "system/file.h"
 #include "system/config.h"
-#include "mappers/boardid.h"
+#include "mappers/mapperid.h"
 
 static u8 fdsident[] = "FDS\x1a";
 static u8 fdsident2[] = "\x01*NINTENDO-HVC*";

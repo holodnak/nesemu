@@ -26,7 +26,7 @@
 #include "nes/nes.h"
 #include "nes/state/blocks.h"
 #include "system/file.h"
-#include "mappers/boardid.h"
+#include "mappers/mapperid.h"
 
 #define makeindex(n)	\
 ((n >= '0' && n <= '9') ? (n - '0') :	\

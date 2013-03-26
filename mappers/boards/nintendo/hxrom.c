@@ -1,5 +1,5 @@
 #include "mappers/mapperinc.h"
-#include "mappers/chips/mmc6.h"
+#include "mappers/chips/c_mmc6.h"
 
 static void reset(int hard)
 {
