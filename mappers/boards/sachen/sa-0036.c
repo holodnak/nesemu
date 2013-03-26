@@ -1,5 +1,5 @@
 #include "mappers/mapperinc.h"
-#include "mappers/chips/latch.h"
+#include "mappers/chips/c_latch.h"
 
 static void sync()
 {

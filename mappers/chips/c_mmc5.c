@@ -1,7 +1,7 @@
 #include "mappers/mappers.h"
+#include "mappers/chips/c_mmc5.h"
 #include "nes/nes.h"
 #include "nes/ppu/ppu.h"
-#include "mmc5.h"
 
 static u8 prgsize,prgselect,prg[5];
 

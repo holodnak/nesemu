@@ -1,5 +1,5 @@
 #include "mappers/mapperinc.h"
-#include "mappers/chips/sachen_8259.h"
+#include "mappers/chips/c_sachen_8259.h"
 
 static void reset(int hard)
 {

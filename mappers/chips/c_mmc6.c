@@ -1,5 +1,5 @@
-#include "mmc6.h"
 #include "mappers/mappers.h"
+#include "mappers/chips/c_mmc6.h"
 #include "nes/nes.h"
 #include "nes/ppu/ppu.h"
 

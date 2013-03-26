@@ -1,6 +1,5 @@
-#include "defines.h"
 #include "mappers/mappers.h"
-#include "mappers/chips/sachen_8259.h"
+#include "mappers/chips/c_sachen_8259.h"
 #include "nes/rom/rom.h"
 #include "nes/ppu/ppu.h"
 

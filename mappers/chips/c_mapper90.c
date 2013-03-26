@@ -1,8 +1,8 @@
 //what is the name of this chip?  need to give this file a proper name.
 
 #include "mappers/mappers.h"
+#include "mappers/chips/c_mapper90.h"
 #include "nes/ppu/ppu.h"
-#include "mappers/chips/mapper90.h"
 
 static u8 prg[4],chrlo[8],chrhi[8],nt[4];
 static u8 mirror,bankmode,mul[2],onebyte,chrcontrol;

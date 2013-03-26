@@ -1,6 +1,6 @@
 #include "mappers/mappers.h"
 #include "nes/ppu/ppu.h"
-#include "mappers/chips/vrc4.h"
+#include "mappers/chips/c_vrc4.h"
 
 static u8 vrc4a_map[] = {0,2,1,3,1};
 static u8 vrc4b_map[] = {0,1,2,3,0};

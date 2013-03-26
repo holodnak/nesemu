@@ -27,6 +27,7 @@ enum boardid_e {
 	B_UNSUPPORTED = -1,
 
 	//licensed
+	//nintendo
 	B_NROM = 0,
 	B_AxROM,
 	B_CxROM,
@@ -37,11 +38,29 @@ enum boardid_e {
 	B_UxROM,
 	B_EVENT,
 
+	//konami
+	B_VRC1,
+	B_VRC2A,
+	B_VRC2B,
+	B_VRC3,
+	B_VRC4A,
+	B_VRC4B,
+	B_VRC4C,
+	B_VRC4D,
+	B_VRC4E,
+	B_VRC6A,
+	B_VRC6B,
+	B_VRC7A,
+	B_VRC7B,
+
 	//unlicensed
 	B_CALTRON6IN1,
 	B_BIOMIRACLEA,
 	B_MARIO1_MALEE2,
 	B_MAGICSERIES,
+	B_TXC_22211A,
+	B_TXC_22211B,
+	B_TXC_22211C,
 
 	//sachen
 	B_SACHEN_TCA01,

@@ -1,13 +1,13 @@
 #include "mappers/mappers.h"
+#include "mappers/chips/c_vrc6.h"
+#include "mappers/sound/s_VRC6.h"
 #include "nes/ppu/ppu.h"
-#include "mappers/chips/vrc7.h"
-#include "mappers/sound/s_VRC7.h"
 
-static apuext_t vrc7 = {
-	VRC7sound_Load,
-	VRC7sound_Unload,
-	VRC7sound_Reset,
-	VRC7sound_Get,
+static apuext_t vrc6 = {
+	VRC6sound_Load,
+	VRC6sound_Unload,
+	VRC6sound_Reset,
+	VRC6sound_Get,
 	0,
 	0
 };
@@ -19,101 +19,92 @@ static void sync()
 {
 	int i;
 
-	mem_setprg8(0x8,prg[0]);
-	mem_setprg8(0xA,prg[1]);
-	mem_setprg8(0xC,prg[2]);
+	mem_setprg16(0x8,prg[0]);
+	mem_setprg8(0xC,prg[1]);
 	mem_setprg8(0xE,0xFF);
-	if(nes->rom->chrsize) {
-		for(i=0;i<8;i++)
-			mem_setchr1(i,chr[i]);
-	}
-	else {
-		for(i=0;i<8;i++)
-			mem_setvram1(i,chr[i] & 7);
-	}
-	switch(mirror) {
-		case 0: ppu_setmirroring(MIRROR_V); break;
-		case 1: ppu_setmirroring(MIRROR_H); break;
-		case 2: ppu_setmirroring(MIRROR_1L); break;
-		case 3: ppu_setmirroring(MIRROR_1H); break;
+	for(i=0;i<8;i++)
+		mem_setchr1(i,chr[i]);
+	switch(mirror & 0xC) {
+		case 0x0: ppu_setmirroring(MIRROR_V); break;
+		case 0x4: ppu_setmirroring(MIRROR_H); break;
+		case 0x8: ppu_setmirroring(MIRROR_1L); break;
+		case 0xC: ppu_setmirroring(MIRROR_1H); break;
 	}
 }
 
 static void write_8000(u32 addr,u8 data)
 {
-	if(addr & 0x18)
-		prg[1] = data;
-	else
-		prg[0] = data;
-	sync();
+	switch(addr & 3) {
+		case 0: prg[0] = data; sync(); break;
+		case 1:
+		case 2:
+		case 3: break;
+	}
 }
 
 static void write_9000(u32 addr,u8 data)
 {
-	if(addr & 0x18)
-		VRC7sound_Write(addr,data);
-	else {
-		prg[2] = data;
-		sync();
-	}
+	VRC6sound_Write(addr,data);
 }
 
 static void write_A000(u32 addr,u8 data)
 {
-	if(addr & 0x18)
-		chr[1] = data;
-	else
-		chr[0] = data;
-	sync();
+	VRC6sound_Write(addr,data);
 }
 
 static void write_B000(u32 addr,u8 data)
 {
-	if(addr & 0x18)
-		chr[3] = data;
-	else
-		chr[2] = data;
-	sync();
+	switch(addr & 3) {
+		case 0:
+		case 1:
+		case 2: VRC6sound_Write(addr,data); break;
+		case 3: mirror = data; sync(); break;
+	}
 }
 
 static void write_C000(u32 addr,u8 data)
 {
-	if(addr & 0x18)
-		chr[5] = data;
-	else
-		chr[4] = data;
-	sync();
+	switch(addr & 3) {
+		case 0: prg[1] = data; sync(); break;
+		case 1:
+		case 2:
+		case 3: break;
+	}
 }
 
 static void write_D000(u32 addr,u8 data)
 {
-	if(addr & 0x18)
-		chr[7] = data;
-	else
-		chr[6] = data;
+	chr[addr & 3] = data;
 	sync();
 }
 
 static void write_E000(u32 addr,u8 data)
 {
-	if(addr & 0x18)
-		irqlatch = data;
-	else
-		mirror = data & 3;
+	chr[(addr & 3) + 4] = data;
+	sync();
 }
 
 static void write_F000(u32 addr,u8 data)
 {
-	if(addr & 0x18) {
-		irqenabled &= ~2;
-		irqenabled |= (irqenabled & 1) << 1;
-	}
-	else {
-		irqenabled = data & 7;
-		if(irqenabled & 2) {
-			irqcounter = irqlatch;
-			irqprescaler = 341;
-		}
+	switch(addr & 3) {
+		case 0:
+			irqlatch = data;
+			break;
+		case 1:
+			irqenabled = data & 7;
+			if(irqenabled & 2) {
+				irqcounter = irqlatch;
+				irqprescaler = 341;
+			}
+			break;
+		case 2:
+			if(irqenabled & 1)
+				irqenabled |= 2;
+			else
+				irqenabled &= ~2;
+			break;
+		case 3:
+			break;
 	}
 }
 
@@ -129,7 +120,7 @@ static void clockirq(int clocks)
 	}
 }
 
-void vrc7_line(int line,int pcycles)
+void vrc6_line(int line,int pcycles)
 {
 	if((irqenabled & 2) == 0)
 		return;
@@ -145,7 +136,7 @@ void vrc7_line(int line,int pcycles)
 		clockirq(pcycles / 3);
 }
 
-void vrc7_init(int revision)
+void vrc6_init(int revision)
 {
 	int i;
 
@@ -157,26 +148,23 @@ void vrc7_init(int revision)
 	mem_setwrite(0xD,write_D000);
 	mem_setwrite(0xE,write_E000);
 	mem_setwrite(0xF,write_F000);
-	if(revision == KONAMI_VRC7B) {
+	if(revision == KONAMI_VRC6B) {
 		nes_setsramsize(2);
-		nes_setvramsize(1);
 		mem_setsram8(0x6,0);
-		mem_setvram8(0,0);
 	}
 	prg[0] = 0;
 	prg[1] = -2;
-	prg[2] = -2;
 	for(i=0;i>8;i++)
 		chr[i] = 0;
 	mirror = 0;
 	irqlatch = 0;
 	irqenabled = 0;
 	irqcounter = 0;
-	apu_setext(nes->apu,&vrc7);
+	apu_setext(nes->apu,&vrc6);
 	sync();
 }
 
-void vrc7_state(int mode,u8 *data)
+void vrc6_state(int mode,u8 *data)
 {
 	STATE_ARRAY_U8(prg,2);
 	STATE_ARRAY_U8(chr,8);

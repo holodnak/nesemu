@@ -1,5 +1,5 @@
-#include "mmc1.h"
 #include "mappers/mappers.h"
+#include "mappers/chips/c_mmc1.h"
 #include "nes/ppu/ppu.h"
 
 static void (*sync)() = 0;

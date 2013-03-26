@@ -1,6 +1,6 @@
 #include "mappers/mappers.h"
 #include "nes/ppu/ppu.h"
-#include "mappers/chips/vrc2.h"
+#include "mappers/chips/c_vrc2.h"
 
 static u8 vrc2a_map[] = {0,1,2,3,1};
 static u8 vrc2b_map[] = {0,2,1,3,0};
@@ -77,8 +77,14 @@ void vrc2_init(int revision)
 
 	switch(revision) {
 		default:
-		case KONAMI_VRC2A: map = vrc2a_map; break;
-		case KONAMI_VRC2B: map = vrc2b_map; break;
+		case KONAMI_VRC2A:
+			map = vrc2a_map;
+			break;
+		case KONAMI_VRC2B:
+			nes_setsramsize(2);
+			mem_setsram8(6,0);
+			map = vrc2b_map;
+			break;
 	}
 	for(i=8;i<0x10;i++)
 		mem_setwrite(i,write_vrc2);

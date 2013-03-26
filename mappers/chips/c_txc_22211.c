@@ -1,6 +1,6 @@
 #include "mappers/mappers.h"
-#include "mappers/chips/latch.h"
-#include "mappers/chips/txc_22211.h"
+#include "mappers/chips/c_latch.h"
+#include "mappers/chips/c_txc_22211.h"
 
 static u8 revision;
 static u8 reg[4];

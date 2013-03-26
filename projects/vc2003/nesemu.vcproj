@@ -528,6 +528,15 @@
 					<File
 						RelativePath="..\..\mappers\boards\mario1-malee2.c">
 					</File>
+					<File
+						RelativePath="..\..\mappers\boards\txc-22211a.c">
+					</File>
+					<File
+						RelativePath="..\..\mappers\boards\txc-22211b.c">
+					</File>
+					<File
+						RelativePath="..\..\mappers\boards\txc-22211c.c">
+					</File>
 					<Filter
 						Name="nintendo"
 						Filter="">
@@ -593,66 +602,109 @@
 							RelativePath="..\..\mappers\boards\sachen\sachen-tca01.c">
 						</File>
 					</Filter>
+					<Filter
+						Name="konami"
+						Filter="">
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc1.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc2a.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc2b.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc3.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc4a.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc4b.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc4c.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc4d.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc4e.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc6a.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc6b.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc7a.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\konami\vrc7b.c">
+						</File>
+					</Filter>
 				</Filter>
 				<Filter
 					Name="chips"
 					Filter="">
 					<File
-						RelativePath="..\..\mappers\chips\fme7.c">
+						RelativePath="..\..\mappers\chips\c_fme7.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\irem_h-3001.c">
+						RelativePath="..\..\mappers\chips\c_irem_h-3001.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\latch.c">
+						RelativePath="..\..\mappers\chips\c_latch.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mapper90.c">
+						RelativePath="..\..\mappers\chips\c_mapper90.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mmc1.c">
+						RelativePath="..\..\mappers\chips\c_mmc1.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mmc2.c">
+						RelativePath="..\..\mappers\chips\c_mmc2.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mmc3.c">
+						RelativePath="..\..\mappers\chips\c_mmc3.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mmc4.c">
+						RelativePath="..\..\mappers\chips\c_mmc4.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mmc5.c">
+						RelativePath="..\..\mappers\chips\c_mmc5.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mmc6.c">
+						RelativePath="..\..\mappers\chips\c_mmc6.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\namco_106.c">
+						RelativePath="..\..\mappers\chips\c_namcot_106.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\sachen_8259.c">
+						RelativePath="..\..\mappers\chips\c_sachen_8259.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\txc_22211.c">
+						RelativePath="..\..\mappers\chips\c_txc_22211.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\vrc1.c">
+						RelativePath="..\..\mappers\chips\c_vrc1.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\vrc2.c">
+						RelativePath="..\..\mappers\chips\c_vrc2.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\vrc3.c">
+						RelativePath="..\..\mappers\chips\c_vrc3.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\vrc4.c">
+						RelativePath="..\..\mappers\chips\c_vrc4.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\vrc6.c">
+						RelativePath="..\..\mappers\chips\c_vrc6.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\vrc7.c">
+						RelativePath="..\..\mappers\chips\c_vrc7.c">
 					</File>
 				</Filter>
 				<Filter
@@ -1043,64 +1095,61 @@
 					Name="chips"
 					Filter="">
 					<File
-						RelativePath="..\..\mappers\chips\fme7.h">
+						RelativePath="..\..\mappers\chips\c_fme7.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\irem_h-3001.h">
+						RelativePath="..\..\mappers\chips\c_irem_h-3001.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\latch.h">
+						RelativePath="..\..\mappers\chips\c_latch.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mapper90.h">
+						RelativePath="..\..\mappers\chips\c_mapper90.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mmc1.h">
+						RelativePath="..\..\mappers\chips\c_mmc1.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mmc2.h">
+						RelativePath="..\..\mappers\chips\c_mmc2.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mmc3.h">
+						RelativePath="..\..\mappers\chips\c_mmc3.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mmc4.h">
+						RelativePath="..\..\mappers\chips\c_mmc4.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mmc5.h">
+						RelativePath="..\..\mappers\chips\c_mmc5.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\mmc6.h">
+						RelativePath="..\..\mappers\chips\c_mmc6.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\namco_106.h">
+						RelativePath="..\..\mappers\chips\c_namcot_106.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\sachen_8259.h">
+						RelativePath="..\..\mappers\chips\c_sachen_8259.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\sachen_tca01.h">
+						RelativePath="..\..\mappers\chips\c_txc_22211.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\txc_22211.h">
+						RelativePath="..\..\mappers\chips\c_vrc1.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\vrc1.h">
+						RelativePath="..\..\mappers\chips\c_vrc2.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\vrc2.h">
+						RelativePath="..\..\mappers\chips\c_vrc3.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\vrc3.h">
+						RelativePath="..\..\mappers\chips\c_vrc4.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\vrc4.h">
+						RelativePath="..\..\mappers\chips\c_vrc6.h">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\vrc6.h">
-					</File>
-					<File
-						RelativePath="..\..\mappers\chips\vrc7.h">
+						RelativePath="..\..\mappers\chips\c_vrc7.h">
 					</File>
 				</Filter>
 				<Filter
