@@ -200,7 +200,7 @@ rom_crc_t rom_crcs[] = {
 	{"Fantastic Adventures of Dizzy (Aladdin) (UE)",0xF732C8FD,0x00000000,"CAMERICA-BF9093",ROM_NOCHR},
 	{"Faxanadu (U)",											0x57DD23D1,0x00000000,"NES-SGROM",ROM_NOCHR},
 	{"Ferrari - Grand Prix Challenge (U)",				0xB051C0E1,0x13D6708E,"NES-SLROM",0},
-	{"Game Genie (Unl)",										0x02B26E69,0xE698CC99,"NES-UOROM",0},
+//	{"Game Genie (Unl)",										0x02B26E69,0xE698CC99,"NES-UOROM",ROM_NOCHR},
 	{"Gauntlet (Unl) (U)",									0xB19C48A5,0x1EEFF226,"NES-TFROM",0},
 	{"Golf (JU)",												0x9C7E6421,0x7DFA75A8,"NES-NROM-128",0},
 	{"Gumshoe (UE)",											0x7B5BD2DE,0xDC371E9E,"NES-GNROM",0},

@@ -68,6 +68,31 @@
 		*data++ = (u8)(((dat) >> 24) & 0xFF);	\
 	}
 
+#define STATE_INT(dat)				\
+	if(mode == STATE_LOAD) {		\
+		u32 _tmpu32;					\
+		_tmpu32 = *data++;			\
+		_tmpu32 |= *data++ << 8;	\
+		_tmpu32 |= *data++ << 16;	\
+		_tmpu32 |= *data++ << 24;	\
+		dat = (int)_tmpu32;			\
+	}										\
+	else if(mode == STATE_SAVE) {							\
+		*data++ = (u8)((u32)(dat) & 0xFF);				\
+		*data++ = (u8)(((u32)(dat) >> 8) & 0xFF);		\
+		*data++ = (u8)(((u32)(dat) >> 16) & 0xFF);	\
+		*data++ = (u8)(((u32)(dat) >> 24) & 0xFF);	\
+	}
+
+#ifdef MEMWATCH
+#include "memwatch.h"
+#elif defined OSX
+#include <memory.h>
+#else
+#include <malloc.h>
+#endif
+
+
 #define STATE_ARRAY_U8(arr,siz)	\
 	{int i; for(i=0;i<(siz);i++)	\
 		STATE_U8((arr)[i]); }

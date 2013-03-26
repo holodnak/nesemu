@@ -71,13 +71,18 @@ u8 fds_read(u32 addr)
 			ret = 0x40;
 
 			//disk ejected bit
-			if(disknum == 0xFF)
+			if(disknum == 0xFF) {
+				log_message("fds_read:  disk ejected.  (disknum = $%02X, control = $%02X)\n",disknum,control);
 				ret |= 5;
+			}
 
 			//disk not inserted
-			if((disknum == 0xFF) || ((control & 1) == 0) || (control & 2))
+			if((disknum == 0xFF) || ((control & 1) == 0) || (control & 2)) {
+//				log_message("fds_read:  disk not inserted.  (disknum = $%02X, control = $%02X)\n",disknum,control);
 				ret |= 2;
+			}
 
+//			log_message("fds_read:  $%04X:  disknum = $%02X, control = $%02X\n",addr,disknum,control);
 			return(ret);
 
 		//battery status
@@ -159,6 +164,7 @@ void fds_write(u32 addr,u8 data)
 			if(data & 0x40)
 				diskirq = 200;
 			control = data;
+//			log_message("fds_write:  $%02X:  control = $%02X\n",addr,control);
 			break;
 	}
 }
@@ -168,29 +174,29 @@ void fds_write(u32 addr,u8 data)
 void fds_line(int line,int pcycles)
 {
 	//hacked in disk flipping code
-	static int newdisknum = 0;
+/*	static int newdisknum = 0;
 	static int diskflipwait = 0;
 
 	if((line == 0)) {
 		if(diskflipwait <= 0) {
 			if(joykeys[config.gui_keys[3]]) {
 				newdisknum = (disknum & ~1) | ((disknum ^ 1) & 1);
-//				log_message("(disk ejected) disknum changed to %d\n",disknum);
+				log_message("fds_line:  (disk ejected) disknum changed to %d (diskflipwait = %d)\n",disknum,diskflipwait);
 				disknum = 0xFF;
 				diskflipwait = 60 * 2;	//delay
 			}
 			else {
 				disknum = newdisknum;
-//				log_message("(disk inserted) disknum changed to %d\n",disknum);
+				log_message("fds_line:  (disk inserted) disknum changed to %d (diskflipwait = %d)\n",disknum,diskflipwait);
 			}
 		}
 		else
 			diskflipwait--;
-	}
+	}*/
 	//end hack
 
-	if((irqenabled & 0x2) && (irqcounter) && ((irqcounter -= 114) <= 0)) {
-		if(irqenabled & 0x1)
+	if((irqenabled & 2) && (irqcounter) && ((irqcounter -= 114) <= 0)) {
+		if(irqenabled & 1)
 			irqcounter = irqlatch;
 		else
 			irqenabled &= 1;

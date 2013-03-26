@@ -490,12 +490,6 @@
 				Name="mappers"
 				Filter="">
 				<File
-					RelativePath="..\..\mappers\ines20_boards.c">
-				</File>
-				<File
-					RelativePath="..\..\mappers\ines_boards.c">
-				</File>
-				<File
 					RelativePath="..\..\mappers\mappers.c">
 					<FileConfiguration
 						Name="Debug|Win32">
@@ -511,14 +505,17 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath="..\..\mappers\unif_boards.c">
+					RelativePath="..\..\mappers\mappers_ines.c">
+				</File>
+				<File
+					RelativePath="..\..\mappers\mappers_ines20.c">
+				</File>
+				<File
+					RelativePath="..\..\mappers\mappers_unif.c">
 				</File>
 				<Filter
 					Name="boards"
 					Filter="">
-					<File
-						RelativePath="..\..\mappers\boards\axrom.c">
-					</File>
 					<File
 						RelativePath="..\..\mappers\boards\biomiraclea.c">
 					</File>
@@ -526,32 +523,76 @@
 						RelativePath="..\..\mappers\boards\caltron6in1.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\boards\cxrom.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\boards\hxrom.c">
+						RelativePath="..\..\mappers\boards\magicseries.c">
 					</File>
 					<File
 						RelativePath="..\..\mappers\boards\mario1-malee2.c">
 					</File>
-					<File
-						RelativePath="..\..\mappers\boards\nrom.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\boards\pxrom.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\boards\sachen-74ls374n.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\boards\sxrom.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\boards\txrom.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\boards\uxrom.c">
-					</File>
+					<Filter
+						Name="nintendo"
+						Filter="">
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\axrom.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\cxrom.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\event.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\hxrom.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\nrom.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\pxrom.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\sxrom.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\txrom.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\uxrom.c">
+						</File>
+					</Filter>
+					<Filter
+						Name="sachen"
+						Filter="">
+						<File
+							RelativePath="..\..\mappers\boards\sachen\sa-0036.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\sachen\sa-0037.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\sachen\sa-72007.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\sachen\sa-72008.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\sachen\sachen-74ls374n.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\sachen\sachen-8259a.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\sachen\sachen-8259b.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\sachen\sachen-8259c.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\sachen\sachen-8259d.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\sachen\sachen-tca01.c">
+						</File>
+					</Filter>
 				</Filter>
 				<Filter
 					Name="chips"
@@ -591,9 +632,6 @@
 					</File>
 					<File
 						RelativePath="..\..\mappers\chips\sachen_8259.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\chips\sachen_tca01.c">
 					</File>
 					<File
 						RelativePath="..\..\mappers\chips\txc_22211.c">
@@ -989,7 +1027,10 @@
 				Name="mappers"
 				Filter="">
 				<File
-					RelativePath="..\..\mappers\boardid.h">
+					RelativePath="..\..\mappers\mapperid.h">
+				</File>
+				<File
+					RelativePath="..\..\mappers\mapperinc.h">
 				</File>
 				<File
 					RelativePath="..\..\mappers\mappers.h">

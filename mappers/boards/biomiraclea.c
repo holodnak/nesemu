@@ -62,7 +62,7 @@ static void state(int mode,u8 *data)
 	STATE_U8(prg);
 	STATE_U8(mirror);
 	STATE_U8(irqenabled);
-	STATE_U32((u32)irqcounter);
+	STATE_INT(irqcounter);
 	sync();
 }
 

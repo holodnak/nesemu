@@ -21,6 +21,11 @@
 file config
 saves data to config file
 */
+#ifdef WIN32
+//#define stricmp _stricmp
+#define mkdir _mkdir
+#endif
+#include <direct.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

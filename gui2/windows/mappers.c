@@ -48,7 +48,7 @@ void mappers_draw(mappers_t *m)
 	if(nes->rom) {
 		switch(nes->rom->boardid) {
 			//nes-event
-			case B_NES_EVENT:
+			case B_EVENT:
 				gui_draw_text(GUI_TEXT,x+2,y+2,"NES-EVENT Configuration");
 				mapper105_draw(m);
 				break;
@@ -85,7 +85,7 @@ int mappers_event(mappers_t *m,int event,int data)
 	if(nes->rom) {
 		switch(nes->rom->boardid) {
 			//nes-event
-			case B_NES_EVENT:
+			case B_EVENT:
 				mapper105_event(m,event,data);
 				break;
 		}
@@ -99,30 +99,30 @@ static u8 data[16];
 
 void click_mapper105_check0(void *u,int s)
 {
-//	mapper105.state(STATE_SAVECFG,data);
+	nes->mapper->state(STATE_SAVECFG,data);
 	data[0] = (data[0] & ~1) | (s << 0);
-//	mapper105.state(STATE_LOADCFG,data);
+	nes->mapper->state(STATE_LOADCFG,data);
 }
 
 void click_mapper105_check1(void *u,int s)
 {
-//	mapper105.state(STATE_SAVECFG,data);
+	nes->mapper->state(STATE_SAVECFG,data);
 	data[0] = (data[0] & ~2) | (s << 1);
-//	mapper105.state(STATE_LOADCFG,data);
+	nes->mapper->state(STATE_LOADCFG,data);
 }
 
 void click_mapper105_check2(void *u,int s)
 {
-//	mapper105.state(STATE_SAVECFG,data);
+	nes->mapper->state(STATE_SAVECFG,data);
 	data[0] = (data[0] & ~4) | (s << 2);
-//	mapper105.state(STATE_LOADCFG,data);
+	nes->mapper->state(STATE_LOADCFG,data);
 }
 
 void click_mapper105_check3(void *u,int s)
 {
-//	mapper105.state(STATE_SAVECFG,data);
+	nes->mapper->state(STATE_SAVECFG,data);
 	data[0] = (data[0] & ~8) | (s << 3);
-//	mapper105.state(STATE_LOADCFG,data);
+	nes->mapper->state(STATE_LOADCFG,data);
 }
 
 void mappers_create(mappers_t *m)

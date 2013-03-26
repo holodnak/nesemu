@@ -25,20 +25,6 @@
 
 #define GZ_STATES
 
-#ifdef WIN32
-#define stricmp _stricmp
-#include <direct.h>
-#define mkdir _mkdir
-#endif
-
-#ifdef MEMWATCH
-#include "memwatch.h"
-#elif defined OSX
-#include <memory.h>
-#else
-#include <malloc.h>
-#endif
-
 #ifdef PS2
 #define SOUND_HZ	48000
 #else

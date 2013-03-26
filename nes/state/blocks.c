@@ -20,6 +20,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <malloc.h>
 #include "nes/state/blocks.h"
 #include "system/file.h"
 

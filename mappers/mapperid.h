@@ -35,14 +35,25 @@ enum boardid_e {
 	B_SxROM,
 	B_TxROM,
 	B_UxROM,
-	B_NES_EVENT,
+	B_EVENT,
 
 	//unlicensed
 	B_CALTRON6IN1,
 	B_BIOMIRACLEA,
 	B_MARIO1_MALEE2,
-	B_SACHEN_74LS374N,
 	B_MAGICSERIES,
+
+	//sachen
+	B_SACHEN_TCA01,
+	B_SACHEN_74LS374N,
+	B_SACHEN_8259A,
+	B_SACHEN_8259B,
+	B_SACHEN_8259C,
+	B_SACHEN_8259D,
+	B_SA_0036,
+	B_SA_0037,
+	B_SA_72007,
+	B_SA_72008,
 
 	//for getting a count of supported boards
 	B_BOARDEND,

@@ -22,6 +22,6 @@
 #define __mapperinc_h__
 
 #include "mappers.h"
-#include "boardid.h"
+#include "mapperid.h"
 
 #endif
