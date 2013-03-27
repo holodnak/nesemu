@@ -528,15 +528,6 @@
 					<File
 						RelativePath="..\..\mappers\boards\mario1-malee2.c">
 					</File>
-					<File
-						RelativePath="..\..\mappers\boards\txc-22211a.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\boards\txc-22211b.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\boards\txc-22211c.c">
-					</File>
 					<Filter
 						Name="nintendo"
 						Filter="">
@@ -548,6 +539,9 @@
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\nintendo\event.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\exrom.c">
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\nintendo\hxrom.c">
@@ -643,6 +637,41 @@
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\konami\vrc7b.c">
+						</File>
+					</Filter>
+					<Filter
+						Name="ffe"
+						Filter="">
+						<File
+							RelativePath="..\..\mappers\boards\ffe\ffe_mapper17.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\ffe\ffe_mapper6.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\ffe\ffe_mapper8.c">
+						</File>
+					</Filter>
+					<Filter
+						Name="txc"
+						Filter="">
+						<File
+							RelativePath="..\..\mappers\boards\txc\txc-22211a.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\txc\txc-22211b.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\txc\txc-22211c.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\txc\txc-mxmdhtwo.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\txc\txc-strikewolf.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\txc\txc-tw.c">
 						</File>
 					</Filter>
 				</Filter>

@@ -36,6 +36,7 @@ enum boardid_e {
 	B_NROM = 0,
 	B_AxROM,
 	B_CxROM,
+	B_ExROM,
 	B_HxROM,
 	B_PxROM,
 	B_SxROM,
@@ -63,9 +64,14 @@ enum boardid_e {
 	B_BIOMIRACLEA,
 	B_MARIO1_MALEE2,
 	B_MAGICSERIES,
+
+	//txc corporation
 	B_TXC_22211A,
 	B_TXC_22211B,
 	B_TXC_22211C,
+	B_TXC_MXMDHTWO,
+	B_TXC_TW,
+	B_TXC_STRIKEWOLF,
 
 	//sachen
 	B_SACHEN_TCA01,
@@ -78,6 +84,11 @@ enum boardid_e {
 	B_SA_0037,
 	B_SA_72007,
 	B_SA_72008,
+
+	//ffe
+	B_FFE_MAPPER6,
+	B_FFE_MAPPER8,
+	B_FFE_MAPPER17,
 
 	//for getting a count of supported boards
 	B_BOARDEND,

@@ -20,9 +20,14 @@ mapper_t *mapper_init(int board)
 	MAPPER(B_BIOMIRACLEA);
 	MAPPER(B_MARIO1_MALEE2);
 	MAPPER(B_MAGICSERIES);
+
+	//txc corporation
 	MAPPER(B_TXC_22211A);
 	MAPPER(B_TXC_22211B);
 	MAPPER(B_TXC_22211C);
+	MAPPER(B_TXC_MXMDHTWO);
+	MAPPER(B_TXC_TW);
+	MAPPER(B_TXC_STRIKEWOLF);
 
 	//sachen boards
 	MAPPER(B_SACHEN_8259A);
@@ -35,6 +40,11 @@ mapper_t *mapper_init(int board)
 	MAPPER(B_SA_0037);
 	MAPPER(B_SA_72007);
 	MAPPER(B_SA_72008);
+
+	//ffe
+	MAPPER(B_FFE_MAPPER6);
+	MAPPER(B_FFE_MAPPER8);
+	MAPPER(B_FFE_MAPPER17);
 
 	//extras
 	MAPPER(B_NSF);
