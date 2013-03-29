@@ -69,6 +69,10 @@ enum boardid_e {
 	//namcot
 	B_NAMCOT_163,
 
+	//bandai
+	B_BANDAI_KARAOKE,
+	B_74x161x161x32,		//also taito
+
 	//unlicensed
 	B_CALTRON6IN1,
 	B_BIOMIRACLEA,
@@ -77,6 +81,11 @@ enum boardid_e {
 
 	//colordreams + few others
 	B_74x377,
+
+	//tengen
+	B_TENGEN_800008,
+	B_TENGEN_800032,
+	B_TENGEN_800037,
 
 	//txc corporation
 	B_TXC_22211A,

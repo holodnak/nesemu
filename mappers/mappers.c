@@ -22,6 +22,10 @@ mapper_t *mapper_init(int board)
 	//namcot
 	MAPPER(B_NAMCOT_163);
 
+	//bandai
+	MAPPER(B_BANDAI_KARAOKE);
+	MAPPER(B_74x161x161x32);		//also taito
+
 	//unlicensed
 	//txc corporation
 	MAPPER(B_TXC_22211A);
@@ -50,6 +54,9 @@ mapper_t *mapper_init(int board)
 
 	//colordreams + others
 	MAPPER(B_74x377);
+
+	//tengen
+	MAPPER(B_TENGEN_800032);
 
 	//other boards
 	MAPPER(B_CALTRON6IN1);

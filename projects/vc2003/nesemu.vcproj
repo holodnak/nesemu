@@ -700,6 +700,29 @@
 							RelativePath="..\..\mappers\boards\namcot\namcot_163.c">
 						</File>
 					</Filter>
+					<Filter
+						Name="bandai"
+						Filter="">
+						<File
+							RelativePath="..\..\mappers\boards\bandai\74x161x161x32.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\bandai\bandai-karaoke.c">
+						</File>
+					</Filter>
+					<Filter
+						Name="tengen"
+						Filter="">
+						<File
+							RelativePath="..\..\mappers\boards\tengen\800008.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\tengen\800032.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\tengen\800037.c">
+						</File>
+					</Filter>
 				</Filter>
 				<Filter
 					Name="chips"

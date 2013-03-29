@@ -11,9 +11,12 @@ mappers broken:
  . mapper 10 (mmc4) mostly seems to work, except for fire emblem menu boxes 
  . mapper 19 (namcot 163) partially working
 
- mappers working:
+mappers working:
  . mapper 13 working ok, timing (?) error with Videomation
  . mapper 18 (jaleco ss8806) implemented.  seems ok with little testing
+
+mappers unknown
+ . mapper 188 (BANDAI-KARAOKE) added, untested
 
 ------------
 old testing
