@@ -517,6 +517,9 @@
 					Name="boards"
 					Filter="">
 					<File
+						RelativePath="..\..\mappers\boards\74x377.c">
+					</File>
+					<File
 						RelativePath="..\..\mappers\boards\biomiraclea.c">
 					</File>
 					<File
@@ -535,13 +538,19 @@
 							RelativePath="..\..\mappers\boards\nintendo\axrom.c">
 						</File>
 						<File
-							RelativePath="..\..\mappers\boards\nintendo\cxrom.c">
+							RelativePath="..\..\mappers\boards\nintendo\cnrom.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\cprom.c">
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\nintendo\event.c">
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\nintendo\exrom.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\fxrom.c">
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\nintendo\hxrom.c">
@@ -672,6 +681,23 @@
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\txc\txc-tw.c">
+						</File>
+					</Filter>
+					<Filter
+						Name="jaleco"
+						Filter="">
+						<File
+							RelativePath="..\..\mappers\boards\jaleco\74x139x74.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\jaleco\ss8806.c">
+						</File>
+					</Filter>
+					<Filter
+						Name="namcot"
+						Filter="">
+						<File
+							RelativePath="..\..\mappers\boards\namcot\namcot_163.c">
 						</File>
 					</Filter>
 				</Filter>

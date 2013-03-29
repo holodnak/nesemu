@@ -66,9 +66,11 @@ typedef struct rom_s {
 	u32	prgmask,chrmask;			//prg and chr masks
 	u32	vrammask,svrammask;		//sram and vram masks
 	u32	srammask,wrammask;		//wram (sram that is not battery backed)
+	u32	pc10romsize;
 	u8		*prg,*chr;					//actual prg/chr data
 	u8		*vram,*svram;				//vram and svram data
 	u8		*sram,*wram;				//sram and wram data
+	u8		*pc10rom;
 
 	//cache data
 	cache_t	*cache,*cache_hflip;		//chr cache

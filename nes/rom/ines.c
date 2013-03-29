@@ -46,6 +46,8 @@ static int load_ines_header(rom_t *ret,u8 *header)
 		ret->mirroring = header[6] & 1;
 	if(header[6] & 2)
 		rom_setsramsize(ret,2);
+	if(header[7] & 2)
+		ret->pc10romsize = KB(8);
 	log_message("load_ines_header:  %dkb prg, %dkb chr, mapper %d, %s mirroring\n",
 		ret->prgsize / 1024,ret->chrsize / 1024,mapper,
 		(ret->mirroring == 4) ? "four screen" :
@@ -58,100 +60,6 @@ static int load_ines_header(rom_t *ret,u8 *header)
 	}
 	return(0);
 }
-
-/*static char *getboardname(rom_t *rom)
-{
-	static char ret[32];
-
-	strcpy(ret,"?");
-	switch(rom->mapper) {
-		case 0:
-			if(rom->chrsize) {
-				if(rom->prgsize == KB(16))
-					strcpy(ret,"NES-NROM-128");
-				else
-					strcpy(ret,"NES-NROM-256");
-			}
-			else
-				log_error("mapper 0: rom must have chr rom\n");
-		case 2:
-			if(rom->prgsize == KB(128))
-				strcpy(ret,"NES-UNROM");
-			else
-				strcpy(ret,"NES-UOROM");
-			break;
-		case 3: strcpy(ret,"NES-CNROM"); break;
-		case 4:
-			if(rom->mirroring & 4) {
-				if(rom->prgsize == KB(64))
-					strcpy(ret,"NES-TVROM");
-				else if(rom->prgsize >= KB(128) && rom->prgsize <= KB(512))
-					strcpy(ret,"NES-TR1ROM");
-				else {
-					strcpy(ret,"NES-TR1ROM");
-					log_warning("mapper 4: bad prg size, defaulting to TR1ROM\n");
-				}
-			}
-			else {
-				if(rom->prgsize == KB(32))
-					strcpy(ret,"NES-TEROM");
-				if(rom->prgsize == KB(64))
-					strcpy(ret,"NES-TBROM");
-				else if(rom->prgsize >= KB(128) && rom->prgsize <= KB(512)) {
-					if(rom->chrsize == 0) {
-						if(rom->sramsize == 0)
-							strcpy(ret,"NES-TGROM");
-						else
-							strcpy(ret,"NES-TNROM");
-					}
-					else if(rom->chrsize <= KB(64))
-						strcpy(ret,"NES-TFROM");
-					else if(rom->chrsize <= KB(256)) {
-						if(rom->sramsize == 0)
-							strcpy(ret,"NES-TLROM");
-						else
-							strcpy(ret,"NES-TSROM");
-					}
-					else {
-						strcpy(ret,"NES-TSROM");
-						log_error("mapper 7: bad chr size, defaulting to TSROM\n");
-					}
-				}
-				else {
-					strcpy(ret,"NES-TSROM");
-					log_error("mapper 7: bad prg size, defaulting to TSROM\n");
-				}
-			}
-			break;
-		//mapper 6 has no boards (ffe)
-		case 7:
-			if(rom->chrsize == 0) {
-				if(rom->prgsize == KB(256))
-					strcpy(ret,"NES-AOROM");
-				else if(rom->prgsize == KB(128))
-					strcpy(ret,"NES-ANROM");
-				else if(rom->prgsize == KB(64))
-					strcpy(ret,"NES-AN1ROM");
-				else {
-					strcpy(ret,"NES-AOROM");
-					log_warning("mapper 7: bad prg size, defaulting to AOROM\n");
-				}
-			}
-			else
-				log_error("mapper 7: AxROM boards always have chrrom\n");
-			break;
-		//mapper 8 has no boards (ffe)
-		case 9: strcpy(ret,"NES-PNROM"); break;
-		case 10:
-			if(rom->prgsize == KB(128))
-				strcpy(ret,"NES-FJROM"); 
-			else
-				strcpy(ret,"NES-FKROM"); 
-			break;
-		case 11: strcpy(ret,"COLORDREAMS-74*377"); break;
-	}
-	return(ret);
-}*/
 
 rom_t *rom_load_ines(int fd,rom_t *ret)
 {
@@ -200,6 +108,19 @@ rom_t *rom_load_ines(int fd,rom_t *ret)
 	//if no chr exists, go ahead and set default vram size of 8kb
 	else
 		rom_setvramsize(ret,1);
+
+	if(ret->pc10romsize) {
+
+		//allocate memory for pc10 rom
+		ret->pc10rom = (u8*)malloc(ret->pc10romsize);
+
+		//read in the chr rom data
+		if(file_read(fd,ret->pc10rom,ret->pc10romsize) != ret->pc10romsize) {
+			log_message("rom_load: error reading pc10 rom data\n");
+			rom_unload(ret);
+			return(0);
+		}
+	}
 
 	//look for rom in database and update its mapper info
 /*	if(rom_checkdb(ret,0) == -1) {

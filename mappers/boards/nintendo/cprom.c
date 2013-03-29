@@ -3,7 +3,8 @@
 
 static void sync()
 {
-	mem_setchr8(0,latch_reg & 7);
+	mem_setvram4(0,0);
+	mem_setvram4(4,latch_reg & 3);
 }
 
 static void reset(int hard)
@@ -12,4 +13,4 @@ static void reset(int hard)
 	mem_setprg32(8,0);
 }
 
-MAPPER(B_CxROM,reset,0,0,latch_state);
+MAPPER(B_CPROM,reset,0,0,latch_state);

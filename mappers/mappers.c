@@ -11,16 +11,18 @@ mapper_t *mapper_init(int board)
 {
 	//licensed
 	//nintendo boards
-	MAPPER(B_NROM);			MAPPER(B_SxROM);			MAPPER(B_UxROM);			MAPPER(B_CxROM);
+	MAPPER(B_NROM);			MAPPER(B_SxROM);			MAPPER(B_UxROM);			MAPPER(B_CNROM);
 	MAPPER(B_TxROM);			MAPPER(B_PxROM);			MAPPER(B_HxROM);			MAPPER(B_AxROM);
+	MAPPER(B_FxROM);			MAPPER(B_CPROM);
+
+	//jaleco boards
+	MAPPER(B_SS8806);
+	MAPPER(B_74x139x74);
+
+	//namcot
+	MAPPER(B_NAMCOT_163);
 
 	//unlicensed
-	//other boards
-	MAPPER(B_CALTRON6IN1);
-	MAPPER(B_BIOMIRACLEA);
-	MAPPER(B_MARIO1_MALEE2);
-	MAPPER(B_MAGICSERIES);
-
 	//txc corporation
 	MAPPER(B_TXC_22211A);
 	MAPPER(B_TXC_22211B);
@@ -45,6 +47,15 @@ mapper_t *mapper_init(int board)
 	MAPPER(B_FFE_MAPPER6);
 	MAPPER(B_FFE_MAPPER8);
 	MAPPER(B_FFE_MAPPER17);
+
+	//colordreams + others
+	MAPPER(B_74x377);
+
+	//other boards
+	MAPPER(B_CALTRON6IN1);
+	MAPPER(B_BIOMIRACLEA);
+	MAPPER(B_MARIO1_MALEE2);
+	MAPPER(B_MAGICSERIES);
 
 	//extras
 	MAPPER(B_NSF);

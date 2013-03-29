@@ -1,8 +1,19 @@
 ----------------
 current testing
 ----------------
+
+mappers broken:
  . chess academy (sachen 74ls374n) breaks mid-game
  . all ffe mappers broken (mappers 6 + 8 + 17)
+ . mapper 189 not working still
+ . mapper 36 needs testing (strikewolf)
+ . mapper 87 - so simple why not working? (Ninja Jajamaru-kun crashing)
+ . mapper 10 (mmc4) mostly seems to work, except for fire emblem menu boxes 
+ . mapper 19 (namcot 163) partially working
+
+ mappers working:
+ . mapper 13 working ok, timing (?) error with Videomation
+ . mapper 18 (jaleco ss8806) implemented.  seems ok with little testing
 
 ------------
 old testing

@@ -187,6 +187,7 @@ void rom_unload(rom_t *r)
 		if(r->sram)				free(r->sram);
 		if(r->diskdata)		free(r->diskdata);
 		if(r->orig_diskdata)	free(r->orig_diskdata);
+		if(r->pc10rom)			free(r->pc10rom);
 		memset(r,0,sizeof(rom_t));
 		free(r);
 	}

@@ -251,6 +251,7 @@ rom_crc_t rom_crcs[] = {
 	{"Super Mario Bros 3 (U) (PRG 1) [a3]",			0x4B7DBC74,0xC2928C49,"NES-TLROM",0},
 	{"Super Pitfall (U)",									0x979C5314,0x00000000,"NES-UNROM",ROM_NOCHR},
 	{"Tetris (Unl) (U)",										0xA520F44C,0x68F18CBE,"NES-CNROM",0},
+	{"Videomation (U)",										0x5E66EAEA,0x00000000,"NES-CPROM",ROM_NOCHR},
 	{"Wizards and Warriors (U)",							0x505F9715,0x00000000,"NES-ANROM",ROM_NOCHR | SPRITE0_HACK},
 	{"Xenophobe (U)",											0x9ECA0941,0xAA00B5FA,"NES-SFROM",0},
 	{"Xevious (U)",											0x18D5AF7A,0x668B4EE6,"NES-UOROM",0},

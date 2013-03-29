@@ -20,7 +20,7 @@ static u8 read(u32 addr)
 
 static void write(u32 addr,u8 data)
 {
-	log_message("txc-tw:  write to $%04X = $%02X\n",addr,data);
+	log_message("txc-mxmdhtwo:  write to $%04X = $%02X\n",addr,data);
 	reg = data;
 	sync();
 }

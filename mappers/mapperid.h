@@ -35,8 +35,11 @@ enum boardid_e {
 	//nintendo
 	B_NROM = 0,
 	B_AxROM,
-	B_CxROM,
+	B_CNROM,
+	B_CPROM,
+	B_DxROM,
 	B_ExROM,
+	B_FxROM,
 	B_HxROM,
 	B_PxROM,
 	B_SxROM,
@@ -59,11 +62,21 @@ enum boardid_e {
 	B_VRC7A,
 	B_VRC7B,
 
+	//jaleco
+	B_74x139x74,
+	B_SS8806,
+
+	//namcot
+	B_NAMCOT_163,
+
 	//unlicensed
 	B_CALTRON6IN1,
 	B_BIOMIRACLEA,
 	B_MARIO1_MALEE2,
 	B_MAGICSERIES,
+
+	//colordreams + few others
+	B_74x377,
 
 	//txc corporation
 	B_TXC_22211A,

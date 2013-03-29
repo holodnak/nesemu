@@ -25,7 +25,7 @@
 #include "nes/state/blocks.h"
 
 #define ID_MAPR	MAKEID('M','A','P','R')
-#define ID_NAME	MAKEID('M','A','P','R')
+#define ID_NAME	MAKEID('N','A','M','E')
 #define ID_MIRR	MAKEID('M','I','R','R')
 #define ID_WRTR	MAKEID('W','R','T','R')
 #define ID_PRG0	MAKEID('P','R','G','0')
