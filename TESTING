@@ -10,13 +10,18 @@ mappers broken:
  . mapper 87 - so simple why not working? (Ninja Jajamaru-kun crashing)
  . mapper 10 (mmc4) mostly seems to work, except for fire emblem menu boxes 
  . mapper 19 (namcot 163) partially working
+ . mapper 95
 
 mappers working:
  . mapper 13 working ok, timing (?) error with Videomation
  . mapper 18 (jaleco ss8806) implemented.  seems ok with little testing
+ . mapper 88/206 working?
 
-mappers unknown
+mappers unknown:
  . mapper 188 (BANDAI-KARAOKE) added, untested
+
+needed:
+ . mapper 88/206 has four screen
 
 ------------
 old testing

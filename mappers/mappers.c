@@ -13,7 +13,7 @@ mapper_t *mapper_init(int board)
 	//nintendo boards
 	MAPPER(B_NROM);			MAPPER(B_SxROM);			MAPPER(B_UxROM);			MAPPER(B_CNROM);
 	MAPPER(B_TxROM);			MAPPER(B_PxROM);			MAPPER(B_HxROM);			MAPPER(B_AxROM);
-	MAPPER(B_FxROM);			MAPPER(B_CPROM);
+	MAPPER(B_FxROM);			MAPPER(B_CPROM);			MAPPER(B_DxROM);
 
 	//jaleco boards
 	MAPPER(B_SS8806);
@@ -21,6 +21,10 @@ mapper_t *mapper_init(int board)
 
 	//namcot
 	MAPPER(B_NAMCOT_163);
+	MAPPER(B_NAMCOT_3425);
+	MAPPER(B_NAMCOT_34x3);
+	MAPPER(B_NAMCOT_3446);
+	MAPPER(B_NAMCOT_3453);
 
 	//bandai
 	MAPPER(B_BANDAI_KARAOKE);

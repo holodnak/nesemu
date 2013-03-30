@@ -68,6 +68,10 @@ enum boardid_e {
 
 	//namcot
 	B_NAMCOT_163,
+	B_NAMCOT_3425,
+	B_NAMCOT_34x3,
+	B_NAMCOT_3446,
+	B_NAMCOT_3453,
 
 	//bandai
 	B_BANDAI_KARAOKE,

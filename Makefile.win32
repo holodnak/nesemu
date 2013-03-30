@@ -12,7 +12,7 @@ LD = gcc
 AS = as
 WINDRES = windres
 
-CFLAGS = -DSDL -I. -Ic:/zlib
+CFLAGS += -DSDL -I. -Ic:/zlib
 LDFLAGS = -s -lz -lSDL -lSDLmain
 
 TARGET = nesemu.exe

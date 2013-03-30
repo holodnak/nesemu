@@ -33,20 +33,38 @@ GUI2_OBJ += gui2/windows/tracer.o gui2/windows/rom_info.o gui2/windows/memory_vi
 GUI2_OBJ += gui2/windows/nametable_viewer.o gui2/windows/patterntable_viewer.o gui2/keyname.o
 
 # mapper sources
-CHIPS_OBJ = mappers/chips/mmc1.o mappers/chips/mmc2.o mappers/chips/mmc3.o
-CHIPS_OBJ += mappers/chips/mmc4.o mappers/chips/mmc5.o mappers/chips/mmc6.o
-CHIPS_OBJ += mappers/chips/vrc1.o mappers/chips/vrc2.o mappers/chips/vrc3.o
-CHIPS_OBJ += mappers/chips/vrc4.o mappers/chips/vrc6.o mappers/chips/vrc7.o
-CHIPS_OBJ += mappers/chips/latch.o mappers/chips/fme7.o mappers/chips/irem_h-3001.o
-CHIPS_OBJ += mappers/chips/sachen_8259.o mappers/chips/sachen_tca01.o
-CHIPS_OBJ += mappers/chips/namco_106.o mappers/chips/mapper90.o mappers/chips/txc_22211.o
+CHIPS_OBJ = mappers/chips/c_mmc1.o mappers/chips/c_mmc2.o mappers/chips/c_mmc3.o
+CHIPS_OBJ += mappers/chips/c_mmc4.o mappers/chips/c_mmc5.o mappers/chips/c_mmc6.o
+CHIPS_OBJ += mappers/chips/c_vrc1.o mappers/chips/c_vrc2.o mappers/chips/c_vrc3.o
+CHIPS_OBJ += mappers/chips/c_vrc4.o mappers/chips/c_vrc6.o mappers/chips/c_vrc7.o
+CHIPS_OBJ += mappers/chips/c_latch.o mappers/chips/c_fme7.o mappers/chips/c_irem_h-3001.o
+CHIPS_OBJ += mappers/chips/c_sachen_8259.o mappers/chips/c_txc_22211.o
+CHIPS_OBJ += mappers/chips/c_namcot_106.o mappers/chips/c_mapper90.o
 SOUND_OBJ = mappers/sound/s_N106.o mappers/sound/s_FME7.o mappers/sound/s_FDS.o
 SOUND_OBJ += mappers/sound/s_VRC6.o mappers/sound/s_VRC7.o mappers/sound/s_MMC5.o
-BOARD_OBJ = mappers/boards/axrom.o mappers/boards/biomiraclea.o mappers/boards/caltron6in1.o
-BOARD_OBJ += mappers/boards/cxrom.o mappers/boards/hxrom.o mappers/boards/mario1-malee2.o
-BOARD_OBJ += mappers/boards/nrom.o mappers/boards/pxrom.o mappers/boards/sachen-74ls374n.o
-BOARD_OBJ += mappers/boards/sxrom.o mappers/boards/txrom.o mappers/boards/uxrom.o
-MAPPER_OBJ = mappers/mappers.o mappers/ines_boards.o mappers/ines20_boards.o mappers/unif_boards.o
+BOARD_OBJ = mappers/boards/74x377.o mappers/boards/biomiraclea.o mappers/boards/caltron6in1.o
+BOARD_OBJ += mappers/boards/magicseries.o mappers/boards/mario1-malee2.o
+BOARD_OBJ += mappers/boards/bandai/74x161x161x32.o mappers/boards/bandai/bandai-karaoke.o
+BOARD_OBJ += mappers/boards/ffe/ffe_mapper17.o mappers/boards/ffe/ffe_mapper6.o mappers/boards/ffe/ffe_mapper8.o
+BOARD_OBJ += mappers/boards/jaleco/74x139x74.o mappers/boards/jaleco/ss8806.o
+BOARD_OBJ += mappers/boards/konami/vrc1.o mappers/boards/konami/vrc2a.o mappers/boards/konami/vrc2b.o
+BOARD_OBJ += mappers/boards/konami/vrc3.o mappers/boards/konami/vrc4a.o mappers/boards/konami/vrc4b.o
+BOARD_OBJ += mappers/boards/konami/vrc4c.o mappers/boards/konami/vrc4d.o mappers/boards/konami/vrc4e.o
+BOARD_OBJ += mappers/boards/konami/vrc6a.o mappers/boards/konami/vrc6b.o mappers/boards/konami/vrc7a.o
+BOARD_OBJ += mappers/boards/konami/vrc7b.o
+BOARD_OBJ += mappers/boards/namcot/namcot_118.o mappers/boards/namcot/namcot_163.o
+BOARD_OBJ += mappers/boards/nintendo/axrom.o mappers/boards/nintendo/cnrom.o mappers/boards/nintendo/cprom.o
+BOARD_OBJ += mappers/boards/nintendo/event.o mappers/boards/nintendo/exrom.o mappers/boards/nintendo/fxrom.o
+BOARD_OBJ += mappers/boards/nintendo/hxrom.o mappers/boards/nintendo/nrom.o mappers/boards/nintendo/pxrom.o
+BOARD_OBJ += mappers/boards/nintendo/sxrom.o mappers/boards/nintendo/txrom.o mappers/boards/nintendo/uxrom.o
+BOARD_OBJ += mappers/boards/sachen/sa-0036.o mappers/boards/sachen/sa-0037.o mappers/boards/sachen/sa-72007.o
+BOARD_OBJ += mappers/boards/sachen/sa-72008.o mappers/boards/sachen/sachen-74ls374n.o mappers/boards/sachen/sachen-8259a.o
+BOARD_OBJ += mappers/boards/sachen/sachen-8259b.o mappers/boards/sachen/sachen-8259c.o mappers/boards/sachen/sachen-8259d.o
+BOARD_OBJ += mappers/boards/sachen/sachen-tca01.o
+BOARD_OBJ += mappers/boards/tengen/800008.o mappers/boards/tengen/800032.o mappers/boards/tengen/800037.o
+BOARD_OBJ += mappers/boards/txc/txc-22211a.o mappers/boards/txc/txc-22211b.o mappers/boards/txc/txc-22211c.o
+BOARD_OBJ += mappers/boards/txc/txc-mxmdhtwo.o mappers/boards/txc/txc-strikewolf.o mappers/boards/txc/txc-tw.o
+MAPPER_OBJ = mappers/mappers.o mappers/mappers_ines.o mappers/mappers_ines20.o mappers/mappers_unif.o
 MAPPER_OBJ += $(CHIPS_OBJ) $(SOUND_OBJ) $(BOARD_OBJ)
 
 LINUX_OBJ = $(SDL_OBJ) system/linux/filesystem.o system/linux/config.o
@@ -66,30 +84,32 @@ SDL_OBJ += system/sdl/nes_ntsc/nes_ntsc.o
 OBJS = nesemu.o log.o misc.o splash.o $(NES_OBJ) $(MAPPER_OBJ) $(GUI2_OBJ) system/config.o
 
 SOURCES = *.c *.h \
-	unused/blarggapu/*.c* unused/blarggapu/*.h* unused/blarggapu/boost/*.h* \
 	resources/nsf_bios/*.s resources/nsf_bios/*.sh resources/nsf_bios/linkfile \
 	resources/hle_fds/*.s resources/hle_fds/*.sh resources/hle_fds/linkfile \
 	resources/*.bmp resources/*.icn resources/*.pal \
 	projects/codeblocks/nesemu.cbp \
 	projects/vc2005/nesemu.sln projects/vc2005/nesemu.vcproj \
 	projects/vc2008/nesemu.sln projects/vc2008/nesemu.vcproj \
-	Makefile.* nesemu.make nesemu.defs
+	Makefile.* Makefile nesemu.make nesemu.defs
 
 SOURCES += nes/*.c nes/*.h \
 	nes/cpu/*.c nes/cpu/*.h \
 	nes/ppu/*.c nes/ppu/*.h \
 	nes/apu/*.c nes/apu/*.h \
-	nes/inputdev/*.c nes/inputdev/*.h \
 	nes/rom/*.c nes/rom/*.h \
-	nes/romdb/*.c nes/romdb/*.h \
 	nes/fds/*.c nes/fds/*.h \
 	nes/nsf/*.c nes/nsf/*.h \
-	nes/state/*.c nes/state/*.h
+	nes/romdb/*.c nes/romdb/*.h \
+	nes/state/*.c nes/state/*.h \
+	nes/inputdev/*.c nes/inputdev/*.h
 
 SOURCES += mappers/*.c mappers/*.h \
 	mappers/chips/*.c mappers/chips/*.h \
 	mappers/sound/*.c mappers/sound/*.h \
-	mappers/boards/*.c mappers/boards/*.h
+	mappers/boards/*.c mappers/boards/bandai/*.c mappers/boards/ffe/*.c \
+	mappers/boards/jaleco/*.c mappers/boards/konami/*.c mappers/boards/namcot/*.c \
+	mappers/boards/nintendo/*.c mappers/boards/sachen/*.c mappers/boards/tengen/*.c \
+	mappers/boards/txc/*.c
 
 SOURCES += gui2/*.c gui2/*.h \
 	gui2/windows/*.c gui2/windows/*.h \

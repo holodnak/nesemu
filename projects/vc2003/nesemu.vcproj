@@ -544,6 +544,9 @@
 							RelativePath="..\..\mappers\boards\nintendo\cprom.c">
 						</File>
 						<File
+							RelativePath="..\..\mappers\boards\nintendo\dxrom.c">
+						</File>
+						<File
 							RelativePath="..\..\mappers\boards\nintendo\event.c">
 						</File>
 						<File
@@ -698,6 +701,18 @@
 						Filter="">
 						<File
 							RelativePath="..\..\mappers\boards\namcot\namcot_163.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\namcot\namcot_3425.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\namcot\namcot_3446.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\namcot\namcot_3453.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\namcot\namcot_34x3.c">
 						</File>
 					</Filter>
 					<Filter
@@ -1259,6 +1274,9 @@
 			Filter="rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx"
 			UniqueIdentifier="{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}">
 		</Filter>
+		<File
+			RelativePath="..\..\Testing">
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
