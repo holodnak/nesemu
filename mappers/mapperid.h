@@ -45,6 +45,7 @@ enum boardid_e {
 	B_SxROM,
 	B_TxROM,
 	B_UxROM,
+	B_GxROM_MxROM,		//GNROM + MHROM -- same function different names
 	B_EVENT,
 
 	//konami
@@ -77,7 +78,13 @@ enum boardid_e {
 	B_BANDAI_KARAOKE,
 	B_74x161x161x32,		//also taito
 
+	//irem
+	B_IREM_H_3001,
+
 	//unlicensed
+	B_H2288,
+	B_70IN1,
+	B_70IN1B,
 	B_CALTRON6IN1,
 	B_BIOMIRACLEA,
 	B_MARIO1_MALEE2,

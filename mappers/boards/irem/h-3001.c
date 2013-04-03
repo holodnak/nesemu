@@ -1,5 +1,4 @@
-#include "mappers/mappers.h"
-#include "nes/ppu/ppu.h"
+#include "mappers/mapperinc.h"
 
 static u8 prg[3],chr[8],mirror;
 static u8 irqcounter,irqenabled;
@@ -40,7 +39,7 @@ static void write_reg(u32 addr,u8 data)
 	}
 }
 
-void irem_h3001_line(int line,int pcycles)
+static void line(int line,int pcycles)
 {
 	if(irqenabled == 0)
 	   return;
@@ -52,7 +51,7 @@ void irem_h3001_line(int line,int pcycles)
 	   irqcounter--;
 }
 
-void irem_h3001_init(int hard)
+static void reset(int hard)
 {
 	int i;
 
@@ -69,7 +68,7 @@ void irem_h3001_init(int hard)
 	sync();
 }
 
-void irem_h3001_state(int mode,u8 *data)
+static void state(int mode,u8 *data)
 {
 	STATE_ARRAY_U8(prg,3);
 	STATE_ARRAY_U8(chr,8);
@@ -78,3 +77,5 @@ void irem_h3001_state(int mode,u8 *data)
 	STATE_U8(irqenabled);
 	sync();
 }
+
+MAPPER(B_IREM_H_3001,reset,0,line,state);

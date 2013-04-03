@@ -14,6 +14,8 @@ mapper_t *mapper_init(int board)
 	MAPPER(B_NROM);			MAPPER(B_SxROM);			MAPPER(B_UxROM);			MAPPER(B_CNROM);
 	MAPPER(B_TxROM);			MAPPER(B_PxROM);			MAPPER(B_HxROM);			MAPPER(B_AxROM);
 	MAPPER(B_FxROM);			MAPPER(B_CPROM);			MAPPER(B_DxROM);
+	MAPPER(B_GxROM_MxROM);
+	MAPPER(B_EVENT);
 
 	//jaleco boards
 	MAPPER(B_SS8806);
@@ -29,6 +31,9 @@ mapper_t *mapper_init(int board)
 	//bandai
 	MAPPER(B_BANDAI_KARAOKE);
 	MAPPER(B_74x161x161x32);		//also taito
+
+	//irem
+	MAPPER(B_IREM_H_3001);
 
 	//unlicensed
 	//txc corporation
@@ -63,6 +68,9 @@ mapper_t *mapper_init(int board)
 	MAPPER(B_TENGEN_800032);
 
 	//other boards
+	MAPPER(B_H2288);
+	MAPPER(B_70IN1);
+	MAPPER(B_70IN1B);
 	MAPPER(B_CALTRON6IN1);
 	MAPPER(B_BIOMIRACLEA);
 	MAPPER(B_MARIO1_MALEE2);

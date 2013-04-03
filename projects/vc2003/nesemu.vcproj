@@ -516,21 +516,6 @@
 				<Filter
 					Name="boards"
 					Filter="">
-					<File
-						RelativePath="..\..\mappers\boards\74x377.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\boards\biomiraclea.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\boards\caltron6in1.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\boards\magicseries.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\boards\mario1-malee2.c">
-					</File>
 					<Filter
 						Name="nintendo"
 						Filter="">
@@ -548,12 +533,27 @@
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\nintendo\event.c">
+							<FileConfiguration
+								Name="Debug|Win32">
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)/nes-event.obj"/>
+							</FileConfiguration>
+							<FileConfiguration
+								Name="Release|Win32">
+								<Tool
+									Name="VCCLCompilerTool"
+									ObjectFile="$(IntDir)/nes-event.obj"/>
+							</FileConfiguration>
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\nintendo\exrom.c">
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\nintendo\fxrom.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\nintendo\gxrom-mxrom.c">
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\nintendo\hxrom.c">
@@ -593,16 +593,7 @@
 							RelativePath="..\..\mappers\boards\sachen\sachen-74ls374n.c">
 						</File>
 						<File
-							RelativePath="..\..\mappers\boards\sachen\sachen-8259a.c">
-						</File>
-						<File
-							RelativePath="..\..\mappers\boards\sachen\sachen-8259b.c">
-						</File>
-						<File
-							RelativePath="..\..\mappers\boards\sachen\sachen-8259c.c">
-						</File>
-						<File
-							RelativePath="..\..\mappers\boards\sachen\sachen-8259d.c">
+							RelativePath="..\..\mappers\boards\sachen\sachen-8259.c">
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\sachen\sachen-tca01.c">
@@ -738,6 +729,38 @@
 							RelativePath="..\..\mappers\boards\tengen\800037.c">
 						</File>
 					</Filter>
+					<Filter
+						Name="irem"
+						Filter="">
+						<File
+							RelativePath="..\..\mappers\boards\irem\h-3001.c">
+						</File>
+					</Filter>
+					<Filter
+						Name="other"
+						Filter="">
+						<File
+							RelativePath="..\..\mappers\boards\other\70in1.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\other\74x377.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\other\biomiraclea.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\other\caltron6in1.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\other\h2288.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\other\magicseries.c">
+						</File>
+						<File
+							RelativePath="..\..\mappers\boards\other\mario1-malee2.c">
+						</File>
+					</Filter>
 				</Filter>
 				<Filter
 					Name="chips"
@@ -774,9 +797,6 @@
 					</File>
 					<File
 						RelativePath="..\..\mappers\chips\c_namcot_106.c">
-					</File>
-					<File
-						RelativePath="..\..\mappers\chips\c_sachen_8259.c">
 					</File>
 					<File
 						RelativePath="..\..\mappers\chips\c_txc_22211.c">
@@ -1219,9 +1239,6 @@
 					</File>
 					<File
 						RelativePath="..\..\mappers\chips\c_namcot_106.h">
-					</File>
-					<File
-						RelativePath="..\..\mappers\chips\c_sachen_8259.h">
 					</File>
 					<File
 						RelativePath="..\..\mappers\chips\c_txc_22211.h">

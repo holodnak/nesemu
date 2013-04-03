@@ -1,13 +1,15 @@
-#include "mappers/mappers.h"
-#include "mappers/chips/c_sachen_8259.h"
-#include "nes/rom/rom.h"
-#include "nes/ppu/ppu.h"
+#include "mappers/mapperinc.h"
+
+#define SACHEN_8259A		0
+#define SACHEN_8259B		1
+#define SACHEN_8259C		2
+#define SACHEN_8259D		3
 
 static u8 cmd,reg[8];
 static writefunc_t write4;
 static void (*syncchr)();
 
-void sachen_8259_sync()
+static void sync()
 {
 	mem_setprg32(8,reg[5] & 7);
 	if(reg[7]&1)
@@ -24,7 +26,7 @@ void sachen_8259_sync()
 		syncchr();
 }
 
-void sachen_8259a_syncchr()
+static void syncchr_8259a()
 {
 	int i,j;
 
@@ -37,7 +39,7 @@ void sachen_8259a_syncchr()
 	}
 }
 
-void sachen_8259b_syncchr()
+static void syncchr_8259b()
 {
 	int i;
 
@@ -49,7 +51,7 @@ void sachen_8259b_syncchr()
 	}
 }
 
-void sachen_8259c_syncchr()
+static void syncchr_8259c()
 {
 	int i,j;
 
@@ -62,7 +64,7 @@ void sachen_8259c_syncchr()
 	}
 }
 
-void sachen_8259d_syncchr()
+static void syncchr_8259d()
 {
 	int i,j;
 
@@ -78,7 +80,7 @@ void sachen_8259d_syncchr()
 	mem_setchr4(4,~0);
 }
 
-void sachen_8259_write(u32 addr,u8 data)
+static void write(u32 addr,u8 data)
 {
 	if(addr < 0x4020) {
 		write4(addr,data);
@@ -89,33 +91,58 @@ void sachen_8259_write(u32 addr,u8 data)
 		cmd = data & 7;
 	else {
 		reg[cmd] = data;
-		sachen_8259_sync();
+		sync();
 	}
 }
 
-void sachen_8259_init(int revision)
+static void reset(int revision,int hard)
 {
 	int i;
 
 	switch(revision) {
 		default:
-		case SACHEN_8259A: syncchr = sachen_8259a_syncchr; break;
-		case SACHEN_8259B: syncchr = sachen_8259b_syncchr; break;
-		case SACHEN_8259C: syncchr = sachen_8259c_syncchr; break;
-		case SACHEN_8259D: syncchr = sachen_8259d_syncchr; break;
+		case SACHEN_8259A: syncchr = syncchr_8259a; break;
+		case SACHEN_8259B: syncchr = syncchr_8259b; break;
+		case SACHEN_8259C: syncchr = syncchr_8259c; break;
+		case SACHEN_8259D: syncchr = syncchr_8259d; break;
 	}
 	write4 = mem_getwrite(4);
 	for(i=4;i<8;i++)
-		mem_setwrite(i,sachen_8259_write);
+		mem_setwrite(i,write);
 	for(i=0;i<8;i++)
 		reg[i] = 0;
 	cmd = 0;
-	sachen_8259_sync();
+	sync();
 }
 
-void sachen_8259_state(int mode,u8 *data)
+static void reset_8259a(int hard)
+{
+	reset(SACHEN_8259A,hard);
+}
+
+static void reset_8259b(int hard)
+{
+	reset(SACHEN_8259B,hard);
+}
+
+static void reset_8259c(int hard)
+{
+	reset(SACHEN_8259C,hard);
+}
+
+static void reset_8259d(int hard)
+{
+	reset(SACHEN_8259D,hard);
+}
+
+static void state(int mode,u8 *data)
 {
 	STATE_ARRAY_U8(reg,8);
 	STATE_U8(cmd);
-	sachen_8259_sync();
+	sync();
 }
+
+MAPPER(B_SACHEN_8259A,reset_8259a,0,0,0);
+MAPPER(B_SACHEN_8259B,reset_8259b,0,0,0);
+MAPPER(B_SACHEN_8259C,reset_8259c,0,0,0);
+MAPPER(B_SACHEN_8259D,reset_8259d,0,0,0);

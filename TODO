@@ -1,11 +1,14 @@
 core
- . ppu needs work, sprite0 needs to be fixed once and for all
+ . ppu needs work, sprite0 needs to be fixed once and for all while still making usable on ps2
  . make all blargg ppu tests pass
 
 mappers
  . fix mapper 71
  . fix mapper 165
  . test mappers 191, 192, 194
+ . merge files txc22111a/b/c.c
+ . merge sachen sa-72007/8.c
+
 
 other
  . nsf player crashes
