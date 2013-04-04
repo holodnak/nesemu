@@ -28,6 +28,7 @@
 #define ID_NAME	MAKEID('N','A','M','E')
 #define ID_MIRR	MAKEID('M','I','R','R')
 #define ID_WRTR	MAKEID('W','R','T','R')
+#define ID_BATR	MAKEID('B','A','T','R')
 #define ID_PRG0	MAKEID('P','R','G','0')
 #define ID_PRG1	MAKEID('P','R','G','1')
 #define ID_PRG2	MAKEID('P','R','G','2')

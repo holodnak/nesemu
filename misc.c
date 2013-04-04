@@ -123,7 +123,7 @@ static void makestatefilename(char *filename,int type)
 	char *types[] = {
 		".state",
 		".diskstate",
-		".sramstate",
+		".sram",
 		".laststate",
 		0
 	};
@@ -211,9 +211,45 @@ void savediskstate()
    sound_pause();
 	drawbox(lines_savediskstate);
 	makestatefilename(filename,1);
-	log_message("save state: filename = '%s'\n",filename);
+	log_message("save disk state: filename = '%s'\n",filename);
 	if((fp = file_open(filename,"uwb")) >= 0) {
 		nes_savediskstate(fp);
+		file_close(fp);
+	}
+   sound_play();
+}
+
+void loadsram()
+{
+	int fp;
+	char filename[1024];
+
+	if(nes == 0 || nes->rom == 0 || nes->rom->battery == 0)
+		return;
+   sound_pause();
+//	drawbox(lines_loaddiskstate);
+	makestatefilename(filename,2);
+	log_message("load sram: filename = '%s'\n",filename);
+	if((fp = file_open(filename,"rb")) >= 0) {
+		nes_loadsram(fp);
+		file_close(fp);
+	}
+   sound_play();
+}
+
+void savesram()
+{
+	int fp;
+	char filename[1024];
+
+	if(nes == 0 || nes->rom == 0 || nes->rom->battery == 0)
+		return;
+   sound_pause();
+//	drawbox(lines_savediskstate);
+	makestatefilename(filename,2);
+	log_message("save sram: filename = '%s'\n",filename);
+	if((fp = file_open(filename,"uwb")) >= 0) {
+		nes_savesram(fp);
 		file_close(fp);
 	}
    sound_play();
@@ -254,6 +290,8 @@ int loadrom(char *fn)
 		loaddiskstate();
 //	if(config.autostates)
 //		loadstate();
+	if(rom->battery)
+		loadsram();
 	nes_reset(1);	//perform hard reset
 	add_recent(fn);
 	return(0);
@@ -268,6 +306,8 @@ void unloadrom()
 	if(rom) {
 		if(rom->diskdata)
 			savediskstate();
+		if(rom->battery)
+			savesram();
 		rom_unload(rom);
 		rom = 0;
 	}

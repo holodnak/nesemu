@@ -32,8 +32,9 @@ void loadstate();
 void savestate();
 void loaddiskstate();
 void savediskstate();
+void loadsram();
+void savesram();
 
 int load_bios(char *fn,u8 *dest,int size);
 
 #endif
-

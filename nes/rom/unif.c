@@ -99,6 +99,11 @@ rom_t *rom_load_unif(int fd,rom_t *ret)
 				file_read(fd,&ret->mirroring,1);
 				break;
 
+			//battery flag
+			case ID_BATR:
+				file_read(fd,&ret->battery,1);
+				break;
+
 			//prg crc32
 			case ID_PCK0:case ID_PCK1:case ID_PCK2:case ID_PCK3:
 			case ID_PCK4:case ID_PCK5:case ID_PCK6:case ID_PCK7:

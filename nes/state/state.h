@@ -25,6 +25,8 @@ int nes_loadstate(int fp);
 int nes_savestate(int fp);
 int nes_savediskstate(int fp);
 int nes_savesramstate(int fp);
+int nes_loadsram(int fp);
+int nes_savesram(int fp);
 int nes_savesvramstate(int fp);
 
 #endif

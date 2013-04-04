@@ -124,7 +124,7 @@ rom_t *rom_load(const char *filename)
 
 	//see if it is an ines rom image
 	else if(memcmp(header,inesident,4) == 0) {
-		if((header[7] & 0xC) == 8) {
+		if((header[7] & 0xC) == 8 && header[15] == 0) {
 			if(rom_load_ines20(fd,ret) == 0) {
 				file_close(fd);
 				return(0);

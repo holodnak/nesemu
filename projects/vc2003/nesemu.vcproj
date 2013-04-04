@@ -769,9 +769,6 @@
 						RelativePath="..\..\mappers\chips\c_fme7.c">
 					</File>
 					<File
-						RelativePath="..\..\mappers\chips\c_irem_h-3001.c">
-					</File>
-					<File
 						RelativePath="..\..\mappers\chips\c_latch.c">
 					</File>
 					<File
@@ -1209,9 +1206,6 @@
 					Filter="">
 					<File
 						RelativePath="..\..\mappers\chips\c_fme7.h">
-					</File>
-					<File
-						RelativePath="..\..\mappers\chips\c_irem_h-3001.h">
 					</File>
 					<File
 						RelativePath="..\..\mappers\chips\c_latch.h">

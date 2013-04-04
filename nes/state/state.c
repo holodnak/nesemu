@@ -240,6 +240,22 @@ int nes_savesramstate(int fp)
 	return(0);
 }
 
+int nes_loadsram(int fp)
+{
+	if(nes->rom->sramsize) {
+		file_read(fp,nes->rom->sram,nes->rom->sramsize);
+	}
+	return(0);
+}
+
+int nes_savesram(int fp)
+{
+	if(nes->rom->sramsize) {
+		file_write(fp,nes->rom->sram,nes->rom->sramsize);
+	}
+	return(0);
+}
+
 int nes_savesvramstate(int fp)
 {
 	blocksvram_t svram;

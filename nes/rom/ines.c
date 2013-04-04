@@ -44,8 +44,10 @@ static int load_ines_header(rom_t *ret,u8 *header)
 		ret->mirroring = 4;
 	else
 		ret->mirroring = header[6] & 1;
-	if(header[6] & 2)
+	if(header[6] & 2) {
 		rom_setsramsize(ret,2);
+		ret->battery = 1;
+	}
 	if(header[7] & 2)
 		ret->pc10romsize = KB(8);
 	log_message("load_ines_header:  %dkb prg, %dkb chr, mapper %d, %s mirroring\n",

@@ -98,6 +98,9 @@ typedef struct rom_s {
 	//mirroring
 	int		mirroring;
 
+	//battery
+	int		battery;
+
 	//television mode
 	int		ntsc,pal;
 
