@@ -2514,7 +2514,7 @@ u32 dead6502_step()
 		fulloptable[op]();
 	else {
 		d6502_pc--; /*return to the bad opcode*/
-		msg("dead6502: bad opcode at $%04X\n",d6502_pc-1);
+		msg("dead6502: bad opcode $%02X at $%04X\n",op,d6502_pc);
 		d6502_totalcycles += cyclesexec; /*add in cycles taken*/
 		return((u32)cyclesexec | BAD_OPCODE); /* bad opcode */
 	}

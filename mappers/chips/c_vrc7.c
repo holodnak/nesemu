@@ -12,7 +12,7 @@ static apuext_t vrc7 = {
 	0
 };
 
-static u8 prg[2],chr[8],mirror,irqlatch,irqenabled;
+static u8 prg[3],chr[8],mirror,irqlatch,irqenabled;
 static int irqcounter,irqprescaler;
 
 static void sync()
