@@ -1,0 +1,1079 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Source Files\gui2">
+      <UniqueIdentifier>{b2eb70df-4baa-4726-83ce-be8cec7cb056}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui2\elements">
+      <UniqueIdentifier>{ec4642a2-60ee-4c4f-b36e-ad95e159a79c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\gui2\windows">
+      <UniqueIdentifier>{7ea4895f-f5b1-411e-9db0-82bd33866fdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nes">
+      <UniqueIdentifier>{6bb1dcf8-24dd-4df3-8850-b84a6212850d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nes\apu">
+      <UniqueIdentifier>{89eb37e3-00ef-4c1d-b81d-1407179438e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nes\cpu">
+      <UniqueIdentifier>{edfb46c7-dcfc-4a39-a316-e187bf9f21bb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nes\fds">
+      <UniqueIdentifier>{2c6cb7ec-c2be-40eb-87c5-ec3bc9eee0cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nes\inputdev">
+      <UniqueIdentifier>{d6b35865-7527-4cdb-946b-fa72ca616e15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nes\nsf">
+      <UniqueIdentifier>{e3c16c30-a476-4c1e-878b-0faf37a689d9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nes\ppu">
+      <UniqueIdentifier>{b00dce69-fe5e-40e7-885d-b43097a0868e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nes\rom">
+      <UniqueIdentifier>{6da0730f-d56c-4f83-b574-74adac1c3cdc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nes\romdb">
+      <UniqueIdentifier>{83e2f385-c03b-440b-a2c8-bf5def27f0b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\nes\state">
+      <UniqueIdentifier>{4fe19f88-6bd8-49a2-9848-ac46a4520cd5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\system">
+      <UniqueIdentifier>{c7d4fba9-0ec1-4ef5-990a-115c54001f3c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\system\sdl">
+      <UniqueIdentifier>{d92ce738-b46f-4029-aa36-5dd583dc1aae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\system\sdl\hq2x">
+      <UniqueIdentifier>{a9df4f1e-669a-44d2-93f0-6022d73d5b6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\system\sdl\interpolate">
+      <UniqueIdentifier>{7499db58-aa72-4d48-8246-7cc1dfe27cd4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\system\sdl\scale2x">
+      <UniqueIdentifier>{c53af08e-b394-443f-bbb3-8c94c62bf82c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\system\win32">
+      <UniqueIdentifier>{318d0a64-1be0-4ea8-92ab-f998bda2ac45}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers">
+      <UniqueIdentifier>{418c667d-9ec2-4d45-bac9-83416e60e48d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\boards">
+      <UniqueIdentifier>{3d8bf9ff-3240-4f0a-a659-a038622e1431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\boards\nintendo">
+      <UniqueIdentifier>{540f4cb3-bb9e-4a17-8181-f09b143d4e75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\boards\sachen">
+      <UniqueIdentifier>{f3bf1786-64b3-4eab-a3e8-798022159901}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\boards\konami">
+      <UniqueIdentifier>{e9aafaaf-380e-43a4-a3c6-97ca628d882f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\boards\ffe">
+      <UniqueIdentifier>{7e3558fc-f735-4581-a62d-b2699905fb3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\boards\txc">
+      <UniqueIdentifier>{146e1a0d-5937-4755-9f81-40f3fe3ae835}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\boards\jaleco">
+      <UniqueIdentifier>{28b670da-6eaf-4c80-9f6a-7608c9af2f33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\boards\namcot">
+      <UniqueIdentifier>{3d1a8977-56df-4721-a3ee-913d7335ecca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\boards\bandai">
+      <UniqueIdentifier>{326d095c-01b2-4e31-aa2d-d00b57620773}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\boards\tengen">
+      <UniqueIdentifier>{77576ee2-158c-4a2d-9707-d8fcd711c98b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\boards\irem">
+      <UniqueIdentifier>{669449c4-3547-453c-bfaa-115679ddd6e1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\boards\other">
+      <UniqueIdentifier>{f686268c-0455-4e82-b422-3a44c85be5e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\chips">
+      <UniqueIdentifier>{e8d97a31-ff29-453c-9c9b-8a5ad1948cfb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\mappers\sound">
+      <UniqueIdentifier>{7084b417-ce0a-49d4-96ea-3a1194605b8a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Header Files\gui2">
+      <UniqueIdentifier>{1e985d0b-dea7-43b7-bd3a-efb8dc46c153}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui2\elements">
+      <UniqueIdentifier>{0f0e591b-220f-4f83-aba1-b2858bca3042}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\gui2\windows">
+      <UniqueIdentifier>{2a0c092d-9410-4129-a44e-5365bb5f171a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nes">
+      <UniqueIdentifier>{65bccf9a-4787-4c94-a507-abc022cdbb01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nes\apu">
+      <UniqueIdentifier>{612ac1fd-1e73-4622-a3d4-89a45278bba7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nes\cpu">
+      <UniqueIdentifier>{bc5dcf46-7794-4872-bc04-7de1b230fa70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nes\fds">
+      <UniqueIdentifier>{2a38972e-100c-493d-b21f-db89f4755bde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nes\inputdev">
+      <UniqueIdentifier>{7b06328c-c7fb-46bf-a1ef-2266faec9001}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nes\nsf">
+      <UniqueIdentifier>{5dbab9b7-5a4c-4ec7-8f6d-dd1e2caaaf84}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nes\ppu">
+      <UniqueIdentifier>{585b426c-1a61-4d39-ac3f-4c9bb3bf3285}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nes\rom">
+      <UniqueIdentifier>{3845ac31-1575-4322-a7fb-09bc0adfc26f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nes\romdb">
+      <UniqueIdentifier>{49ba4306-49b4-488f-8cac-10d2afefdd25}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nes\state">
+      <UniqueIdentifier>{3a009167-c499-4a60-bfd3-a1196e65db00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\system">
+      <UniqueIdentifier>{7b229a6a-ccda-48bf-ac4c-a5283f3e7289}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\system\sdl">
+      <UniqueIdentifier>{fab38602-57a1-49bd-9404-d61af1b4ec70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\system\sdl\hq2x">
+      <UniqueIdentifier>{12936171-45e1-4fcf-877c-897d0d92a4b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\system\sdl\interpolate">
+      <UniqueIdentifier>{69340c17-132d-4699-a9e1-0fe04eabd011}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\system\sdl\scale2x">
+      <UniqueIdentifier>{abba4727-40bb-4d5c-a89b-17f943d45bf4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\system\win32">
+      <UniqueIdentifier>{c584ff44-b429-45d4-bd4a-0ce6389df246}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\mappers">
+      <UniqueIdentifier>{88823415-32fa-45bc-8634-f3b3764bb8a4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\mappers\boards">
+      <UniqueIdentifier>{90943d83-4500-4a67-95f5-2f7f709e970f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\mappers\chips">
+      <UniqueIdentifier>{1c1c4897-3541-4518-be1d-4152d3d8210e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\mappers\sound">
+      <UniqueIdentifier>{a0d5b8e7-4638-405d-9a78-a185f029c113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\misc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nesemu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\screenshot.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\splash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\font_zsnes.c">
+      <Filter>Source Files\gui2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\gui2.c">
+      <Filter>Source Files\gui2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\gui2_draw.c">
+      <Filter>Source Files\gui2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\keyname.c">
+      <Filter>Source Files\gui2</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\elements\button.c">
+      <Filter>Source Files\gui2\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\elements\checkbox.c">
+      <Filter>Source Files\gui2\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\elements\edit.c">
+      <Filter>Source Files\gui2\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\elements\list.c">
+      <Filter>Source Files\gui2\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\elements\menu.c">
+      <Filter>Source Files\gui2\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\elements\menubar.c">
+      <Filter>Source Files\gui2\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\elements\menuitem.c">
+      <Filter>Source Files\gui2\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\elements\radio.c">
+      <Filter>Source Files\gui2\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\elements\radiogroup.c">
+      <Filter>Source Files\gui2\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\elements\scrollbar.c">
+      <Filter>Source Files\gui2\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\elements\text.c">
+      <Filter>Source Files\gui2\elements</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\about.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\devices.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\gui_input.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\inputcfg.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\load.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\mappers.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\memory_viewer.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\nametable_viewer.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\options.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\palettecfg.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\paths.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\patterntable_viewer.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\rom_info.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\soundcfg.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\supported_mappers.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\tracer.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\gui2\windows\videocfg.c">
+      <Filter>Source Files\gui2\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\memory.c">
+      <Filter>Source Files\nes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\nes.c">
+      <Filter>Source Files\nes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\nes_io.c">
+      <Filter>Source Files\nes</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\apu\mattapu.c">
+      <Filter>Source Files\nes\apu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\cpu\dead6502.c">
+      <Filter>Source Files\nes\cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\cpu\dead6502_disasm.c">
+      <Filter>Source Files\nes\cpu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\fds\hle_fds.c">
+      <Filter>Source Files\nes\fds</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\fds\hle_fds_calls.c">
+      <Filter>Source Files\nes\fds</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\fds\nes_fds.c">
+      <Filter>Source Files\nes\fds</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\inputdev\exp_arkanoid.c">
+      <Filter>Source Files\nes\inputdev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\inputdev\exp_barcode.c">
+      <Filter>Source Files\nes\inputdev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\inputdev\exp_studykeyboard.c">
+      <Filter>Source Files\nes\inputdev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\inputdev\inputdev.c">
+      <Filter>Source Files\nes\inputdev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\inputdev\joypad0.c">
+      <Filter>Source Files\nes\inputdev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\inputdev\joypad02.c">
+      <Filter>Source Files\nes\inputdev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\inputdev\joypad1.c">
+      <Filter>Source Files\nes\inputdev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\inputdev\joypad13.c">
+      <Filter>Source Files\nes\inputdev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\inputdev\powerpad.c">
+      <Filter>Source Files\nes\inputdev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\inputdev\zapper.c">
+      <Filter>Source Files\nes\inputdev</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\nsf\nsfplayer.c">
+      <Filter>Source Files\nes\nsf</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\ppu\cache.c">
+      <Filter>Source Files\nes\ppu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\ppu\draw.c">
+      <Filter>Source Files\nes\ppu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\ppu\event.c">
+      <Filter>Source Files\nes\ppu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\ppu\io.c">
+      <Filter>Source Files\nes\ppu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\ppu\palette.c">
+      <Filter>Source Files\nes\ppu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\ppu\ppu.c">
+      <Filter>Source Files\nes\ppu</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\rom\fds.c">
+      <Filter>Source Files\nes\rom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\rom\ines.c">
+      <Filter>Source Files\nes\rom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\rom\ines20.c">
+      <Filter>Source Files\nes\rom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\rom\nsf.c">
+      <Filter>Source Files\nes\rom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\rom\rom.c">
+      <Filter>Source Files\nes\rom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\rom\unif.c">
+      <Filter>Source Files\nes\rom</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\romdb\crc.c">
+      <Filter>Source Files\nes\romdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\romdb\crc_fds.c">
+      <Filter>Source Files\nes\romdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\romdb\romdb.c">
+      <Filter>Source Files\nes\romdb</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\state\blocks.c">
+      <Filter>Source Files\nes\state</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\nes\state\state.c">
+      <Filter>Source Files\nes\state</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\config.c">
+      <Filter>Source Files\system</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\sdl\config_defaults.c">
+      <Filter>Source Files\system\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\sdl\file.c">
+      <Filter>Source Files\system\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\sdl\input.c">
+      <Filter>Source Files\system\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\sdl\sound.c">
+      <Filter>Source Files\system\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\sdl\system.c">
+      <Filter>Source Files\system\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\sdl\video.c">
+      <Filter>Source Files\system\sdl</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\sdl\hq2x\hq2x.c">
+      <Filter>Source Files\system\sdl\hq2x</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\sdl\hq2x\hq3x.c">
+      <Filter>Source Files\system\sdl\hq2x</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\sdl\interpolate\interpolate.c">
+      <Filter>Source Files\system\sdl\interpolate</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\sdl\scale2x\scale2x.c">
+      <Filter>Source Files\system\sdl\scale2x</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\sdl\scale2x\scale3x.c">
+      <Filter>Source Files\system\sdl\scale2x</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\sdl\scale2x\scalebit.c">
+      <Filter>Source Files\system\sdl\scale2x</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\win32\filesystem.c">
+      <Filter>Source Files\system\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\system\win32\SDL_win32_main.c">
+      <Filter>Source Files\system\win32</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\mappers.c">
+      <Filter>Source Files\mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\mappers_ines.c">
+      <Filter>Source Files\mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\mappers_ines20.c">
+      <Filter>Source Files\mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\mappers_unif.c">
+      <Filter>Source Files\mappers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\axrom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\cnrom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\cprom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\dxrom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\event.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\exrom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\fxrom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\gxrom-mxrom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\hxrom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\nrom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\pxrom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\sxrom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\txrom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\nintendo\uxrom.c">
+      <Filter>Source Files\mappers\boards\nintendo</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\sachen\sa-0036.c">
+      <Filter>Source Files\mappers\boards\sachen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\sachen\sa-0037.c">
+      <Filter>Source Files\mappers\boards\sachen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\sachen\sa-72007.c">
+      <Filter>Source Files\mappers\boards\sachen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\sachen\sa-72008.c">
+      <Filter>Source Files\mappers\boards\sachen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\sachen\sachen-74ls374n.c">
+      <Filter>Source Files\mappers\boards\sachen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\sachen\sachen-8259.c">
+      <Filter>Source Files\mappers\boards\sachen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\sachen\sachen-tca01.c">
+      <Filter>Source Files\mappers\boards\sachen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc1.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc2a.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc2b.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc3.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc4a.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc4b.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc4c.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc4d.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc4e.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc6a.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc6b.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc7a.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\konami\vrc7b.c">
+      <Filter>Source Files\mappers\boards\konami</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\ffe\ffe_mapper17.c">
+      <Filter>Source Files\mappers\boards\ffe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\ffe\ffe_mapper6.c">
+      <Filter>Source Files\mappers\boards\ffe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\ffe\ffe_mapper8.c">
+      <Filter>Source Files\mappers\boards\ffe</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\txc\txc-22211a.c">
+      <Filter>Source Files\mappers\boards\txc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\txc\txc-22211b.c">
+      <Filter>Source Files\mappers\boards\txc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\txc\txc-22211c.c">
+      <Filter>Source Files\mappers\boards\txc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\txc\txc-mxmdhtwo.c">
+      <Filter>Source Files\mappers\boards\txc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\txc\txc-strikewolf.c">
+      <Filter>Source Files\mappers\boards\txc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\txc\txc-tw.c">
+      <Filter>Source Files\mappers\boards\txc</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\jaleco\74x139x74.c">
+      <Filter>Source Files\mappers\boards\jaleco</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\jaleco\ss8806.c">
+      <Filter>Source Files\mappers\boards\jaleco</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\namcot\namcot_163.c">
+      <Filter>Source Files\mappers\boards\namcot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\namcot\namcot_3425.c">
+      <Filter>Source Files\mappers\boards\namcot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\namcot\namcot_3446.c">
+      <Filter>Source Files\mappers\boards\namcot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\namcot\namcot_3453.c">
+      <Filter>Source Files\mappers\boards\namcot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\namcot\namcot_34x3.c">
+      <Filter>Source Files\mappers\boards\namcot</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\bandai\74x161x161x32.c">
+      <Filter>Source Files\mappers\boards\bandai</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\bandai\bandai-karaoke.c">
+      <Filter>Source Files\mappers\boards\bandai</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\tengen\800008.c">
+      <Filter>Source Files\mappers\boards\tengen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\tengen\800032.c">
+      <Filter>Source Files\mappers\boards\tengen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\tengen\800037.c">
+      <Filter>Source Files\mappers\boards\tengen</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\irem\h-3001.c">
+      <Filter>Source Files\mappers\boards\irem</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\other\70in1.c">
+      <Filter>Source Files\mappers\boards\other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\other\74x377.c">
+      <Filter>Source Files\mappers\boards\other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\other\biomiraclea.c">
+      <Filter>Source Files\mappers\boards\other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\other\caltron6in1.c">
+      <Filter>Source Files\mappers\boards\other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\other\h2288.c">
+      <Filter>Source Files\mappers\boards\other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\other\magicseries.c">
+      <Filter>Source Files\mappers\boards\other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\boards\other\mario1-malee2.c">
+      <Filter>Source Files\mappers\boards\other</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_fme7.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_latch.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_mapper90.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_mmc1.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_mmc2.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_mmc3.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_mmc4.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_mmc5.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_mmc6.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_namcot_106.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_txc_22211.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_vrc1.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_vrc2.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_vrc3.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_vrc4.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_vrc6.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\chips\c_vrc7.c">
+      <Filter>Source Files\mappers\chips</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\sound\s_FDS.c">
+      <Filter>Source Files\mappers\sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\sound\s_FME7.c">
+      <Filter>Source Files\mappers\sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\sound\s_MMC5.c">
+      <Filter>Source Files\mappers\sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\sound\s_N106.c">
+      <Filter>Source Files\mappers\sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\sound\s_VRC6.c">
+      <Filter>Source Files\mappers\sound</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\mappers\sound\s_VRC7.c">
+      <Filter>Source Files\mappers\sound</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\..\system\win32\nesemu.rc">
+      <Filter>Source Files\system\win32</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\defines.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\misc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nesemu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\screenshot.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\splash.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\version.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\colors.h">
+      <Filter>Header Files\gui2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\gui2.h">
+      <Filter>Header Files\gui2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\gui2_draw.h">
+      <Filter>Header Files\gui2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\keyname.h">
+      <Filter>Header Files\gui2</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\elements\button.h">
+      <Filter>Header Files\gui2\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\elements\checkbox.h">
+      <Filter>Header Files\gui2\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\elements\edit.h">
+      <Filter>Header Files\gui2\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\elements\list.h">
+      <Filter>Header Files\gui2\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\elements\menu.h">
+      <Filter>Header Files\gui2\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\elements\menubar.h">
+      <Filter>Header Files\gui2\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\elements\menuitem.h">
+      <Filter>Header Files\gui2\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\elements\radio.h">
+      <Filter>Header Files\gui2\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\elements\radiogroup.h">
+      <Filter>Header Files\gui2\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\elements\scrollbar.h">
+      <Filter>Header Files\gui2\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\elements\text.h">
+      <Filter>Header Files\gui2\elements</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\about.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\devices.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\gui_input.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\inputcfg.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\load.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\mappers.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\memory_viewer.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\nametable_viewer.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\options.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\palettecfg.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\paths.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\patterntable_viewer.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\rom_info.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\soundcfg.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\supported_mappers.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\tracer.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\gui2\windows\videocfg.h">
+      <Filter>Header Files\gui2\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\memory.h">
+      <Filter>Header Files\nes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\nes.h">
+      <Filter>Header Files\nes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\nes_io.h">
+      <Filter>Header Files\nes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\apu\mattapu.h">
+      <Filter>Header Files\nes\apu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\cpu\dead6502.h">
+      <Filter>Header Files\nes\cpu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\fds\hle_fds.h">
+      <Filter>Header Files\nes\fds</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\fds\hle_fds_calls.h">
+      <Filter>Header Files\nes\fds</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\fds\nes_fds.h">
+      <Filter>Header Files\nes\fds</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\inputdev\exp_arkanoid.h">
+      <Filter>Header Files\nes\inputdev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\inputdev\exp_barcode.h">
+      <Filter>Header Files\nes\inputdev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\inputdev\exp_studykeyboard.h">
+      <Filter>Header Files\nes\inputdev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\inputdev\inputdev.h">
+      <Filter>Header Files\nes\inputdev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\inputdev\joypad0.h">
+      <Filter>Header Files\nes\inputdev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\inputdev\joypad02.h">
+      <Filter>Header Files\nes\inputdev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\inputdev\joypad1.h">
+      <Filter>Header Files\nes\inputdev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\inputdev\joypad13.h">
+      <Filter>Header Files\nes\inputdev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\inputdev\powerpad.h">
+      <Filter>Header Files\nes\inputdev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\inputdev\zapper.h">
+      <Filter>Header Files\nes\inputdev</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\nsf\nsfplayer.h">
+      <Filter>Header Files\nes\nsf</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\ppu\cache.h">
+      <Filter>Header Files\nes\ppu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\ppu\event.h">
+      <Filter>Header Files\nes\ppu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\ppu\io.h">
+      <Filter>Header Files\nes\ppu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\ppu\palette.h">
+      <Filter>Header Files\nes\ppu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\ppu\ppu.h">
+      <Filter>Header Files\nes\ppu</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\rom\fds.h">
+      <Filter>Header Files\nes\rom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\rom\ines.h">
+      <Filter>Header Files\nes\rom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\rom\ines20.h">
+      <Filter>Header Files\nes\rom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\rom\nsf.h">
+      <Filter>Header Files\nes\rom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\rom\rom.h">
+      <Filter>Header Files\nes\rom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\rom\unif.h">
+      <Filter>Header Files\nes\rom</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\romdb\crc.h">
+      <Filter>Header Files\nes\romdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\romdb\romdb.h">
+      <Filter>Header Files\nes\romdb</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\state\blocks.h">
+      <Filter>Header Files\nes\state</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\nes\state\state.h">
+      <Filter>Header Files\nes\state</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\config.h">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\file.h">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\filesystem.h">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\input.h">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\keys.h">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\sound.h">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\system.h">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\video.h">
+      <Filter>Header Files\system</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\sdl\hq2x\hq2x.h">
+      <Filter>Header Files\system\sdl\hq2x</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\sdl\hq2x\hq3x.h">
+      <Filter>Header Files\system\sdl\hq2x</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\sdl\interpolate\interpolate.h">
+      <Filter>Header Files\system\sdl\interpolate</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\sdl\scale2x\scale2x.h">
+      <Filter>Header Files\system\sdl\scale2x</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\sdl\scale2x\scale3x.h">
+      <Filter>Header Files\system\sdl\scale2x</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\sdl\scale2x\scalebit.h">
+      <Filter>Header Files\system\sdl\scale2x</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\system\win32\resource.h">
+      <Filter>Header Files\system\win32</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\mapperid.h">
+      <Filter>Header Files\mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\mapperinc.h">
+      <Filter>Header Files\mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\mappers.h">
+      <Filter>Header Files\mappers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_fme7.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_latch.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_mapper90.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_mmc1.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_mmc2.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_mmc3.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_mmc4.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_mmc5.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_mmc6.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_namcot_106.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_txc_22211.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_vrc1.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_vrc2.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_vrc3.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_vrc4.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_vrc6.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\chips\c_vrc7.h">
+      <Filter>Header Files\mappers\chips</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\sound\s_FDS.h">
+      <Filter>Header Files\mappers\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\sound\s_FME7.h">
+      <Filter>Header Files\mappers\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\sound\s_MMC5.h">
+      <Filter>Header Files\mappers\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\sound\s_N106.h">
+      <Filter>Header Files\mappers\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\sound\s_VRC6.h">
+      <Filter>Header Files\mappers\sound</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\mappers\sound\s_VRC7.h">
+      <Filter>Header Files\mappers\sound</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\Testing" />
+  </ItemGroup>
+</Project>
