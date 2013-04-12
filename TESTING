@@ -29,6 +29,10 @@ mappers unknown:
 needed:
  . mapper 88/206 has four screen
 
+speed:
+ . before attrib cache: 306-316 fps
+ . after attrib cache: slower?!
+
 ------------
 old testing
 ------------

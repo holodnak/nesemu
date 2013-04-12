@@ -34,7 +34,7 @@ static void drawbackground(u8 *dest)
 	u64 *scr64 = (u64*)dest;
 	u32 scroll = nes->ppu.scroll & 0x3FF;
 	u8 *nametableptr;
-	u8 nametable,attrib,tile,n;
+	u8 nametable,attrib,tile;
 	int t = 0;
 
 	//get pointer to visible nametable
@@ -50,12 +50,16 @@ static void drawbackground(u8 *dest)
 		if(nes->mapper->tile)
 			nes->mapper->tile(tile,((nes->ppu.ctrl0 & 0x10) >> 2) >> 2);
 
+#ifdef CACHE_ATTRIB
+		//get attributes from the cache
+		attrib = nes->ppu.attribpages[nametable][scroll];
+#else
 		//fetch attribute byte for this tile
-		n = nametableptr[0x3c0 + ((scroll >> 2) & 7) + (((scroll >> (2 + 5)) & 7) << 3)];
+		attrib = nametableptr[0x3C0 + ((scroll >> 2) & 7) + (((scroll >> (2 + 5)) & 7) << 3)];
 
 		//shift out the attribute bits used from the attribute byte
-		attrib = (n >> (((scroll & 2) | (((scroll >> 5) & 2) << 1)))) & 3;
-
+		attrib = (attrib >> (((scroll & 2) | (((scroll >> 5) & 2) << 1)))) & 3;
+#endif
 		//tile bank cache pointer
 		cache = nes->ppu.cachepages[(tile >> 6) | ((nes->ppu.ctrl0 & 0x10) >> 2)];
 

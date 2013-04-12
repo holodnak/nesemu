@@ -606,40 +606,19 @@
 							RelativePath="..\..\mappers\boards\konami\vrc1.c">
 						</File>
 						<File
-							RelativePath="..\..\mappers\boards\konami\vrc2a.c">
-						</File>
-						<File
-							RelativePath="..\..\mappers\boards\konami\vrc2b.c">
+							RelativePath="..\..\mappers\boards\konami\vrc2.c">
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\konami\vrc3.c">
 						</File>
 						<File
-							RelativePath="..\..\mappers\boards\konami\vrc4a.c">
+							RelativePath="..\..\mappers\boards\konami\vrc4.c">
 						</File>
 						<File
-							RelativePath="..\..\mappers\boards\konami\vrc4b.c">
+							RelativePath="..\..\mappers\boards\konami\vrc6.c">
 						</File>
 						<File
-							RelativePath="..\..\mappers\boards\konami\vrc4c.c">
-						</File>
-						<File
-							RelativePath="..\..\mappers\boards\konami\vrc4d.c">
-						</File>
-						<File
-							RelativePath="..\..\mappers\boards\konami\vrc4e.c">
-						</File>
-						<File
-							RelativePath="..\..\mappers\boards\konami\vrc6a.c">
-						</File>
-						<File
-							RelativePath="..\..\mappers\boards\konami\vrc6b.c">
-						</File>
-						<File
-							RelativePath="..\..\mappers\boards\konami\vrc7a.c">
-						</File>
-						<File
-							RelativePath="..\..\mappers\boards\konami\vrc7b.c">
+							RelativePath="..\..\mappers\boards\konami\vrc7.c">
 						</File>
 					</Filter>
 					<Filter
@@ -659,13 +638,7 @@
 						Name="txc"
 						Filter="">
 						<File
-							RelativePath="..\..\mappers\boards\txc\txc-22211a.c">
-						</File>
-						<File
-							RelativePath="..\..\mappers\boards\txc\txc-22211b.c">
-						</File>
-						<File
-							RelativePath="..\..\mappers\boards\txc\txc-22211c.c">
+							RelativePath="..\..\mappers\boards\txc\txc-22211.c">
 						</File>
 						<File
 							RelativePath="..\..\mappers\boards\txc\txc-mxmdhtwo.c">

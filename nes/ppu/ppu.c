@@ -52,6 +52,10 @@ void ppu_setnt(int nt,int index)
 {
 	nes->ppu.readpages[nt + 0x8] = nes->ppu.writepages[nt + 0x8] =
 	nes->ppu.readpages[nt + 0xC] = nes->ppu.writepages[nt + 0xC] = nes->nametables[index];
+#ifdef CACHE_ATTRIB
+	nes->ppu.attribpages[nt] = nes->ppu.cacheattrib[index];
+	ppu_cacheattrib(nt);
+#endif
 }
 
 //ick...
@@ -60,5 +64,8 @@ void ppu_setnt_chr(int nt,int index)
 	int offset = (index * 0x400) & nes->rom->chrmask;
 
 	nes->ppu.readpages[nt + 0x8] = nes->ppu.readpages[nt + 0xC] = nes->rom->chr + offset;
+#ifdef CACHE_ATTRIB
 	nes->ppu.writepages[nt + 0x8] = nes->ppu.writepages[nt + 0xC] = 0;
+	ppu_cacheattrib(nt);
+#endif
 }

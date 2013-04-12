@@ -41,8 +41,10 @@ typedef struct ppu_s {
 	cache_t *cachepages_hflip[16];//hflipped cache page pointers (read only)
 	readfunc_t	readfuncs[16];		//ppu read function pointers
 	writefunc_t	writefuncs[16];	//ppu write function pointers
+#ifdef CACHE_ATTRIB
 	u8		cacheattrib[4][32*32];	//attribute cache for four nametables
 	u8		*attribpages[4];			//attribute cache pointers
+#endif
 } ppu_t;
 
 u8 ppumem_read(u32 addr);

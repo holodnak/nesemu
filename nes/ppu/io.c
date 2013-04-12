@@ -25,6 +25,47 @@
 #include "nes/ppu/cache.h"
 #include "system/video.h"
 
+#ifdef CACHE_ATTRIB
+void ppu_cacheattribbyte(u32 addr,u8 data)
+{
+	u32 a = addr & 0x3F;
+	u8 v,nt = (addr >> 10) & 3;
+	u32 x = (a & 7) << 2;
+	u32 y = (((a >> 3) & 7) << 2) * 32;
+
+	v = (data & 3);
+	nes->ppu.cacheattrib[nt][y+0+x+0] = v;
+	nes->ppu.cacheattrib[nt][y+0+x+1] = v;
+	nes->ppu.cacheattrib[nt][y+32+x+0] = v;
+	nes->ppu.cacheattrib[nt][y+32+x+1] = v;
+	v = (data & 0x0C) >> 2;
+	nes->ppu.cacheattrib[nt][y+0+x+2] = v;
+	nes->ppu.cacheattrib[nt][y+0+x+3] = v;
+	nes->ppu.cacheattrib[nt][y+32+x+2] = v;
+	nes->ppu.cacheattrib[nt][y+32+x+3] = v;
+	v = (data & 0x30) >> 4;
+	nes->ppu.cacheattrib[nt][y+64+x+0] = v;
+	nes->ppu.cacheattrib[nt][y+64+x+1] = v;
+	nes->ppu.cacheattrib[nt][y+96+x+0] = v;
+	nes->ppu.cacheattrib[nt][y+96+x+1] = v;
+	v = (data & 0xC0) >> 6;
+	nes->ppu.cacheattrib[nt][y+64+x+2] = v;
+	nes->ppu.cacheattrib[nt][y+64+x+3] = v;
+	nes->ppu.cacheattrib[nt][y+96+x+2] = v;
+	nes->ppu.cacheattrib[nt][y+96+x+3] = v;
+}
+
+void ppu_cacheattrib(int nt)
+{
+	int i;
+	u32 addr = 0x2000 + (nt * 0x400) + 0x3C0;
+
+	for(i=0;i<0x40;i++) {
+		ppu_cacheattribbyte(addr + i,ppumem_read(addr + i));
+	}
+}
+#endif
+
 u8 ppumem_read(u32 addr)
 {
 	if(nes->ppu.readpages[addr >> 10])
@@ -64,36 +105,16 @@ void ppumem_write(u32 addr,u8 data)
 			convert_tile_hflip(chr + a,cache_hflip + (a / 8));
 		}
 	}
-/*
-	//check if attribute write
-	else if((addr & 0x3FF) >= 0x3C0) {
-		u8 nt = page & 3;
-		u32 a = addr & 0x3FF;
-		u8 x = (a & 7) << 2;
-		u8 y = ((a >> 3) << 2) * 32;
-		u8 v = (data & 3);
 
-		nes->ppu.cacheattrib[nt][y+0+x+0] = v;
-		nes->ppu.cacheattrib[nt][y+0+x+1] = v;
-		nes->ppu.cacheattrib[nt][y+32+x+0] = v;
-		nes->ppu.cacheattrib[nt][y+32+x+1] = v;
-		v = (data & 0xc) >> 2;
-		nes->ppu.cacheattrib[nt][y+0+x+2] = v;
-		nes->ppu.cacheattrib[nt][y+0+x+3] = v;
-		nes->ppu.cacheattrib[nt][y+32+x+2] = v;
-		nes->ppu.cacheattrib[nt][y+32+x+3] = v;
-		v = (data & 0x30) >> 4;
-		nes->ppu.cacheattrib[nt][y+64+x+0] = v;
-		nes->ppu.cacheattrib[nt][y+64+x+1] = v;
-		nes->ppu.cacheattrib[nt][y+96+x+0] = v;
-		nes->ppu.cacheattrib[nt][y+96+x+1] = v;
-		v = (data & 0xc0) >> 6;
-		nes->ppu.cacheattrib[nt][y+64+x+2] = v;
-		nes->ppu.cacheattrib[nt][y+64+x+3] = v;
-		nes->ppu.cacheattrib[nt][y+96+x+2] = v;
-		nes->ppu.cacheattrib[nt][y+96+x+3] = v;
+#ifdef CACHE_ATTRIB
+	//check if attribute write
+	else if(addr < 0x3F00) {
+		if((addr & 0x3FF) >= 0x3C0) {
+			ppu_cacheattribbyte(addr,data);
+		}
 	}
-*/
+#endif
+
 }
 
 u8 pal_read(u32 addr)
