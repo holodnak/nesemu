@@ -152,7 +152,7 @@ void splash_draw()
 	int offset = 264*32+16;
 	int frame;
 
-	memset(scr,0,256+8*240);
+	memset(scr,0,(256+8)*240);
 	video_setpalentry(0xCC,0xFF,0xFF,0xFF);
 	video_setpalentry(0,0x00,0x00,0x00);
 	video_setpalentry(1,0xF0,0xA0,0x80);

@@ -167,6 +167,10 @@ static void drawbackground(u8 *dest)
 			scroll++;
 	}
 
+	//clear left 8 background pixels if needed
+	if((nes->ppu.ctrl1 & 2) == 0)
+		*(((u64*)dest) + 0) = 0;
+
 	//alternative sprite0 hit check
 	//TODO: use the cache for sprite0 tile data
 	//TODO: eliminate the hack
@@ -528,6 +532,7 @@ static void drawspriteline(u8 *dest)
 #error no background draw for this platform
 #endif
 #endif
+
 		//check for sprite0 hit
 		if((spr->flags & 2) && (nes->ppu.ctrl1 & 8) && (spr->x >= (((nes->ppu.ctrl1 ^ 4) & 4) << 1))) {
 			u8 *sprite = spriteline + spr->x;
@@ -543,10 +548,6 @@ static void drawspriteline(u8 *dest)
 			}
 		}
 	}
-
-	//clear left 8 background pixels if needed
-	if((nes->ppu.ctrl1 & 2) == 0)
-		*(((u64*)dest) + 0) = 0;
 
 	//draw the sprite line to the buffer
 	for(n=(((nes->ppu.ctrl1 ^ 4) & 4) << 1);n<256;n++) {

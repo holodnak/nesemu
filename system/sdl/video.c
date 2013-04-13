@@ -149,7 +149,7 @@ static u32 lasttime = 0;
 //this handles lines coming directly from the nes engine
 void video_updateline(int line,u8 *s)
 {
-#ifndef _PROFILE
+//#ifndef _PROFILE
 	int x,pitch = 256;
 	u32 *dest = tmpscreen;
 	u8 *dest2 = nesscreen;
@@ -173,7 +173,7 @@ void video_updateline(int line,u8 *s)
 		dest2[x] = nes->pal[pixel & 0x1F];
 		dest[x] = palette32[pixel];
 	}
-#endif
+//#endif
 }
 
 extern u8 disk_read[24][24];

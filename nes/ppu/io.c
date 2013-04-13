@@ -29,30 +29,22 @@
 void ppu_cacheattribbyte(u32 addr,u8 data)
 {
 	u32 a = addr & 0x3F;
-	u8 v,nt = (addr >> 10) & 3;
+	u8 nt = (addr >> 10) & 3;
 	u32 x = (a & 7) << 2;
-	u32 y = (((a >> 3) & 7) << 2) * 32;
+	u32 y = (a & 0x38) << 4;
+	u8 v[4];
+	u32 v32;
 
-	v = (data & 3);
-	nes->ppu.cacheattrib[nt][y+0+x+0] = v;
-	nes->ppu.cacheattrib[nt][y+0+x+1] = v;
-	nes->ppu.cacheattrib[nt][y+32+x+0] = v;
-	nes->ppu.cacheattrib[nt][y+32+x+1] = v;
-	v = (data & 0x0C) >> 2;
-	nes->ppu.cacheattrib[nt][y+0+x+2] = v;
-	nes->ppu.cacheattrib[nt][y+0+x+3] = v;
-	nes->ppu.cacheattrib[nt][y+32+x+2] = v;
-	nes->ppu.cacheattrib[nt][y+32+x+3] = v;
-	v = (data & 0x30) >> 4;
-	nes->ppu.cacheattrib[nt][y+64+x+0] = v;
-	nes->ppu.cacheattrib[nt][y+64+x+1] = v;
-	nes->ppu.cacheattrib[nt][y+96+x+0] = v;
-	nes->ppu.cacheattrib[nt][y+96+x+1] = v;
-	v = (data & 0xC0) >> 6;
-	nes->ppu.cacheattrib[nt][y+64+x+2] = v;
-	nes->ppu.cacheattrib[nt][y+64+x+3] = v;
-	nes->ppu.cacheattrib[nt][y+96+x+2] = v;
-	nes->ppu.cacheattrib[nt][y+96+x+3] = v;
+	v[0] = data & 3;
+	v[1] = (data & 0x0C) >> 2;
+	v[2] = (data & 0x30) >> 4;
+	v[3] = (data & 0xC0) >> 6;
+	v32 = v[0] | (v[0] << 8) | (v[1] << 16) | (v[1] << 24);
+	*((u32*)&nes->ppu.cacheattrib[nt][y+x])    = v32;
+	*((u32*)&nes->ppu.cacheattrib[nt][y+x+32]) = v32;
+	v32 = v[2] | (v[2] << 8) | (v[3] << 16) | (v[3] << 24);
+	*((u32*)&nes->ppu.cacheattrib[nt][y+x+64]) = v32;
+	*((u32*)&nes->ppu.cacheattrib[nt][y+x+96]) = v32;
 }
 
 void ppu_cacheattrib(int nt)
