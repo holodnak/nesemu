@@ -174,7 +174,8 @@ static void drawbackground(u8 *dest)
 	//alternative sprite0 hit check
 	//TODO: use the cache for sprite0 tile data
 	//TODO: eliminate the hack
-	if(nes->rom->sprite0hack) {
+	if(0) {
+//	if(nes->rom->sprite0hack) {
 		u8 sprite0x = nes->sprmem[3];
 		u8 sprite0y = nes->sprmem[0] + 1;
 		int i,spritesize = 8;
@@ -533,8 +534,32 @@ static void drawspriteline(u8 *dest)
 #endif
 #endif
 
+		//sprite is sprite 0, check for hit
+		if(spr->flags & 2) {
+			u64 sprtileline;
+			u8 *sprtileline8,*bg;
+			int j,x;
+
+			sprtileline = (sp0 + offs) & pmask0;
+			sprtileline8 = ((u8*)&sprtileline);
+			bg = dest + spr->x;
+			for(x=spr->x,j=0;j<8 && (spr->x + j) < 255;j++,x++) {
+
+				//handle sprite clipping
+				if(((nes->ppu.ctrl1 & 4) == 0) && (x < 8))
+					continue;
+
+				//check for bg + sprite collision
+				if((sprtileline8[j] & 3) && ((bg[j] & 0xF) != 0)) {
+					nes->ppu.status |= 0x40;
+					break;
+
+				}
+			}
+		}
+
 		//check for sprite0 hit
-		if((spr->flags & 2) && (nes->ppu.ctrl1 & 8) && (spr->x >= (((nes->ppu.ctrl1 ^ 4) & 4) << 1))) {
+/*		if((spr->flags & 2) && (nes->ppu.ctrl1 & 8) && (spr->x >= (((nes->ppu.ctrl1 ^ 4) & 4) << 1))) {
 			u8 *sprite = spriteline + spr->x;
 			u8 *bg = dest + spr->x;
 			int j;
@@ -546,7 +571,7 @@ static void drawspriteline(u8 *dest)
 					break;
 				}
 			}
-		}
+		}*/
 	}
 
 	//draw the sprite line to the buffer
