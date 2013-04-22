@@ -174,8 +174,8 @@ static void drawbackground(u8 *dest)
 	//alternative sprite0 hit check
 	//TODO: use the cache for sprite0 tile data
 	//TODO: eliminate the hack
-	if(0) {
-//	if(nes->rom->sprite0hack) {
+//	if(0) {
+	if(nes->rom->sprite0hack) {
 		u8 sprite0x = nes->sprmem[3];
 		u8 sprite0y = nes->sprmem[0] + 1;
 		int i,spritesize = 8;
