@@ -80,6 +80,7 @@ SDL_OBJ += system/sdl/scale2x/scalebit.o
 SDL_OBJ += system/sdl/interpolate/interpolate.o
 SDL_OBJ += system/sdl/hq2x/hq2x.o
 SDL_OBJ += system/sdl/hq2x/hq3x.o
+SDL_OBJ += system/sdl/hq2x/hq4x.o
 SDL_OBJ += system/sdl/nes_ntsc/nes_ntsc.o
 
 OBJS = nesemu.o log.o misc.o splash.o $(NES_OBJ) $(MAPPER_OBJ) $(GUI2_OBJ) system/config.o
