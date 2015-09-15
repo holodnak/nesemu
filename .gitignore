@@ -1,0 +1,10 @@
+*.o
+version.h
+nesemu
+nesemu.exe
+nesemu.cfg
+nesemu.log
+stdout.txt
+projects/vc2015/Debug/
+projects/vc2015/Release/
+projects/vc2015/nesemu.*sdf

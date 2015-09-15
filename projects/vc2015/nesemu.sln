@@ -1,0 +1,19 @@
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "nesemu", "nesemu.vcxproj", "{0A8BA1ED-9621-4B2C-8E3D-D76E19EFDBCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0A8BA1ED-9621-4B2C-8E3D-D76E19EFDBCF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0A8BA1ED-9621-4B2C-8E3D-D76E19EFDBCF}.Debug|Win32.Build.0 = Debug|Win32
+		{0A8BA1ED-9621-4B2C-8E3D-D76E19EFDBCF}.Release|Win32.ActiveCfg = Release|Win32
+		{0A8BA1ED-9621-4B2C-8E3D-D76E19EFDBCF}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
