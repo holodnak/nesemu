@@ -25,7 +25,7 @@
 #include <libmc.h>
 #include <graph.h>
 #include <stdio.h>
-#include "crc32.h"
+#include "zlib.h"
 
 extern u16 size_sjpcm_irx;
 extern u8 *sjpcm_irx;
@@ -34,6 +34,29 @@ extern u8 *usbd_irx;
 extern u16 size_usb_mass_irx;
 extern u8 *usb_mass_irx;
 
+static void LoadRomModule(char *name)
+{
+	char fn[128];
+
+	sprintf(fn,"rom0:%s", name);
+	if(SifLoadModule(fn, 0, NULL) < 0) {
+		printf("Failed to load module: %s", fn);
+		SleepThread();
+	}
+}
+
+static void LoadModule(char *name,int argsize,char *args)
+{
+	char base[] = "mc0:nesemu/";
+	char fn[128];
+
+	sprintf(fn,"%s%s",base,name);
+	if(SifLoadModule(fn,argsize,args) < 0) {
+		printf("Load failed: %s", fn);
+		SleepThread();
+	}
+}
+
 static void LoadModules()
 {
 	int ret;
@@ -41,74 +64,42 @@ static void LoadModules()
 	char pfsarg[] = "-m" "\0" "4" "\0" "-o" "\0" "10" "\0" "-n" "\0" "40" /*"\0" "-debug"*/;
 
 #ifdef TYPE_MC
-	ret = SifLoadModule("rom0:SIO2MAN", 0, NULL);
-	if (ret < 0) {
-		printf("Failed to load module: SIO2MAN");
-		SleepThread();
-	}
-
-	ret = SifLoadModule("rom0:MCMAN", 0, NULL);
-	if (ret < 0) {
-		printf("Failed to load module: MCMAN");
-		SleepThread();
-	}
-
-	ret = SifLoadModule("rom0:MCSERV", 0, NULL);
-	if (ret < 0) {
-		printf("Failed to load module: MCSERV");
-		SleepThread();
-	}
+	LoadRomModule("SIO2MAN");
+	LoadRomModule("MCMAN");
+	LoadRomModule("MCSERV");
 #else
-	ret = SifLoadModule("rom0:XSIO2MAN", 0, NULL);
-	if (ret < 0) {
-		printf("Failed to load module: SIO2MAN");
-		SleepThread();
-	}
-
-	ret = SifLoadModule("rom0:XMCMAN", 0, NULL);
-	if (ret < 0) {
-		printf("Failed to load module: MCMAN");
-		SleepThread();
-	}
-
-	ret = SifLoadModule("rom0:XMCSERV", 0, NULL);
-	if (ret < 0) {
-		printf("Failed to load module: MCSERV");
-		SleepThread();
-	}
+	LoadRomModule("XSIO2MAN");
+	LoadRomModule("XMCMAN");
+	LoadRomModule("XMCSERV");
 #endif
-	ret = SifLoadModule("rom0:PADMAN", 0, NULL);
-	if (ret < 0) {
-		printf("Failed to load module: PADMAN");
-		SleepThread();
-	}
+	LoadRomModule("PADMAN");
+	LoadRomModule("LIBSD");
 
-	ret = SifLoadModule("rom0:LIBSD", 0, NULL);
-	if (ret < 0) {
-		printf("Failed to load module: LIBSD");
-		SleepThread();
-	}
+	LoadModule("ps2atad.irx",0,0);
+	LoadModule("fileXio.irx",0,0);
+	LoadModule("ps2hdd.irx", sizeof(hddarg), hddarg);
+	LoadModule("ps2fs.irx", sizeof(pfsarg), pfsarg);
 
-	if((ret = SifLoadModule("mc0:nesemu/fileXio.irx", 0, NULL)) < 0) {
+/*	if((ret = SifLoadModule("cdfs:/fileXio.irx", 0, NULL)) < 0) {
 		printf("Load failed: fileXio.irx");
 		SleepThread();
 	}
 
-	if((ret = SifLoadModule("mc0:nesemu/ps2atad.irx", 0, NULL)) < 0) {
+	if((ret = SifLoadModule("mc0:/nesemu/ps2atad.irx", 0, NULL)) < 0) {
 		printf("Load failed: ps2atad.irx");
 		SleepThread();
 	}
 
-	if((ret = SifLoadModule("mc0:nesemu/ps2hdd.irx", sizeof(hddarg), hddarg)) < 0) {
+	if((ret = SifLoadModule("mc0:/nesemu/ps2hdd.irx", sizeof(hddarg), hddarg)) < 0) {
 		printf("Load failed: ps2hdd.irx");
 		SleepThread();
 	}
 
-	if((ret = SifLoadModule("mc0:nesemu/ps2fs.irx", sizeof(pfsarg), pfsarg)) < 0) {
+	if((ret = SifLoadModule("mc0:/nesemu/ps2fs.irx", sizeof(pfsarg), pfsarg)) < 0) {
 		printf("Load failed: ps2fs.irx");
 		SleepThread();
 	}
-
+*/
 	SifExecModuleBuffer(&sjpcm_irx, size_sjpcm_irx, 0, NULL, &ret);
 	if (ret < 0) {
 		printf("Failed to load module: sjpcm_irx");
@@ -132,7 +123,6 @@ static void LoadModules()
 
 void init_system()
 {
-	crc32gentab();
 	SifInitRpc(0);
 	LoadModules();
 

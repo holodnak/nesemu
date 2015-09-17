@@ -1,4 +1,4 @@
-#include <memory.h>
+//#include <memory.h>
 #include "defines.h"
 #include "gui2/gui2_draw.h"
 #include "system/video.h"
