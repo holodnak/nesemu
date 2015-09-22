@@ -51,7 +51,7 @@ u8 nes_frame_irqmode = 0;
 //write to sprite dma, nes joypad strobe, and apu registers
 void nes_write_4000(u32 addr,u8 data)
 {
-	u32 temp,temp2;
+	u32 temp,temp2,i;
 
 	//write to apu
 	if(addr <= 0x4013 || addr == 0x4015) {
@@ -61,9 +61,13 @@ void nes_write_4000(u32 addr,u8 data)
 
 	//sprite dma write
 	else if(addr == 0x4014) {
+		temp = nes->ppu.spraddr;
 		temp2 = data << 8;
-		for(temp=0;temp<256;temp++,temp2++)
+		for (i = 0; i < 256; i++) {
 			nes->sprmem[temp] = dead6502_read(temp2);
+			temp = (temp + 1) & 0xFF;
+			temp2++;
+		}
 		nes_burn(2 * 256);
 	}
 

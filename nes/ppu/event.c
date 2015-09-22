@@ -100,7 +100,7 @@ static void event_6()
 }
 */
 //beginning of scanline 20
-static void event_6820()
+static void event_6810()
 {
 	//clear ppu VINT flag, sprite0 hit flag, and sprite overflow flag
 	nes->ppu.status = 0;
@@ -227,7 +227,7 @@ static ppu_event_t events[] = {
 	EVENT(0),			//set vint flag
 	EVENT(2),			//execute nmi if necessary
 	EVENT(6),			//execute nmi if necessary
-	EVENT(6820),		//scanline 20, cycle 0
+	EVENT(6810),		//scanline 20, cycle 0
 	EVENT(7076),		//scanline 20, cycle 256
 	EVENT(7148),		//scanline 20, cycle 328
 //	EVENT(29830),		//scanline 65, cycle ? (apu frame irq)
