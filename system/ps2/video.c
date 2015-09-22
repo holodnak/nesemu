@@ -93,7 +93,7 @@ void video_updateline(int line,u8 *s)
 
 	//offset to line to be drawn
 	line -= 8;
-	dest = screen + (line * 256);
+	dest = (u64*)(screen + (line * 256));
 
 	//draw the line
 	for(x=0;x<256;x+=2) {
@@ -116,7 +116,7 @@ void video_endframe()
 			fastforward = 10;
 	}
 
-	if(nes && nes->rom && nes->rom->mapper == 20 && fdsdrive) {
+	if(nes && nes->rom && /*nes->rom->mapper == 20 &&*/ fdsdrive) {
 		//draw fds drive read/write icon...
 		u32 *scr = screen;
 		int x,y;

@@ -25,7 +25,6 @@ saves data to config file
 //#define stricmp _stricmp
 #define mkdir _mkdir
 #endif
-#include <direct.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
